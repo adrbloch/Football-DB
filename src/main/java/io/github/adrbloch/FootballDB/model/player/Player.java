@@ -9,122 +9,122 @@ import lombok.Setter;
 public class Player {
 
     @JsonProperty("idPlayer")
-    public String idPlayer;
+    private String idPlayer;
     @JsonProperty("idTeam")
-    public String idTeam;
+    private String idTeam;
     @JsonProperty("idTeam2")
-    public String idTeam2;
+    private String idTeam2;
     @JsonProperty("idTeamNational")
-    public String idTeamNational;
+    private String idTeamNational;
     @JsonProperty("idSoccerXML")
-    public String idSoccerXML;
+    private String idSoccerXML;
     @JsonProperty("idAPIfootball")
-    public String idAPIfootball;
+    private String idAPIfootball;
     @JsonProperty("idPlayerManager")
-    public String idPlayerManager;
+    private String idPlayerManager;
     @JsonProperty("strNationality")
-    public String strNationality;
+    private String strNationality;
     @JsonProperty("strPlayer")
-    public String strPlayer;
+    private String strPlayer;
     @JsonProperty("strTeam")
-    public String strTeam;
+    private String strTeam;
     @JsonProperty("strTeam2")
-    public String strTeam2;
+    private String strTeam2;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("intSoccerXMLTeamID")
-    public String intSoccerXMLTeamID;
+    private String intSoccerXMLTeamID;
     @JsonProperty("dateBorn")
-    public String dateBorn;
+    private String dateBorn;
     @JsonProperty("strNumber")
-    public String strNumber;
+    private String strNumber;
     @JsonProperty("dateSigned")
-    public String dateSigned;
+    private String dateSigned;
     @JsonProperty("strSigning")
-    public String strSigning;
+    private String strSigning;
     @JsonProperty("strWage")
-    public String strWage;
+    private String strWage;
     @JsonProperty("strOutfitter")
-    public String strOutfitter;
+    private String strOutfitter;
     @JsonProperty("strKit")
-    public String strKit;
+    private String strKit;
     @JsonProperty("strAgent")
-    public String strAgent;
+    private String strAgent;
     @JsonProperty("strBirthLocation")
-    public String strBirthLocation;
+    private String strBirthLocation;
     @JsonProperty("strDescriptionEN")
-    public String strDescriptionEN;
+    private String strDescriptionEN;
     @JsonProperty("strDescriptionDE")
-    public String strDescriptionDE;
+    private String strDescriptionDE;
     @JsonProperty("strDescriptionFR")
-    public String strDescriptionFR;
+    private String strDescriptionFR;
     @JsonProperty("strDescriptionCN")
-    public String strDescriptionCN;
+    private String strDescriptionCN;
     @JsonProperty("strDescriptionIT")
-    public String strDescriptionIT;
+    private String strDescriptionIT;
     @JsonProperty("strDescriptionJP")
-    public String strDescriptionJP;
+    private String strDescriptionJP;
     @JsonProperty("strDescriptionRU")
-    public String strDescriptionRU;
+    private String strDescriptionRU;
     @JsonProperty("strDescriptionES")
-    public String strDescriptionES;
+    private String strDescriptionES;
     @JsonProperty("strDescriptionPT")
-    public String strDescriptionPT;
+    private String strDescriptionPT;
     @JsonProperty("strDescriptionSE")
-    public String strDescriptionSE;
+    private String strDescriptionSE;
     @JsonProperty("strDescriptionNL")
-    public String strDescriptionNL;
+    private String strDescriptionNL;
     @JsonProperty("strDescriptionHU")
-    public String strDescriptionHU;
+    private String strDescriptionHU;
     @JsonProperty("strDescriptionNO")
-    public String strDescriptionNO;
+    private String strDescriptionNO;
     @JsonProperty("strDescriptionIL")
-    public String strDescriptionIL;
+    private String strDescriptionIL;
     @JsonProperty("strDescriptionPL")
-    public String strDescriptionPL;
+    private String strDescriptionPL;
     @JsonProperty("strGender")
-    public String strGender;
+    private String strGender;
     @JsonProperty("strSide")
-    public String strSide;
+    private String strSide;
     @JsonProperty("strPosition")
-    public String strPosition;
+    private String strPosition;
     @JsonProperty("strCollege")
-    public String strCollege;
+    private String strCollege;
     @JsonProperty("strFacebook")
-    public String strFacebook;
+    private String strFacebook;
     @JsonProperty("strWebsite")
-    public String strWebsite;
+    private String strWebsite;
     @JsonProperty("strTwitter")
-    public String strTwitter;
+    private String strTwitter;
     @JsonProperty("strInstagram")
-    public String strInstagram;
+    private String strInstagram;
     @JsonProperty("strYoutube")
-    public String strYoutube;
+    private String strYoutube;
     @JsonProperty("strHeight")
-    public String strHeight;
+    private String strHeight;
     @JsonProperty("strWeight")
-    public String strWeight;
+    private String strWeight;
     @JsonProperty("intLoved")
-    public String intLoved;
+    private String intLoved;
     @JsonProperty("strThumb")
-    public String strThumb;
+    private String strThumb;
     @JsonProperty("strCutout")
-    public String strCutout;
+    private String strCutout;
     @JsonProperty("strRender")
-    public String strRender;
+    private String strRender;
     @JsonProperty("strBanner")
-    public String strBanner;
+    private String strBanner;
     @JsonProperty("strFanart1")
-    public String strFanart1;
+    private String strFanart1;
     @JsonProperty("strFanart2")
-    public String strFanart2;
+    private String strFanart2;
     @JsonProperty("strFanart3")
-    public String strFanart3;
+    private String strFanart3;
     @JsonProperty("strFanart4")
-    public String strFanart4;
+    private String strFanart4;
     @JsonProperty("strCreativeCommons")
-    public String strCreativeCommons;
+    private String strCreativeCommons;
     @JsonProperty("strLocked")
-    public String strLocked;
+    private String strLocked;
 
 }

@@ -7,12 +7,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfiguration {
 
-    private static final String THESPORTSDB_API_BASE_URL = "https://www.thesportsdb.com/api/v1/json/1";
+    private static final String THESPORTSDB_API_BASE_URL = "https://www.thesportsdb.com/api/v1/json/";
+    private static final String API_KEY = "1";
 
     @Bean
     public WebClient getApiClient() {
         return WebClient.builder()
-                .baseUrl(THESPORTSDB_API_BASE_URL)
+                .baseUrl(THESPORTSDB_API_BASE_URL + API_KEY)
                 .build();
     }
 

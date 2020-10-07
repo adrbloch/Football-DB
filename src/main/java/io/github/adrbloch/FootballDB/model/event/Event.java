@@ -9,130 +9,130 @@ import lombok.Setter;
 public class Event {
 
     @JsonProperty("idEvent")
-    public String idEvent;
+    private String idEvent;
     @JsonProperty("idSoccerXML")
-    public String idSoccerXML;
+    private String idSoccerXML;
     @JsonProperty("idAPIfootball")
-    public String idAPIfootball;
+    private String idAPIfootball;
     @JsonProperty("strEvent")
-    public String strEvent;
+    private String strEvent;
     @JsonProperty("strEventAlternate")
-    public String strEventAlternate;
+    private String strEventAlternate;
     @JsonProperty("strFilename")
-    public String strFilename;
+    private String strFilename;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("idLeague")
-    public String idLeague;
+    private String idLeague;
     @JsonProperty("strLeague")
-    public String strLeague;
+    private String strLeague;
     @JsonProperty("strSeason")
-    public String strSeason;
+    private String strSeason;
     @JsonProperty("strDescriptionEN")
-    public String strDescriptionEN;
+    private String strDescriptionEN;
     @JsonProperty("strHomeTeam")
-    public String strHomeTeam;
+    private String strHomeTeam;
     @JsonProperty("strAwayTeam")
-    public String strAwayTeam;
+    private String strAwayTeam;
     @JsonProperty("intHomeScore")
-    public String intHomeScore;
+    private String intHomeScore;
     @JsonProperty("intRound")
-    public String intRound;
+    private String intRound;
     @JsonProperty("intAwayScore")
-    public String intAwayScore;
+    private String intAwayScore;
     @JsonProperty("intSpectators")
-    public String intSpectators;
+    private String intSpectators;
     @JsonProperty("strOfficial")
-    public String strOfficial;
+    private String strOfficial;
     @JsonProperty("strHomeGoalDetails")
-    public String strHomeGoalDetails;
+    private String strHomeGoalDetails;
     @JsonProperty("strHomeRedCards")
-    public String strHomeRedCards;
+    private String strHomeRedCards;
     @JsonProperty("strHomeYellowCards")
-    public String strHomeYellowCards;
+    private String strHomeYellowCards;
     @JsonProperty("strHomeLineupGoalkeeper")
-    public String strHomeLineupGoalkeeper;
+    private String strHomeLineupGoalkeeper;
     @JsonProperty("strHomeLineupDefense")
-    public String strHomeLineupDefense;
+    private String strHomeLineupDefense;
     @JsonProperty("strHomeLineupMidfield")
-    public String strHomeLineupMidfield;
+    private String strHomeLineupMidfield;
     @JsonProperty("strHomeLineupForward")
-    public String strHomeLineupForward;
+    private String strHomeLineupForward;
     @JsonProperty("strHomeLineupSubstitutes")
-    public String strHomeLineupSubstitutes;
+    private String strHomeLineupSubstitutes;
     @JsonProperty("strHomeFormation")
-    public String strHomeFormation;
+    private String strHomeFormation;
     @JsonProperty("strAwayRedCards")
-    public String strAwayRedCards;
+    private String strAwayRedCards;
     @JsonProperty("strAwayYellowCards")
-    public String strAwayYellowCards;
+    private String strAwayYellowCards;
     @JsonProperty("strAwayGoalDetails")
-    public String strAwayGoalDetails;
+    private String strAwayGoalDetails;
     @JsonProperty("strAwayLineupGoalkeeper")
-    public String strAwayLineupGoalkeeper;
+    private String strAwayLineupGoalkeeper;
     @JsonProperty("strAwayLineupDefense")
-    public String strAwayLineupDefense;
+    private String strAwayLineupDefense;
     @JsonProperty("strAwayLineupMidfield")
-    public String strAwayLineupMidfield;
+    private String strAwayLineupMidfield;
     @JsonProperty("strAwayLineupForward")
-    public String strAwayLineupForward;
+    private String strAwayLineupForward;
     @JsonProperty("strAwayLineupSubstitutes")
-    public String strAwayLineupSubstitutes;
+    private String strAwayLineupSubstitutes;
     @JsonProperty("strAwayFormation")
-    public String strAwayFormation;
+    private String strAwayFormation;
     @JsonProperty("intHomeShots")
-    public String intHomeShots;
+    private String intHomeShots;
     @JsonProperty("intAwayShots")
-    public String intAwayShots;
+    private String intAwayShots;
     @JsonProperty("strTimestamp")
-    public String strTimestamp;
+    private String strTimestamp;
     @JsonProperty("dateEvent")
-    public String dateEvent;
+    private String dateEvent;
     @JsonProperty("dateEventLocal")
-    public String dateEventLocal;
+    private String dateEventLocal;
     @JsonProperty("strDate")
-    public String strDate;
+    private String strDate;
     @JsonProperty("strTime")
-    public String strTime;
+    private String strTime;
     @JsonProperty("strTimeLocal")
-    public String strTimeLocal;
+    private String strTimeLocal;
     @JsonProperty("strTVStation")
-    public String strTVStation;
+    private String strTVStation;
     @JsonProperty("idHomeTeam")
-    public String idHomeTeam;
+    private String idHomeTeam;
     @JsonProperty("idAwayTeam")
-    public String idAwayTeam;
+    private String idAwayTeam;
     @JsonProperty("strResult")
-    public String strResult;
+    private String strResult;
     @JsonProperty("strVenue")
-    public String strVenue;
+    private String strVenue;
     @JsonProperty("strCountry")
-    public String strCountry;
+    private String strCountry;
     @JsonProperty("strCity")
-    public String strCity;
+    private String strCity;
     @JsonProperty("strPoster")
-    public String strPoster;
+    private String strPoster;
     @JsonProperty("strFanart")
-    public String strFanart;
+    private String strFanart;
     @JsonProperty("strThumb")
-    public String strThumb;
+    private String strThumb;
     @JsonProperty("strBanner")
-    public String strBanner;
+    private String strBanner;
     @JsonProperty("strMap")
-    public String strMap;
+    private String strMap;
     @JsonProperty("strTweet1")
-    public String strTweet1;
+    private String strTweet1;
     @JsonProperty("strTweet2")
-    public String strTweet2;
+    private String strTweet2;
     @JsonProperty("strTweet3")
-    public String strTweet3;
+    private String strTweet3;
     @JsonProperty("strVideo")
-    public String strVideo;
+    private String strVideo;
     @JsonProperty("strStatus")
-    public String strStatus;
+    private String strStatus;
     @JsonProperty("strPostponed")
-    public String strPostponed;
+    private String strPostponed;
     @JsonProperty("strLocked")
-    public String strLocked;
+    private String strLocked;
 
 }

@@ -11,6 +11,6 @@ import java.util.List;
 public class Players {
 
     @JsonProperty("player")
-    public List<Player> player = null;
+    private List<Player> players = null;
 
 }

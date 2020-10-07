@@ -24,7 +24,7 @@ public class TeamServiceImpl implements TeamService {
 
     @Override
     public Mono<Teams> findTeamsByName(String teamName) {
-        logger.info("Getting team by name: [" + teamName + "]");
+        logger.info("Getting teams by name: [" + teamName + "]");
 
         return webClient.get()
                 .uri("/searchteams.php?t=" + teamName)
@@ -32,4 +32,33 @@ public class TeamServiceImpl implements TeamService {
                 .bodyToMono(Teams.class);
     }
 
+    @Override
+    public Mono<Teams> findTeamsByLeague(String league) {
+        logger.info("Getting teams by league: [" + league + "]");
+
+        return webClient.get()
+                .uri("/search_all_teams.php?l=" + league)
+                .retrieve()
+                .bodyToMono(Teams.class);
+    }
+
+    @Override
+    public Mono<Teams> findTeamsByCountry(String country) {
+        logger.info("Getting teams by country: [" + country + "]");
+
+        return webClient.get()
+                .uri("/search_all_teams.php?s=Soccer&c=" + country)
+                .retrieve()
+                .bodyToMono(Teams.class);
+    }
+
+    @Override
+    public Mono<Teams> findTeamById(String id) {
+        logger.info("Getting team by id: [" + id + "]");
+
+        return webClient.get()
+                .uri("/lookupteam.php?id=" + id)
+                .retrieve()
+                .bodyToMono(Teams.class);
+    }
 }

@@ -9,94 +9,94 @@ import lombok.Setter;
 public class League {
 
     @JsonProperty("idLeague")
-    public String idLeague;
+    private String idLeague;
     @JsonProperty("idSoccerXML")
-    public String idSoccerXML;
+    private String idSoccerXML;
     @JsonProperty("idAPIfootball")
-    public String idAPIfootball;
+    private String idAPIfootball;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("strLeague")
-    public String strLeague;
+    private String strLeague;
     @JsonProperty("strLeagueAlternate")
-    public String strLeagueAlternate;
+    private String strLeagueAlternate;
     @JsonProperty("strDivision")
-    public String strDivision;
+    private String strDivision;
     @JsonProperty("idCup")
-    public String idCup;
+    private String idCup;
     @JsonProperty("strCurrentSeason")
-    public String strCurrentSeason;
+    private String strCurrentSeason;
     @JsonProperty("intFormedYear")
-    public String intFormedYear;
+    private String intFormedYear;
     @JsonProperty("dateFirstEvent")
-    public String dateFirstEvent;
+    private String dateFirstEvent;
     @JsonProperty("strGender")
-    public String strGender;
+    private String strGender;
     @JsonProperty("strCountry")
-    public String strCountry;
+    private String strCountry;
     @JsonProperty("strWebsite")
-    public String strWebsite;
+    private String strWebsite;
     @JsonProperty("strFacebook")
-    public String strFacebook;
+    private String strFacebook;
     @JsonProperty("strTwitter")
-    public String strTwitter;
+    private String strTwitter;
     @JsonProperty("strYoutube")
-    public String strYoutube;
+    private String strYoutube;
     @JsonProperty("strRSS")
-    public String strRSS;
+    private String strRSS;
     @JsonProperty("strDescriptionEN")
-    public String strDescriptionEN;
+    private String strDescriptionEN;
     @JsonProperty("strDescriptionDE")
-    public String strDescriptionDE;
+    private String strDescriptionDE;
     @JsonProperty("strDescriptionFR")
-    public String strDescriptionFR;
+    private String strDescriptionFR;
     @JsonProperty("strDescriptionIT")
-    public String strDescriptionIT;
+    private String strDescriptionIT;
     @JsonProperty("strDescriptionCN")
-    public String strDescriptionCN;
+    private String strDescriptionCN;
     @JsonProperty("strDescriptionJP")
-    public String strDescriptionJP;
+    private String strDescriptionJP;
     @JsonProperty("strDescriptionRU")
-    public String strDescriptionRU;
+    private String strDescriptionRU;
     @JsonProperty("strDescriptionES")
-    public String strDescriptionES;
+    private String strDescriptionES;
     @JsonProperty("strDescriptionPT")
-    public String strDescriptionPT;
+    private String strDescriptionPT;
     @JsonProperty("strDescriptionSE")
-    public String strDescriptionSE;
+    private String strDescriptionSE;
     @JsonProperty("strDescriptionNL")
-    public String strDescriptionNL;
+    private String strDescriptionNL;
     @JsonProperty("strDescriptionHU")
-    public String strDescriptionHU;
+    private String strDescriptionHU;
     @JsonProperty("strDescriptionNO")
-    public String strDescriptionNO;
+    private String strDescriptionNO;
     @JsonProperty("strDescriptionPL")
-    public String strDescriptionPL;
+    private String strDescriptionPL;
     @JsonProperty("strDescriptionIL")
-    public String strDescriptionIL;
+    private String strDescriptionIL;
     @JsonProperty("strFanart1")
-    public String strFanart1;
+    private String strFanart1;
     @JsonProperty("strFanart2")
-    public String strFanart2;
+    private String strFanart2;
     @JsonProperty("strFanart3")
-    public String strFanart3;
+    private String strFanart3;
     @JsonProperty("strFanart4")
-    public String strFanart4;
+    private String strFanart4;
     @JsonProperty("strBanner")
-    public String strBanner;
+    private String strBanner;
     @JsonProperty("strBadge")
-    public String strBadge;
+    private String strBadge;
     @JsonProperty("strLogo")
-    public String strLogo;
+    private String strLogo;
     @JsonProperty("strPoster")
-    public String strPoster;
+    private String strPoster;
     @JsonProperty("strTrophy")
-    public String strTrophy;
+    private String strTrophy;
     @JsonProperty("strNaming")
-    public String strNaming;
+    private String strNaming;
     @JsonProperty("strComplete")
-    public String strComplete;
+    private String strComplete;
     @JsonProperty("strLocked")
-    public String strLocked;
+    private String strLocked;
 
 }
