@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.model.event;
+package io.github.adrbloch.FootballDB.model.match;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,18 +9,18 @@ import java.util.List;
 
 @Getter
 @Setter
-public class Events {
+public class Matches {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("event")
-    private List<Event> event = null;
+    private List<Match> match = null;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("events")
-    private List<Event> events = null;
+    private List<Match> matches = null;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("results")
-    private List<Event> lastEvents = null;
+    private List<Match> lastMatches = null;
 
 }

@@ -9,24 +9,24 @@ import lombok.Setter;
 public class Contract {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("idPlayer")
-    public String idPlayer;
+    private String idPlayer;
     @JsonProperty("idTeam")
-    public String idTeam;
+    private String idTeam;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("strPlayer")
-    public String strPlayer;
+    private String strPlayer;
     @JsonProperty("strTeam")
-    public String strTeam;
+    private String strTeam;
     @JsonProperty("strTeamBadge")
-    public String strTeamBadge;
+    private String strTeamBadge;
     @JsonProperty("strYearStart")
-    public String strYearStart;
+    private String strYearStart;
     @JsonProperty("strYearEnd")
-    public String strYearEnd;
+    private String strYearEnd;
     @JsonProperty("strWage")
-    public String strWage;
+    private String strWage;
 
 }

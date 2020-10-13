@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.model.event;
+package io.github.adrbloch.FootballDB.model.match;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Event {
+public class Match {
 
     @JsonProperty("idEvent")
     private String idEvent;

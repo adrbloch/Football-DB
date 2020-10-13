@@ -1,5 +1,6 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
+import io.github.adrbloch.FootballDB.model.league.League;
 import io.github.adrbloch.FootballDB.model.league.Leagues;
 import io.github.adrbloch.FootballDB.service.LeagueService;
 import org.slf4j.Logger;
@@ -39,5 +40,16 @@ public class LeagueServiceImpl implements LeagueService {
                 .uri("/lookupleague.php?id=" + id)
                 .retrieve()
                 .bodyToMono(Leagues.class);
+    }
+
+
+    @Override
+    public Mono<League[][]> findLeaguesByName(String name) {
+        logger.info("Getting league by name: [" + name + "]");
+
+        return webClient.get()
+                .uri("/search_all_leagues.php?l=" + name)
+                .retrieve()
+                .bodyToMono(League[][].class);
     }
 }

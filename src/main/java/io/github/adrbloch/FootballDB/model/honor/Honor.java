@@ -9,20 +9,20 @@ import lombok.Setter;
 public class Honor {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("idPlayer")
-    public String idPlayer;
+    private String idPlayer;
     @JsonProperty("idTeam")
-    public String idTeam;
+    private String idTeam;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("strPlayer")
-    public String strPlayer;
+    private String strPlayer;
     @JsonProperty("strTeam")
-    public String strTeam;
+    private String strTeam;
     @JsonProperty("strHonour")
-    public String strHonor;
+    private String strHonor;
     @JsonProperty("strSeason")
-    public String strSeason;
+    private String strSeason;
 
 }

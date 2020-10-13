@@ -11,24 +11,24 @@ import lombok.Setter;
 public class FormerTeam {
 
     @JsonProperty("id")
-    public String id;
+    private String id;
     @JsonProperty("idPlayer")
-    public String idPlayer;
+    private String idPlayer;
     @JsonProperty("idFormerTeam")
-    public String idFormerTeam;
+    private String idFormerTeam;
     @JsonProperty("strSport")
-    public String strSport;
+    private String strSport;
     @JsonProperty("strPlayer")
-    public String strPlayer;
+    private String strPlayer;
     @JsonProperty("strFormerTeam")
-    public String strFormerTeam;
+    private String strFormerTeam;
     @JsonProperty("strMoveType")
-    public String strMoveType;
+    private String strMoveType;
     @JsonProperty("strTeamBadge")
-    public String strTeamBadge;
+    private String strTeamBadge;
     @JsonProperty("strJoined")
-    public String strJoined;
+    private String strJoined;
     @JsonProperty("strDeparted")
-    public String strDeparted;
+    private String strDeparted;
 
 }

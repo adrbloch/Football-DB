@@ -1,8 +1,6 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
 import io.github.adrbloch.FootballDB.model.contract.Contracts;
-import io.github.adrbloch.FootballDB.model.event.Events;
-import io.github.adrbloch.FootballDB.model.player.Players;
 import io.github.adrbloch.FootballDB.service.ContractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

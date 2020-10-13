@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--    External css-->
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+    <!--    Icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--    Bootrstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>Registration</title>
+</head>
+
+<body>
+<div class="jumbotron text-center bg-success border border-secondary p-3">
+    <img src="../../static/img/logo.png" alt="logo" class="h-25 w-25 img-fluid">
+</div>
+
+
+<div class="div-form border border-white w-50 h-50">
+    <form action="#" method="POST" class="form-horizontal"
+          enctype="multipart/form-data">
+        <div>
+            <h2 class="bg-success text-white text-center font-weight-bold py-1"> REGISTRATION </h2>
+        </div>
+
+        <div class=" form-group row m-5 pt-4">
+            <div class="input-group offset-3">
+                <div class="input-group-prepend col-xl-8">
+                    <span class="input-group-text">
+                         <span class="fa fa-user"></span>
+                     </span>
+                    <input type="text" class="form-control form-control-lg" id="inputUsername"
+                           name="username" placeholder="Username">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row m-5">
+            <div class="input-group offset-3">
+                <div class="input-group-prepend col-xl-8">
+                   <span class="input-group-text">
+                         <span class="fa fa-lock"></span>
+                     </span>
+                    <input type="password" class="form-control form-control-lg" id="inputPassword"
+                           name="password" placeholder="Password">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row m-5 pb-4">
+            <div class="input-group offset-3">
+                <div class="input-group-prepend col-xl-8">
+                   <span class="input-group-text">
+                         <span class="fa fa-lock"></span>
+                     </span>
+                    <input type="password" class="form-control form-control-lg" id="inputConfirmPassword"
+                           name="password" placeholder="Confirm password">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-5 justify-content-center">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success btn-lg mb-2 px-4 font-weight-bold">
+                    <i class="fas fa-user-plus mr-2"></i></i>Register
+                </button>
+            </div>
+            <div class="col-auto">
+                <a th:href="@{/login}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+                    <i class="fas fa-chevron-left pr-2"></i> Back
+                </a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

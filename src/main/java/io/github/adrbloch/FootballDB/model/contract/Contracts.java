@@ -11,6 +11,6 @@ import java.util.List;
 public class Contracts {
 
     @JsonProperty("contracts")
-    public List<Contract> contracts = null;
+    private List<Contract> contracts = null;
 
 }

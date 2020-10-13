@@ -1,5 +1,6 @@
 package io.github.adrbloch.FootballDB.controller;
 
+import io.github.adrbloch.FootballDB.model.league.League;
 import io.github.adrbloch.FootballDB.model.league.Leagues;
 import io.github.adrbloch.FootballDB.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class RestLeagueController {
     @GetMapping(params = "id")
     public Mono<Leagues> getLeagueById(@RequestParam String id) {
         return leagueService.findLeagueById(id);
+    }
+
+    @GetMapping(params = "name")
+    public Mono<League[][]> getLeagueByName(String name) {
+        return leagueService.findLeaguesByName(name);
     }
 }
