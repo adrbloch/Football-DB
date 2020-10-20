@@ -18,13 +18,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>Search teams</title>
+    <title>Search matches</title>
 </head>
 
-<body>
+<body class="bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link" href="#"> <img src="../../static/img/logo.png" alt="logo" class="img-extra-sm"> </a>
+    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -54,17 +54,18 @@
         </ul>
     </div>
 </nav>
+<br>
 
 <div class="text-white text-center mt-5">
     <h1>Search for <span style="color: chartreuse"> Matches</span> by:</h1><br><br>
 </div>
 
-<div class="container-fluid">
+<div class="container">
     <table class="table table-borderless text-center text-white">
         <tbody>
         <tr>
             <td>
-                <div class="d-inline-block">
+                <div class="d-inline-block mr-5">
                     <form name="f" method="POST" class="form-horizontal"
                           enctype="multipart/form-data">
                         <div class="form-group">
@@ -95,7 +96,7 @@
                 <br><br><br>OR
             </td>
             <td>
-                <div class="d-inline-block">
+                <div class="d-inline-block ml-5">
                     <form name="f" method="POST" class="form-horizontal"
                           enctype="multipart/form-data">
                         <div class="form-group">
@@ -113,7 +114,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <select class="form-control form-control-lg mx-auto" id="inputSeason"
+                            <select class="form-control form-control-lg mx-auto w-50" id="inputSeason"
                                     onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                                 <option selected disabled>Choose season...</option>
                             </select>

@@ -18,10 +18,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <title>Search table</title>
+    <title>Match results</title>
 </head>
 
-<body class="text-center text-white bg">
+<body class="text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
     <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
@@ -40,11 +40,11 @@
             <li class="nav-item nav-item-mr-p">
                 <a class="nav-link" href="#">Players </a>
             </li>
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Matches </a>
-            </li>
             <li class="nav-item active nav-item-mr-p">
-                <a class="nav-link" href="#">Tables <span class="sr-only">(current)</span> </a>
+                <a class="nav-link" href="#">Matches <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-item-mr-p">
+                <a class="nav-link" href="#">Tables  </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -55,45 +55,26 @@
     </div>
 </nav>
 
-<br>
-<div class="mt-5">
-    <h1>Search for <span style="color: chartreuse"> Table</span> by:</h1><br><br>
-</div>
+<div class="container-fluid">
+    <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
+        <i class="fas fa-chevron-left pr-2"></i> Back
+    </a>
+    <h1 class="display-4 text-center font-weight-bold mr-5"><span style="color: chartreuse">Match results</span></h1>
+    <br><br><br>
+    <a href="#" class="text-white text-center">
+        <div class="d-flex justify-content-center align-items-center">
+            <h1 class="mr-5"><span style="color: lightgreen"> Arsenal vs Chelsea</span><br> FA Cup <br>2017-05-27</h1>
+        </div>
+    </a>
+    <br><br>
 
-<div class="d-inline-block">
-    <form name="f" method="POST" class="form-horizontal"
-          enctype="multipart/form-data">
-        <div class="form-group">
-            <h2>League and Season</h2>
+    <a href="#" class="text-white text-center">
+        <div class="d-flex justify-content-center align-items-center">
+            <h1 class="mr-5"><span style="color: lightgreen">Man United vs Chelsea</span> <br>English Premier League <br>2017-04-15</h1>
         </div>
-        <div class="form-group row">
-            <div class="col">
-                <input type="text" class="form-control form-control-lg" id="inputLeague"
-                       name="league" placeholder="Enter league">
-            </div>
-        </div>
-        <div class="form-group">
-            <select class="form-control form-control-lg mx-auto w-100" id="inputSeason"
-                    onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-                <option selected disabled>Choose season...</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <div class="col-auto pb-3">
-                <button type="submit" class="btn btn-secondary btn-lg font-weight-bold"><i
-                        class="fas fa-search mr-2"></i>Search
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
+    </a>
 
-<script>
-    for (let i = 0; i <= 20; i++) {
-        let option = new Option(2000 + i + "-" + parseInt(2001 + i), 2001 + i + "-" + parseInt(2001 + i));
-        document.getElementById("inputSeason").options.add(option);
-    }
-</script>
+</div>
 
 </body>
 </html>

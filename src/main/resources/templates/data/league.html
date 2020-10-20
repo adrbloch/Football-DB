@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--    External css-->
+    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
+
+    <!--    Icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--    Bootrstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <title>League</title>
+</head>
+
+<body class="text-white bg">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
+    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse bg-success" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item active nav-item-mr-p">
+                <a class="nav-link" href="#">Leagues <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item nav-item-mr-p">
+                <a class="nav-link" href="#">Teams</a>
+            </li>
+            <li class="nav-item nav-item-mr-p">
+                <a class="nav-link" href="#">Players</a>
+            </li>
+            <li class="nav-item nav-item-mr-p">
+                <a class="nav-link" href="#">Matches</a>
+            </li>
+            <li class="nav-item nav-item-mr-p">
+                <a class="nav-link" href="#">Tables</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item border-left px-3">
+                <a class="nav-link" href="#">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 text-center">
+            <div class="pr-2">
+                <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+                    <i class="fas fa-chevron-left pr-2"></i> Back
+                </a>
+            </div>
+
+            <div class="belt border border-secondary">
+                <b class="border-bottom mb-1">Alternative Names</b><br>
+                Premier League
+                <br><br><br>
+                <b class="border-bottom">Established</b><br>
+                1992 (28 years old)<br><br><br>
+                <b class="border-bottom">Location</b><br>
+                England
+                <br><br><br>
+                <b class="border-bottom">Gender</b><br>
+                Male<br><br><br>
+                <b class="border-bottom">Trophy Icon</b><br>
+                <img src="https://www.thesportsdb.com/images/media/league/trophy/yrywtr1422246014.png"
+                     class="img-sm img-fluid mt-3" alt="Player profile image"
+                     onerror=this.src="../../static/img/notFound.jpg">
+            </div>
+        </div>
+
+        <div class="col-md-10 text-center pt-5">
+            <div class="">
+                <h1 class="display-3 font-weight-bold"><span style="color: chartreuse">English Premier League</span>
+                </h1>
+                <br>
+                <img src="https://www.thesportsdb.com/images/media/league/badge/i6o0kh1549879062.png"
+                     class="img-md" alt="League badge" onerror=this.src="../../static/img/notFound.jpg">
+            </div>
+
+            <br><br>
+            <div class="tight-margin">
+                <h1>Description</h1>
+                <br>
+                <p class="text-justify first" id="league-description"></p>
+            </div>
+            <br> <br>
+
+            <div class="tight-margin">
+                <h1>Teams</h1>
+                <br>
+                <table class="table table-borderless text-white">
+                    <tbody class="filterBody">
+
+                    <tr class="filterRow">
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/a1af2i1557005128.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Arsenal</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/aofmzk1565427581.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Aston Villa</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/ywypts1448810904.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Brighton</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/sqrttx1448811003.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Burnley</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/yvwvtu1448813215.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Chelsea</h4>
+                        </td>
+                    </tr>
+
+                    <tr class="filterRow">
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/rytxyw1448813222.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Crystal Palace</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/eqayrf1523184794.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Everton</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/xwwvyt1448811086.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Fulham</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/g0eqzw1598804097.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Leeds</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/xtxwtu1448813356.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Leicester</h4>
+                        </td>
+                    </tr>
+
+                    <tr class="filterRow">
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/uvxuqq1448813372.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Liverpool</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Man City</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Man United</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/rqvwxt1448813396.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Newcastle</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/qutsut1424032614.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Sheffield United</h4>
+                        </td>
+                    </tr>
+
+                    <tr class="filterRow">
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/qusxss1448813481.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Southampton</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/0x7quj1601413062.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Tottenham</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/rsvuxw1448813527.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>West Brom</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/yutyxs1467459956.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>West Ham</h4>
+                        </td>
+                        <td style="width:20%">
+                            <img src="https://www.thesportsdb.com/images/media/team/badge/qwvuqy1448811552.png"
+                                 class="img-extra-sm" alt="Team badge"
+                                 onerror=this.src="../../static/img/notFound.jpg">
+                            <br><br>
+                            <h4>Wolves</h4>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <br> <br>
+
+            <div>
+                <h1>Table</h1>
+                <h2>(current season: 2020-2021)</h2>
+                <br><br>
+                <div class="table table-responsive">
+                    <table class="table-bordered styled-table w-50 ">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 10%">#</th>
+                            <th scope="col" style="width: 35%">Club</th>
+                            <th scope="col" style="width: 10%">M</th>
+                            <th scope="col" style="width: 10%">W</th>
+                            <th scope="col" style="width: 10%">D</th>
+                            <th scope="col" style="width: 10%">L</th>
+                            <th scope="col" style="width: 15%">Points</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Everton</td>
+                            <td>4</td>
+                            <td>4</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br><br><br><br><br><br>
+
+                <div class="tight-margin">
+                    <h1>Social media</h1>
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        <div class="mx-4">
+                            <a href="#"><img src="../../static/img/socialMedia/website.png" alt="Website icon"
+                                             class="img-fluid"></a>
+                        </div>
+                        <div class="mx-4">
+                            <a href="#"><img src="../../static/img/socialMedia/facebook.png" alt="Facebook icon"
+                                             class="img-fluid"></a>
+                        </div>
+                        <div class="mx-4">
+                            <a href="#"><img src="../../static/img/socialMedia/twitter.png" alt="Twitter icon"
+                                             class="img-fluid"></a>
+                        </div>
+                        <div class="mx-4">
+                            <a href="#"><img src="../../static/img/socialMedia/youtube.png" alt="Youtube icon"
+                                             class="img-fluid"></a>
+                        </div>
+
+                    </div>
+                </div>
+                <br><br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let leagueDescription = "The Premier League, often referred to as the English Premier League or the EPL outside England, is the top level of the English football league system. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League (EFL). Seasons run from August to May with each team playing 38 matches (playing all 19 other teams both home and away). Most games are played on Saturday and Sunday afternoons.\r\n\r\nThe competition was founded as the FA Premier League on 20 February 1992 following the decision of clubs in the Football League First Division to break away from the Football League, founded in 1888, and take advantage of a lucrative television rights deal. The deal was worth around £1 billion a year domestically as of 2013–14, with Sky and BT Group securing the domestic rights to broadcast 116 and 38 games respectively. The league is a corporation in which the member clubs act as shareholders, and generates €2.2 billion per year in domestic and international television rights. Clubs were apportioned central payment revenues of £2.4 billion in 2016–17, with a further £343 million in solidarity payments to English Football League (EFL) clubs.\r\n\r\nThe Premier League is the most-watched sports league in the world, broadcast in 212 territories to 643 million homes and a potential TV audience of 4.7 billion people. For the 2018–19 season average Premier League match attendance was at 38,181, second to the Bundesliga's 43,500, while aggregated attendance across all matches is the highest of any league at 14,508,981. Most stadium occupancies are near capacity. The Premier League ranks second in the UEFA coefficients of leagues based on performances in European competitions over the past five seasons as of 2019, only behind Spain's La Liga.\r\n\r\nForty-nine clubs have competed since the inception of the Premier League in 1992: forty-seven English and two Welsh clubs. Seven of them have won the title: Manchester United (13), Chelsea (5), Manchester City (4), Arsenal (3), Blackburn Rovers (1), Leicester City (1) and most recently Liverpool (1). The record of most points in a Premier League season is 100, set by Manchester City in 2017–18."
+
+    leagueDescription = leagueDescription.replace(/(?:\r\n|\r|\n)/g, '<br>');
+
+    document.getElementById("league-description").innerHTML = leagueDescription;
+
+</script>
+
+</body>
+</html>

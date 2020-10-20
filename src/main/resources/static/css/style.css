@@ -13,10 +13,20 @@ body {
     color: limegreen !important;
 }
 
-.img-extra-sm {
+.img-sm {
     max-width: 15rem;
     max-height: 15rem;
-    margin-right: 5rem;
+    /*margin-right: 5rem;*/
+}
+
+.img-extra-sm {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+
+.img-md {
+    max-width: 20rem;
+    max-height: 20rem;
 }
 
 .lg-txt {
@@ -30,6 +40,7 @@ body {
 
 input {
     text-align: center;
+    border: black;
 }
 
 select {
@@ -38,3 +49,75 @@ select {
     -moz-text-align-last: center;
     width: 40% !important;
 }
+
+.bg {
+    background: url("../img/pitch.jpg") center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+.styled-table {
+    background-color: whitesmoke;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.2rem;
+}
+
+th {
+    background-color: darkgray;
+}
+
+.belt {
+    background-color: #366334;
+    padding: 2rem 2rem 2rem 2rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.belt > b {
+    color: chartreuse;
+}
+
+.first {
+    text-indent: 2em;
+}
+
+.tight-margin {
+    margin-left: 10rem;
+    margin-right: 10rem;
+}
+
+.table-r-separate {
+    border-collapse: separate;
+    border-spacing:0 3rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .table > tbody > tr > td,
+    .table > tbody > tr > th,
+    .table > tfoot > tr > td,
+    .table > tfoot > tr > th,
+    .table > thead > tr > td,
+    .table > thead > tr > th {
+        display: block;
+        min-width: 100% !important;
+    }
+
+    .table > thead > tr > th {
+        display: none;
+    }
+
+    .table .filterBody span {
+        display: block;
+    }
+
+    .table td, .table th {
+        vertical-align: center !important;
+    }
+}
+
+.table td, .table th{
+    vertical-align: middle !important;
+}
+
