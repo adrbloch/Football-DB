@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.table.Table;
 import io.github.adrbloch.FootballDB.service.TableService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/table")
+@RequestMapping("rest//api/table")
 public class RestTableController {
 
     private final TableService tableService;

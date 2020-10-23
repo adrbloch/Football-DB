@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.formerTeam.FormerTeams;
 import io.github.adrbloch.FootballDB.service.FormerTeamService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/former-teams")
+@RequestMapping("rest//api/former-teams")
 public class RestFormerTeamController {
 
     private final FormerTeamService formerTeamService;

@@ -10,5 +10,5 @@ public interface LeagueService {
 
     Mono<Leagues> findLeagueById(String id);
 
-    Mono<League[][]> findLeaguesByName(String name);
+    Mono<League[][]> findLeagueByName(String name);
 }

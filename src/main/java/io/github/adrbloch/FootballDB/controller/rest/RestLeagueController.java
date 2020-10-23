@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.league.League;
 import io.github.adrbloch.FootballDB.model.league.Leagues;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/leagues")
+@RequestMapping("rest/api/leagues")
 public class RestLeagueController {
 
     private final LeagueService leagueService;
@@ -33,6 +33,6 @@ public class RestLeagueController {
 
     @GetMapping(params = "name")
     public Mono<League[][]> getLeagueByName(String name) {
-        return leagueService.findLeaguesByName(name);
+        return leagueService.findLeagueByName(name);
     }
 }

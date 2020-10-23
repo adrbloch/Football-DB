@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.contract.Contracts;
 import io.github.adrbloch.FootballDB.service.ContractService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/contracts")
+@RequestMapping("rest//api/contracts")
 public class RestContractController {
 
     private final ContractService contractService;

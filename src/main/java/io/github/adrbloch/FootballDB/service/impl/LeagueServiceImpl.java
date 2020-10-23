@@ -44,7 +44,7 @@ public class LeagueServiceImpl implements LeagueService {
 
 
     @Override
-    public Mono<League[][]> findLeaguesByName(String name) {
+    public Mono<League[][]> findLeagueByName(String name) {
         logger.info("Getting league by name: [" + name + "]");
 
         return webClient.get()

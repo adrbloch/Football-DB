@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.honor.Honors;
 import io.github.adrbloch.FootballDB.service.HonorService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/honors")
+@RequestMapping("rest//api/honors")
 public class RestHonorController {
 
     private final HonorService honorService;

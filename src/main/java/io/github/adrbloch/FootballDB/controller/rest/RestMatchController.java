@@ -1,4 +1,4 @@
-package io.github.adrbloch.FootballDB.controller;
+package io.github.adrbloch.FootballDB.controller.rest;
 
 import io.github.adrbloch.FootballDB.model.match.Matches;
 import io.github.adrbloch.FootballDB.service.MatchService;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/matches")
+@RequestMapping("rest//api/matches")
 public class RestMatchController {
 
     private final MatchService matchService;
