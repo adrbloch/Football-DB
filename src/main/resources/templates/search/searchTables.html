@@ -89,7 +89,9 @@
 </div>
 
 <script>
-    for (let i = 0; i <= 20; i++) {
+    let currentYear = new Date().getFullYear().toString().substr(-2);
+
+    for (let i = 0; i <= currentYear; i++) {
         let option = new Option(2000 + i + "-" + parseInt(2001 + i), 2001 + i + "-" + parseInt(2001 + i));
         document.getElementById("inputSeason").options.add(option);
     }
