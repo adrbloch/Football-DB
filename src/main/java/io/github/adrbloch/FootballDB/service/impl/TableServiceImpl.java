@@ -1,6 +1,5 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
-import io.github.adrbloch.FootballDB.model.player.Players;
 import io.github.adrbloch.FootballDB.model.table.Table;
 import io.github.adrbloch.FootballDB.service.TableService;
 import org.slf4j.Logger;

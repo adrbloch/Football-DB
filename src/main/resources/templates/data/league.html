@@ -24,8 +24,9 @@
 <body class="text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo"
-                                            class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,20 +68,20 @@
             </div>
 
             <div class="belt border border-secondary">
-                <b class="border-bottom mb-1">Alternative Names</b><br>
-                <p th:text="*{getStrLeagueAlternate()}"></p>
+                <b class="border-bottom">Alternative Names</b><br>
+                <p th:text="*{getStrLeagueAlternate()}" id="altNames" class="mt-2"></p>
                 <br><br>
                 <b class="border-bottom">Established</b><br>
-                <p id="formedYear" th:text="*{getIntFormedYear()}"></p>
+                <p id="formedYear" th:text="*{getIntFormedYear()}" class="mt-2"></p>
                 <br><br>
                 <b class="border-bottom">Location</b><br>
-                <p th:text="*{getStrCountry()}"></p>
+                <p th:text="*{getStrCountry()}" class="mt-2"></p>
                 <br><br>
                 <b class="border-bottom">Gender</b><br>
-                <p th:text="*{getStrGender()}"></p>
+                <p th:text="*{getStrGender()}" class="mt-2"></p>
                 <br><br>
                 <b class="border-bottom">Trophy Icon</b><br>
-                <img th:src="*{getStrTrophy()}" class="img-sm img-fluid mt-3" alt="Trophy icon"
+                <img th:src="*{getStrTrophy()}" class="img-sm img-fluid mt-4" alt="Trophy icon"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
 
             </div>
@@ -113,7 +114,8 @@
                     <th:block th:with="colCount=${4}">
                         <tr th:each="r : ${#numbers.sequence(0, teamsByLeague.size(), colCount)}">
                             <td th:each="c : ${#numbers.sequence(0, colCount - 1)}"
-                                th:if="${r + c &lt; teamsByLeague.size()}" th:object="${teamsByLeague.get(r + c)}">
+                                th:if="${r + c &lt; teamsByLeague.size()}" th:object="${teamsByLeague.get(r + c)}"
+                                style="width:25%">
                                 <a th:href="@{/team/{id}(id=${teamsByLeague.get(r + c).getIdTeam()})}"
                                    class="text-white">
                                     <img th:src="*{getStrTeamBadge()} " class="img-extra-sm" alt="Team badge"
@@ -133,7 +135,8 @@
                 <h1>Table</h1>
                 <h2 th:text="|(current season: ${league.getStrCurrentSeason()})|"></h2>
                 <br><br>
-                <div class="table table-responsive">
+                <h3 th:if="${tableByLeague == null}" class="text-danger text-center">Not found</h3>
+                <div class="table table-responsive" th:if="${tableByLeague != null}">
                     <table class="table-bordered styled-table w-50 ">
                         <thead>
                         <tr>
@@ -147,7 +150,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="team, iterStat : ${tableByLeague.block().getTable()}">
+                        <tr th:each="team, iterStat : ${tableByLeague}">
                             <th scope="row" th:text="${iterStat.count}"></th>
                             <td th:text="${team.getName()}"></td>
                             <td th:text="${team.getPlayed()}"></td>
@@ -159,52 +162,46 @@
                         </tbody>
                     </table>
                 </div>
-                <br><br><br><br><br><br>
-
-                <div class="tight-margin">
-                    <h1>Social media</h1>
-                    <br>
-                    <div class="d-flex justify-content-center">
-                        <div class="mx-4">
-                            <a th:href="|https://${league.getStrWebsite()}|">
-                                <img src="../../static/img/socialMedia/website.png"
-                                     th:src="@{/img/socialMedia/website.png}" alt="Website icon" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="mx-4">
-                            <a th:href="|https://${league.getStrFacebook()}|">
-                                <img src="../../static/img/socialMedia/facebook.png"
-                                     th:src="@{/img/socialMedia/facebook.png}" alt="Facebook icon" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="mx-4">
-                            <a th:href="|https://${league.getStrTwitter()}|">
-                                <img src="../../static/img/socialMedia/twitter.png"
-                                     th:src="@{/img/socialMedia/twitter.png}" alt="Twitter icon" class="img-fluid">
-                            </a>
-                        </div>
-                        <div class="mx-4">
-                            <a th:href="|https://${league.getStrYoutube()}|">
-                                <img src="../../static/img/socialMedia/youtube.png"
-                                     th:src="@{/img/socialMedia/youtube.png}" alt="Youtube icon" class="img-fluid">
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-                <br><br>
-
             </div>
+            <br><br><br><br><br><br>
+
+            <div class="tight-margin">
+                <h1>Social media</h1>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <div class="mx-4">
+                        <a th:href="|https://${league.getStrWebsite()}|">
+                            <img src="../../static/img/socialMedia/website.png"
+                                 th:src="@{/img/socialMedia/website.png}" alt="Website icon" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="mx-4">
+                        <a th:href="|https://${league.getStrFacebook()}|">
+                            <img src="../../static/img/socialMedia/facebook.png"
+                                 th:src="@{/img/socialMedia/facebook.png}" alt="Facebook icon" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="mx-4">
+                        <a th:href="|https://${league.getStrTwitter()}|">
+                            <img src="../../static/img/socialMedia/twitter.png"
+                                 th:src="@{/img/socialMedia/twitter.png}" alt="Twitter icon" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="mx-4">
+                        <a th:href="|https://${league.getStrYoutube()}|">
+                            <img src="../../static/img/socialMedia/youtube.png"
+                                 th:src="@{/img/socialMedia/youtube.png}" alt="Youtube icon" class="img-fluid">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <br><br>
         </div>
     </div>
 </div>
 
-<script>
-    let currentYear = new Date().getFullYear();
-    let formedYearParagraph = document.getElementById("formedYear");
-    let innerText = formedYearParagraph.innerText;
-    formedYearParagraph.innerHTML = innerText + "<br>" + "(" + (currentYear - parseInt(innerText)) + " years old)";
-</script>
+<script type="text/javascript" src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

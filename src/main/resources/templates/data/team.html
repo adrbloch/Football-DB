@@ -24,7 +24,9 @@
 <body class="text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -56,54 +58,62 @@
 </nav>
 
 <br>
-<div class="container-fluid">
+<div class="container-fluid" th:object="${team}">
     <div class="row">
         <div class="col-md-2 text-center">
             <div class="pr-2">
-                <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+                <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
                     <i class="fas fa-chevron-left pr-2"></i> Back
                 </a>
             </div>
-
             <div class="belt border border-secondary">
-                <b class="border-bottom mb-1">Coach</b><br>
-                Zinedine Zidane<br><br><br>
+                <b class="border-bottom">Alternative names</b><br>
+                <p th:text="*{getStrAlternate()}" id="altNames" class="mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Established</b><br>
-                1902 (118 years old)<br><br><br>
+                <p id="formedYear" th:text="*{getIntFormedYear()}" class="mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Stadium</b><br>
-                Estadio Santiago Bernabeu<br>
-                (Capacity: 81 000)<br><br><br>
+                <p th:text="*{getStrStadium()}" class="mb-0 mt-2"></p>
+                <p th:text="|(Capacity: *{#numbers.formatDecimal(getIntStadiumCapacity(), 0, 'WHITESPACE', 0, 'POINT')})|"></p>
+                <br><br>
                 <b class="border-bottom">Location</b><br>
-                Madrid<br><br><br>
+                <p th:text="|*{getStrStadiumLocation()},|" class="mb-0 mt-2"></p>
+                <p th:text="*{getStrCountry()}"></p>
+                <br><br>
                 <b class="border-bottom">Team jersey</b><br>
-                <img src="https://www.thesportsdb.com/images/media/team/jersey/fkqv2c1598984041.png"
-                     class="img-sm img-fluid mt-3" alt="Team jersey image"
-                     onerror=this.src="../../static/img/notFound.jpg">
+                <img th:src="*{getStrTeamJersey()}" class="img-sm img-fluid mt-4" alt="Team jersey image"
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
         </div>
 
         <div class="col-md-10 text-center pt-5">
             <div class="">
-                <h1 class="display-3 font-weight-bold"><span style="color: chartreuse">Real Madrid</span></h1>
-
-                <img src="https://www.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png"
-                     class="img-md" alt="Team badge" onerror=this.src="../../static/img/notFound.jpg">
+                <h1 class="display-3 font-weight-bold">
+                    <span style="color: chartreuse" th:text="*{getStrTeam()}"></span>
+                </h1> <br>
+                <img th:src="*{getStrTeamBadge()}" class="img-md" alt="Team badge"
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
-
             <br><br>
+
             <div class="tight-margin">
                 <h1> Description</h1>
                 <br>
-                <p class="text-justify first-line-ind" id="club-description"></p>
+                <p class="text-justify first-line-ind" th:text="*{getStrDescriptionEN()}"
+                   style="white-space: pre-wrap"></p>
             </div>
-            <div class="tight-margin">
-                <h1> Stadium</h1>
-                <br>
-                <p class="text-justify first-line-ind" id="stadium-description"></p>
-                <br>
-                <img src="https://www.thesportsdb.com/images/media/team/stadium/rxrryp1420321403.jpg"
-                     class="img-fluid" alt="Team badge" onerror=this.src="../../static/img/notFound.jpg">
+            <br>
 
+            <div class="tight-margin">
+                <h1>Stadium</h1>
+                <br>
+                <img th:src="*{getStrStadiumThumb()}" class="img-fluid" alt="Stadium photo"
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+                <br><br>
+                <p class="text-justify first-line-ind" th:text="*{getStrStadiumDescription()}"
+                   style="white-space: pre-wrap"></p>
+                <br>
             </div>
             <br> <br>
 
@@ -111,53 +121,21 @@
                 <h1>Competitions</h1>
                 <table class="table table-borderless text-white table-r-separate">
                     <tbody class="filterBody">
-                    <tr class="filterRow">
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/7onmyv1534768460.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Spanish La Liga</h4>
-
-                        </td>
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/dtp1dl1534767233.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>UEFA Champions League</h4>
-                        </td>
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/l4qwj41534768910.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Copa del Rey</h4>
-                        </td>
-                    </tr>
-                    <tr class="filterRow">
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/pdgh6e1549460616.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Supercopa de Espana</h4>
-                        </td>
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/gb18781565430778.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Supercopa de Espana</h4>
-                        </td>
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/league/badge/4qff241553414228.png"
-                                 class="img-extra-sm img-fluid" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>International Champions Cup</h4>
-                        </td>
-                    </tr>
+                    <th:block th:with="colCount=${3}">
+                        <tr th:each="r : ${#numbers.sequence(0, leaguesByTeam.size(), colCount)}">
+                            <td th:each="c : ${#numbers.sequence(0, colCount - 1)}"
+                                th:if="${r + c &lt; leaguesByTeam.size()}" th:object="${leaguesByTeam.get(r + c)}"
+                                style="width:33%">
+                                <a th:href="@{/league/{id}(id=${leaguesByTeam.get(r + c).getIdLeague()})}"
+                                   class="text-white">
+                                    <img th:src="*{getStrBadge()} " class="img-extra-sm" alt="Team badge"
+                                         th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+                                    <br><br>
+                                    <h4 th:text="*{getStrLeague()}"></h4>
+                                </a>
+                            </td>
+                        </tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>
@@ -168,26 +146,35 @@
                 <br>
                 <div class="d-flex justify-content-center">
                     <div class="mx-4">
-                        <a href="#"><img src="../../static/img/socialMedia/website.png" alt="Website icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${team.getStrWebsite()}|">
+                            <img src="../../static/img/socialMedia/website.png"
+                                 th:src="@{/img/socialMedia/website.png}" alt="Website icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-4">
-                        <a href="#"><img src="../../static/img/socialMedia/facebook.png" alt="Facebook icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${team.getStrFacebook()}|">
+                            <img src="../../static/img/socialMedia/facebook.png"
+                                 th:src="@{/img/socialMedia/facebook.png}" alt="Facebook icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-4">
-                        <a href="#"><img src="../../static/img/socialMedia/twitter.png" alt="Twitter icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${team.getStrTwitter()}|">
+                            <img src="../../static/img/socialMedia/twitter.png"
+                                 th:src="@{/img/socialMedia/twitter.png}" alt="Twitter icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-4">
-                        <a href="#"><img src="../../static/img/socialMedia/instagram.png" alt="Instagram icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${team.getStrInstagram()}|">
+                            <img src="../../static/img/socialMedia/instagram.png"
+                                 th:src="@{/img/socialMedia/instagram.png}" alt="Instagram icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-4">
-                        <a href="#"><img src="../../static/img/socialMedia/youtube.png" alt="Youtube icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${team.getStrYoutube()}|">
+                            <img src="../../static/img/socialMedia/youtube.png"
+                                 th:src="@{/img/socialMedia/youtube.png}" alt="Youtube icon" class="img-fluid">
+                        </a>
                     </div>
-
                 </div>
             </div>
             <br><br>
@@ -196,23 +183,7 @@
     </div>
 </div>
 
-<script>
-
-    let stadiumDescription = "The Santiago Bernabéu Stadium (Spanish: Estadio Santiago Bernabéu ), is the home stadium of Real Madrid " +
-        "since its completion in 1947, with a current seating capacity of 81,044.\r\n\r\nSantiago Bernabéu is one " +
-        "of the world's most famous and prestigious football venues. It has hosted the European Cup/Champions League " +
-        "final on four occasions: in 1957, 1969, 1980 and 2010. The final matches for the 1964 European Nations' Cup and " +
-        "the 1982 FIFA World Cup, were also held at the Bernabéu, thus making it the first stadium in Europe to host both " +
-        "a UEFA European Championship and a FIFA World Cup final.";
-    let clubDescription = "Real Madrid Club de Fútbol (Royal Madrid Football Club), commonly known as Real Madrid, or simply as Real, is a professional football club based in Madrid, Spain.\r\n\r\nFounded in 1902 as Madrid Football Club, the team has traditionally worn a white home kit since. The word real is Spanish for royal and was bestowed to the club by King Alfonso XIII in 1920 together with the royal crown in the emblem. The team has played its home matches in the 81,044-capacity Santiago Bernabéu Stadium in downtown Madrid since 1947. Unlike most European football clubs, Real Madrid's members (socios) have owned and operated the club since its inception.\r\n\r\nThe club is the world's richest football club in terms of revenue, with an annual turnover of €604 million, and the world's most valuable sports team, worth €2.5 billion ($3.4 billion). The club is one of the most widely supported teams in the world. Real Madrid is one of three founding members of the Primera División which have never been relegated from the top division, along with Athletic Bilbao and Barcelona. The club holds many long-standing rivalries, most notably El Clásico with Barcelona and the Madrid derby with Atlético Madrid.\r\n\r\nReal Madrid is the joint most successful club in Spain, in terms of overall official titles won (80), and the joint most successful club in European competitions, in terms of official European trophies won (17). The club established itself as a major force in both Spanish and European football during the 1950s. Domestically, Real Madrid has won a record 32 La Liga titles, 19 Copa del Rey, 9 Supercopa de España, 1 Copa Eva Duarte and 1 Copa de la Liga. Internationally the club has won a record 10 European Cup/UEFA Champions League titles and a joint record 3 Intercontinental Cups, as well as 2 UEFA Cups, 2 UEFA Super Cups and a FIFA Club World Cup.\r\n\r\nReal Madrid was recognised as the FIFA Club of the 20th Century on 23 December 2000, and named Best European Club of the 20th Century by the IFFHS on 11 May 2010. The club also received the FIFA Order of Merit in 2004. The club is allowed to wear a multiple–winner badge on their shirt during UEFA Champions League matches as they have won more than five European Cups. They also wear a FIFA Club World Cup champions badge as winners of the 2014 competition. Currently, the football club leads the UEFA club rankings.";
-
-    stadiumDescription = stadiumDescription.replace(/(?:\r\n|\r|\n)/g, '<br>');
-    clubDescription = clubDescription.replace(/(?:\r\n|\r|\n)/g, '<br>');
-
-    document.getElementById("stadium-description").innerHTML = stadiumDescription;
-    document.getElementById("club-description").innerHTML = clubDescription;
-
-</script>
+<script type="text/javascript" src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

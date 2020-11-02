@@ -24,7 +24,9 @@
 <body class="text-center text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -68,8 +70,7 @@
         </div>
         <div class="form-group row">
             <div class="col">
-                <input type="text" class="form-control form-control-lg" id="inputLeague"
-                       name="league" placeholder="Enter league">
+                <input type="text" class="form-control form-control-lg" placeholder="Enter league">
             </div>
         </div>
         <div class="form-group">

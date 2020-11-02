@@ -24,7 +24,9 @@
 <body class="text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -44,7 +46,7 @@
                 <a class="nav-link" href="#">Matches </a>
             </li>
             <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Tables  </a>
+                <a class="nav-link" href="#">Tables </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -56,29 +58,24 @@
 </nav>
 
 <div class="container-fluid">
-    <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
+    <a th:href="@{/team/search}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
         <i class="fas fa-chevron-left pr-2"></i> Back
     </a>
     <h1 class="display-4 text-center font-weight-bold mr-5"><span style="color: chartreuse">Team results</span></h1>
     <br><br>
-    <a href="#" class="text-white">
-        <div class="d-flex justify-content-center align-items-center">
-            <h1 class="mr-5">Deportivo Alavés</h1>
-            <img src="https://www.thesportsdb.com/images/media/team/badge/prle2v1596049676.png"
-                 class="img-extra-sm" alt="League badge" onerror=this.src="../../static/img/notFound.jpg">
-        </div>
-    </a>
-    <br><br>
 
-    <a href="#" class="text-white">
-        <div class="d-flex justify-content-center align-items-center">
-            <h1 class="mr-5">Ath Bilbao</h1>
-            <img src="https://www.thesportsdb.com/images/media/team/badge/1gs1c31549394822.png"
-                 class="img-extra-sm" alt="League badge" onerror=this.src="../../static/img/notFound.jpg">
-        </div>
-    </a>
+    <h1 th:if="${teams == null}" class="text-danger text-center">Not found</h1>
 
+    <div th:each="team:${teams}">
+        <a th:href="@{/team/{id}(id=${team.getIdTeam()})}" class="text-white">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="mr-5" th:text="${team.getStrTeam()}"></h1>
+                <img th:src="${team.getStrTeamBadge()}" class="img-extra-sm" alt="Team badge"
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+            </div>
+        </a>
+        <br><br>
+    </div>
 </div>
-
 </body>
 </html>

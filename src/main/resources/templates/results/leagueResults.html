@@ -25,8 +25,9 @@
 <body class="text-white bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo"
-                                            class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -71,7 +72,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <h1 class="mr-5" th:text="${league.getStrLeague()}"></h1>
                 <img th:src="${league.getStrBadge()}" class="img-extra-sm" alt="League badge"
-                     onerror=this.src="../../static/img/notFound.jpg">
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
         </a>
         <br><br>

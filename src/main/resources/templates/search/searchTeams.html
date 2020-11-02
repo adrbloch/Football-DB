@@ -24,7 +24,9 @@
 <body class="bg">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
+    <a class="nav-link mr-5" href="#">
+        <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -66,14 +68,14 @@
         <tr>
             <td>
                 <div class="d-inline-block">
-                    <form name="f" method="POST" class="form-horizontal"
-                          enctype="multipart/form-data">
+                    <form action="#" th:action="@{/team/results/byCountry}" th:object="${team}" method="POST"
+                          class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Country</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" id="inputCountry"
-                                   name="country" placeholder="Enter country">
+                            <input type="text" th:field="*{strCountry}" class="form-control form-control-lg"
+                                   placeholder="Enter country">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">
@@ -86,18 +88,18 @@
                 </div>
             </td>
             <td>
-                <br><br><br>OR
+                <br><br>OR
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form name="f" method="POST" class="form-horizontal"
-                          enctype="multipart/form-data">
+                    <form action="#" th:action="@{/team/results/byLeague}" th:object="${team}" method="POST"
+                          class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>League</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" id="inputLeague"
-                                   name="league" placeholder="Enter league name">
+                            <input type="text" th:field="*{strLeague}" class="form-control form-control-lg"
+                                   placeholder="Enter league name">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">
@@ -111,18 +113,18 @@
 
             </td>
             <td>
-                <br><br><br>OR
+                <br><br>OR
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form name="f" method="POST" class="form-horizontal"
-                          enctype="multipart/form-data">
+                    <form action="#" th:action="@{/team/results/byName}" th:object="${team}" method="POST"
+                          class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Name</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-lg" id="inputName"
-                                   name="team" placeholder="Enter team name">
+                            <input type="text" th:field="*{strTeam}" class="form-control form-control-lg"
+                                   placeholder="Enter team name">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">

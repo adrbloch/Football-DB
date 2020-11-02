@@ -1,6 +1,8 @@
 package io.github.adrbloch.FootballDB.controller;
 
 import io.github.adrbloch.FootballDB.model.league.League;
+import io.github.adrbloch.FootballDB.model.table.Table;
+import io.github.adrbloch.FootballDB.model.table.TableTeam;
 import io.github.adrbloch.FootballDB.service.LeagueService;
 import io.github.adrbloch.FootballDB.service.TableService;
 import io.github.adrbloch.FootballDB.service.TeamService;
@@ -8,6 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.reactive.function.UnsupportedMediaTypeException;
+import reactor.core.publisher.Mono;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequestMapping("/league")
@@ -71,8 +79,20 @@ public class LeagueController {
                 .block()
                 .getTeams());
 
-        model.addAttribute("tableByLeague", tableService.findTableByLeagueIdAndSeason(league.getIdLeague(),
-                league.getStrCurrentSeason()));
+
+        List<TableTeam> tableByLeagueIdAndSeason;
+        try {
+            tableByLeagueIdAndSeason = tableService.findTableByLeagueIdAndSeason(league.getIdLeague(),
+                    league.getStrCurrentSeason()).block().getTable();
+        } catch (UnsupportedMediaTypeException e) {
+            tableByLeagueIdAndSeason = null;
+        }
+
+//        if (!tableByLeagueIdAndSeason.block().toString().) {
+//            model.addAttribute("tableByLeague", tableByLeagueIdAndSeason);
+//        } else  model.addAttribute("tableByLeague", new Table());
+
+        model.addAttribute("tableByLeague", tableByLeagueIdAndSeason);
 
         return "data/league";
     }
