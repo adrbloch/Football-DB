@@ -1,6 +1,7 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
 import io.github.adrbloch.FootballDB.model.player.Players;
+import io.github.adrbloch.FootballDB.model.team.Teams;
 import io.github.adrbloch.FootballDB.service.PlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +38,16 @@ public class PlayerServiceImpl implements PlayerService {
 
         return webClient.get()
                 .uri("/searchplayers.php?t=" + teamName + "&p=" + playerName)
+                .retrieve()
+                .bodyToMono(Players.class);
+    }
+
+    @Override
+    public Mono<Players> findPlayerById(String id) {
+        logger.info("Getting player by id: [" + id + "]");
+
+        return webClient.get()
+                .uri("/lookupplayer.php?id=" + id)
                 .retrieve()
                 .bodyToMono(Players.class);
     }

@@ -58,125 +58,90 @@
 </nav>
 
 <br>
-<div class="container-fluid">
+<div class="container-fluid" th:object="${player}">
     <div class="row">
         <div class="col-md-2 text-center">
             <div class="pr-2">
-                <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+                <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
                     <i class="fas fa-chevron-left pr-2"></i> Back
                 </a>
             </div>
 
             <div class="belt border border-secondary">
                 <b class="border-bottom mb-1">Born</b><br>
-                1985-02-05<br>
-                Funchal, Madeira, Portugal
-                <br><br><br>
+                <p th:text="*{getDateBorn()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getStrBirthLocation()}"></p>
+                <br><br>
                 <b class="border-bottom">Position</b><br>
-                Left Wing<br><br><br>
-                <b class="border-bottom">Current Contract</b><br>
-                Juventus<br>
-                <img src="https://www.thesportsdb.com/images/media/team/badge/w1zaae1596480289.png"
-                     class="img-extra-sm img-fluid mt-3" alt="Player profile image"
-                     onerror=this.src="../../static/img/notFound.jpg"> <br><br>
-                2018-2020<br>
-                €31m a year
-                <br><br><br>
+                <p th:text="*{getStrPosition()}" class="mt-2"></p>
+                <br><br>
+                <th:block th:object="${contract}">
+                    <b class="border-bottom">Current Contract</b><br>
+                    <p th:text="*{getStrTeam()}" class="mb-0 mt-2"></p>
+                    <img th:src="*{getStrTeamBadge()}" class="img-sm img-fluid mt-4" alt="Team badge"
+                         th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'"> <br><br>
+                    <p th:text="|*{getStrYearStart()}-*{getStrYearEnd()}|" class="mb-0 mt-2"></p>
+                    <p th:text="*{getStrWage()}"></p>
+                </th:block>
+                <br><br>
                 <b class="border-bottom">Team number</b><br>
-                7<br><br><br>
+                <p th:text="*{getStrNumber()}" class="mb-0 mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Height</b><br>
-                1.87 m (6 ft 2 in)<br><br><br>
+                <p th:text="*{getStrHeight()}" class="mb-0 mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Weight</b><br>
-                84 kg (185 lb)<br><br><br>
+                <p th:text="*{getStrWeight()}" class="mb-0 mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Player profile</b><br>
-                <img src="https://www.thesportsdb.com/images/media/player/render/ct6j2y1557783073.png"
-                     class="img-sm img-fluid mt-3" alt="Player profile image"
-                     onerror=this.src="../../static/img/notFound.jpg">
+                <img th:src="*{getStrRender()}" class="img-sm img-fluid mt-4" alt="Player profile image"
+                     th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
         </div>
 
         <div class="col-md-10 text-center pt-5">
-            <div class="">
-                <h1 class="display-3 font-weight-bold"><span style="color: chartreuse">Cristiano Ronaldo</span></h1>
-                <br>
-                <img src="https://www.thesportsdb.com/images/media/player/thumb/bkre241600892282.jpg"
-                     class="img-md rounded-circle" alt="League badge" onerror=this.src="../../static/img/notFound.jpg">
-            </div>
-
+            <h1 class="display-3 font-weight-bold">
+                <span style="color: chartreuse" th:text="*{getStrPlayer()}"></span>
+            </h1>
+            <br>
+            <img th:src="*{getStrThumb()}" class="img-md rounded-circle" alt="Player photo"
+                 th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             <br><br>
-            <div class="tight-margin">
-                <h1>Player Description</h1>
-                <br>
-                <p class="text-justify first-line-ind" id="player-description"></p>
-            </div>
-            <br> <br>
 
             <div class="tight-margin">
+                <h1>Player Description</h1><br>
+                <p class="text-justify first-line-ind" th:text="*{getStrDescriptionEN()}"
+                   style="white-space: pre-wrap"></p>
+            </div>
+            <br><br>
+
+            <div class="tight-margin" th:object="${formerTeams}">
                 <h1>Former teams</h1>
                 <table class="table table-borderless text-white table-r-separate">
                     <tbody class="filterBody">
-                    <tr class="filterRow">
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Real Madrid</h4>
-                            <h4>2009-2018</h4>
-
-                        </td>
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/xqyxrt1471878436.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>CD Nacional de Madeira <br>
-                                <span style="color: chartreuse">(youth team)</span>
-                            </h4>
-                            <h4>1995-1997</h4>
-                        </td>
-                        <td style="width:33%">
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/svxpsx1471876338.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Sporting CP <br>
-                                <span style="color: chartreuse">(youth team)</span>
-                            </h4>
-                            <h4>1997-2002</h4>
-                        </td>
-                    </tr>
-                    <tr class="filterRow">
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Man United</h4>
-                            <h4>2003-2009</h4>
-                        </td>
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/svxpsx1471876338.png"
-                                 class="img-extra-sm" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Sporting CP</h4>
-                            <h4>2002-2003</h4>
-                        </td>
-                        <td>
-                            <img src="https://www.thesportsdb.com/images/media/team/badge/swqvpy1455466083.png"
-                                 class="img-extra-sm img-fluid" alt="Team badge"
-                                 onerror=this.src="../../static/img/notFound.jpg">
-                            <br><br>
-                            <h4>Portugal</h4>
-                            <h4>2003-</h4>
-
-                        </td>
-                    </tr>
+                    <th:block th:with="colCount=${3}">
+                        <tr th:each="r : ${#numbers.sequence(0, formerTeams.size(), colCount)}">
+                            <td th:each="c : ${#numbers.sequence(0, colCount - 1)}"
+                                th:if="${r + c &lt; formerTeams.size()}" th:object="${formerTeams.get(r + c)}"
+                                style="width:33%">
+                                <a th:href="@{/team/{id}(id=${formerTeams.get(r + c).getIdFormerTeam()})}"
+                                   class="text-white">
+                                    <img th:src="*{getStrTeamBadge()} " class="img-extra-sm" alt="Team badge"
+                                         th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+                                    <br><br>
+                                    <h4 th:text="*{getStrFormerTeam()}"></h4>
+                                    <h4 th:if="*{getStrMoveType() == 'Youth'}">
+                                        <span style="color: chartreuse">(youth team)</span>
+                                    </h4>
+                                    <h4 th:text="|*{getStrJoined()} - *{getStrDeparted()}|"></h4>
+                                </a>
+                            </td>
+                        </tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>
-            <br> <br>
+            <br><br>
 
             <div class="tight-margin">
                 <h1>Trophies and Honours</h1>
@@ -190,27 +155,14 @@
                             <th scope="col" style="width: 50%">Season</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr>
-                            <td><b>Premier League</b></td>
-                            <td>2006-2007<br> 2007-2008<br> 2008-2009</td>
-                        </tr>
-                        <tr>
-                            <td><b>FA Cup</b></td>
-                            <td>2003-2004</td>
-                        </tr>
-                        <tr>
-                            <td><b>Football League Cup</b></td>
-                            <td>2005-2006<br> 2008-2009</td>
-                        </tr>
-                        <tr>
-                            <td><b>UEFA Champions League</b></td>
-                            <td>2007-2008<br> 2013-2014<br> 2015-2016<br> 2016-2017<br> 2017-2018</td>
+                        <tbody id="honorTableBody">
+                        <tr th:each="honor : ${honors}">
+                            <td><b th:text="${honor.getStrHonor()}"></b></td>
+                            <td th:utext="${#strings.replace(honor.getStrSeason(),',','<br>')}" ></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
             <br><br><br><br><br><br>
 
@@ -219,34 +171,28 @@
                 <br>
                 <div class="d-flex justify-content-center">
                     <div class="mx-5">
-                        <a href="#"><img src="../../static/img/socialMedia/facebook.png" alt="Facebook icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${player.getStrFacebook()}|">
+                            <img src="../../static/img/socialMedia/facebook.png"
+                                 th:src="@{/img/socialMedia/facebook.png}" alt="Facebook icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-5">
-                        <a href="#"><img src="../../static/img/socialMedia/twitter.png" alt="Twitter icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${player.getStrTwitter()}|">
+                            <img src="../../static/img/socialMedia/facebook.png"
+                                 th:src="@{/img/socialMedia/twitter.png}" alt="Twitter icon" class="img-fluid">
+                        </a>
                     </div>
                     <div class="mx-5">
-                        <a href="#"><img src="../../static/img/socialMedia/instagram.png" alt="Instagram icon"
-                                         class="img-fluid"></a>
+                        <a th:href="|https://${player.getStrInstagram()}|">
+                            <img src="../../static/img/socialMedia/facebook.png"
+                                 th:src="@{/img/socialMedia/instagram.png}" alt="Instagram icon" class="img-fluid">
+                        </a>
                     </div>
                 </div>
             </div>
             <br><br>
-
         </div>
     </div>
 </div>
-
-<script>
-
-    let playerDescription = "Cristiano Ronaldo dos Santos Aveiro GOIH ComM (born 5 February 1985) is a Portuguese professional footballer who plays as a forward for Serie A club Juventus and captains the Portugal national team. Often considered the best player in the world and widely regarded as one of the greatest players of all time, Ronaldo has won five Ballons d'Or and four European Golden Shoes, both of which are records for a European player. He has won 29 major trophies in his career, including six league titles, five UEFA Champions Leagues, one UEFA European Championship, and one UEFA Nations League title. A prolific goalscorer, Ronaldo holds the records for the most goals scored in the UEFA Champions League (128) and for the most hat-tricks in recorded history (56). He is one of the few recorded players to have made over 1,000 professional career appearances and has scored over 700 senior career goals for club and country.\r\n\r\nBorn and raised in Madeira, Ronaldo began his senior club career playing for Sporting CP, before signing with Manchester United in 2003, aged 18. After winning the FA Cup in his first season, he helped United win three successive Premier League titles, the UEFA Champions League, and the FIFA Club World Cup; at age 23, he won his first Ballon d'Or. In 2009, Ronaldo was the subject of the then-most expensive association football transfer when signed for Real Madrid in a transfer worth €94 million (£80 million). There, Ronaldo won 15 trophies, including two La Liga titles, two Copas del Rey, and four UEFA Champions League titles, and became the club's all-time top goalscorer. After joining Madrid, Ronaldo finished runner-up for the Ballon d'Or three times, behind Lionel Messi—his perceived career rival—before winning back-to-back Ballons d'Or from 2013–2014 and again from 2016–2017. After winning a third consecutive Champions League title in 2018, Ronaldo became the first player to win the trophy five times. In 2018, he signed for Juventus in a transfer worth an initial €100 million (£88 million), the highest ever paid by an Italian club and the highest ever paid for a player over 30 years old. He won the Serie A in his debut season with the club.\r\n\r\nA Portuguese international, Ronaldo was named the best Portuguese player of all time by the Portuguese Football Federation in 2015. He made his senior debut in 2003 at age 18, and has since earned over 160 caps, including appearing and scoring in ten major tournaments, becoming Portugal's most capped player and his country's all-time top goalscorer. He scored his first international goal at Euro 2004 and helped Portugal reach the final of the competition. He assumed full captaincy in July 2008, leading Portugal to their first-ever triumph in a major tournament by winning Euro 2016, and received the Silver Boot as the second-highest goalscorer of the tournament. He became the highest European international goalscorer of all-time in 2018.\r\n\r\nOne of the most marketable and famous athletes in the world, Ronaldo was ranked the world's highest-paid athlete by Forbes in 2016 and 2017 and the world's most famous athlete by ESPN from 2016 to 2019. Time included him on their list of the 100 most influential people in the world in 2014. As of April 2020, Ronaldo is also the most followed user on both Instagram and Facebook. With earnings of €720 million (£615 million) from 2010 to 2019, he was ranked second in Forbes list of highest-paid athletes of the decade, and according to the same publication, he is the first footballer, as well as only the third sportsman, to earn $1 billion in their career.";
-
-    playerDescription = playerDescription.replace(/(?:\r\n|\r|\n)/g, '<br>');
-
-    document.getElementById("player-description").innerHTML = playerDescription;
-
-</script>
-
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -11,6 +12,6 @@ import java.util.List;
 public class Contracts {
 
     @JsonProperty("contracts")
-    private List<Contract> contracts = null;
+    private List<Contract> contracts = new ArrayList<>();
 
 }

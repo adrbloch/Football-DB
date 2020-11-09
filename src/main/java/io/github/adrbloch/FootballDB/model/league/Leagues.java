@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,10 +14,10 @@ public class Leagues {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty(value = "leagues")
-    private List<League> leagues = null;
+    private List<League> leagues = new ArrayList<>();
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty(value = "countrys")
-    private List<League> leaguesByCountry = null;
+    private List<League> leaguesByCountry = new ArrayList<>();
 
 }

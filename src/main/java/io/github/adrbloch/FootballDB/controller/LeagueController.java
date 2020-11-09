@@ -1,7 +1,6 @@
 package io.github.adrbloch.FootballDB.controller;
 
 import io.github.adrbloch.FootballDB.model.league.League;
-import io.github.adrbloch.FootballDB.model.table.Table;
 import io.github.adrbloch.FootballDB.model.table.TableTeam;
 import io.github.adrbloch.FootballDB.service.LeagueService;
 import io.github.adrbloch.FootballDB.service.TableService;
@@ -11,10 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.UnsupportedMediaTypeException;
-import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -35,7 +31,7 @@ public class LeagueController {
 
 
     @PostMapping("/results/byCountry")
-    public String viewAllByCountry(@ModelAttribute("league") League league, Model model) {
+    public String viewLeaguesByCountry(@ModelAttribute("league") League league, Model model) {
 
         model.addAttribute("leagues", leagueService
                 .findLeaguesByCountry(league.getStrCountry())
@@ -46,12 +42,13 @@ public class LeagueController {
     }
 
     @PostMapping("/results/byName")
-    public String viewByName(@ModelAttribute("league") League league, Model model) {
+    public String viewLeaguesByName(@ModelAttribute("league") League league, Model model) {
 
         try {
-            model.addAttribute("leagues", leagueService
-                    .findLeagueByName(league.getStrLeague())
-                    .block()[0][0]);
+            model.addAttribute("leagues",
+                    leagueService
+                            .findLeagueByName(league.getStrLeague())
+                            .block()[0][0]);
         } catch (NullPointerException e) {
             model.addAttribute("leagues", null);
         }
@@ -87,10 +84,6 @@ public class LeagueController {
         } catch (UnsupportedMediaTypeException e) {
             tableByLeagueIdAndSeason = null;
         }
-
-//        if (!tableByLeagueIdAndSeason.block().toString().) {
-//            model.addAttribute("tableByLeague", tableByLeagueIdAndSeason);
-//        } else  model.addAttribute("tableByLeague", new Table());
 
         model.addAttribute("tableByLeague", tableByLeagueIdAndSeason);
 

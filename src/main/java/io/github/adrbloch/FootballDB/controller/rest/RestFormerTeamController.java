@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/former-teams")
+@RequestMapping("rest/api/former-teams")
 public class RestFormerTeamController {
 
     private final FormerTeamService formerTeamService;

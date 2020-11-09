@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/matches")
+@RequestMapping("rest/api/matches")
 public class RestMatchController {
 
     private final MatchService matchService;

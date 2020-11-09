@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class TeamController {
     }
 
     @PostMapping("/results/byCountry")
-    public String viewAllByCountry(@ModelAttribute("team") Team team, Model model) {
+    public String viewTeamsByCountry(@ModelAttribute("team") Team team, Model model) {
 
         String teamCountry = team.getStrCountry();
 
@@ -49,7 +48,7 @@ public class TeamController {
     }
 
     @PostMapping("/results/byLeague")
-    public String viewAllByLeague(@ModelAttribute("team") Team team, Model model) {
+    public String viewTeamsByLeague(@ModelAttribute("team") Team team, Model model) {
 
         String teamLeague = team.getStrLeague();
 
@@ -65,7 +64,7 @@ public class TeamController {
     }
 
     @PostMapping("/results/byName")
-    public String viewByName(@ModelAttribute("league") Team team, Model model) {
+    public String viewTeamByName(@ModelAttribute("league") Team team, Model model) {
 
         String teamName = team.getStrTeam();
 
@@ -81,7 +80,7 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public String viewTeamDetails(@PathVariable("id") String id, Model model) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public String viewTeamDetails(@PathVariable("id") String id, Model model){
 
         Team team = teamService
                 .findTeamById(id)

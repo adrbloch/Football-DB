@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/table")
+@RequestMapping("rest/api/table")
 public class RestTableController {
 
     private final TableService tableService;

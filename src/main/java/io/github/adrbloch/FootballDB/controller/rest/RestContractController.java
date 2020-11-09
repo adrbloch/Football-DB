@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/contracts")
+@RequestMapping("rest/api/contracts")
 public class RestContractController {
 
     private final ContractService contractService;

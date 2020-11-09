@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/players")
+@RequestMapping("rest/api/players")
 public class RestPlayerController {
 
     private final PlayerService playerService;
@@ -30,6 +30,12 @@ public class RestPlayerController {
         else
             return playerService.findPlayersByTeamAndName(teamName, playerName);
 
+    }
+
+    @GetMapping(params = "id")
+    public Mono<Players> getPlayerById(@RequestParam String id) {
+
+        return playerService.findPlayerById(id);
     }
 
 

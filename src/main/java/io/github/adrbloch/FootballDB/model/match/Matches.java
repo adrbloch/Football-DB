@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,14 +14,14 @@ public class Matches {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("event")
-    private List<Match> match = null;
+    private List<Match> match = new ArrayList<>();
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("events")
-    private List<Match> matches = null;
+    private List<Match> matches = new ArrayList<>();
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @JsonProperty("results")
-    private List<Match> lastMatches = null;
+    private List<Match> lastMatches = new ArrayList<>();
 
 }

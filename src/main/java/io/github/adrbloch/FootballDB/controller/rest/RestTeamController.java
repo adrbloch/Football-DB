@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("rest//api/teams")
+@RequestMapping("rest/api/teams")
 public class RestTeamController {
 
     private final TeamService teamService;
