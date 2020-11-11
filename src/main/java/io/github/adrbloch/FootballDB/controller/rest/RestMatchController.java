@@ -20,20 +20,26 @@ public class RestMatchController {
         this.matchService = matchService;
     }
 
-    @GetMapping(params = {"name", "season"})
-    public Mono<Matches> getMatchesByNameAndSeason(
-            @RequestParam("name") String eventName,
-            @RequestParam(name = "season", required = false) String season) {
+    @GetMapping(params = {"homeTeam", "awayTeam"})
+    public Mono<Matches> getMatchesByTeams(
+            @RequestParam("homeTeam") String homeTeam,
+            @RequestParam("awayTeam") String awayTeam) {
 
-        if (season == null)
-            return matchService.findMatchesByName(eventName);
-        else
-            return matchService.findMatchByNameAndSeason(eventName, season);
+            return matchService.findMatchesByTeams(homeTeam, awayTeam);
+    }
+
+    @GetMapping(params = {"homeTeam", "awayTeam", "season"})
+    public Mono<Matches> getMatchesByTeamsAndSeason(
+            @RequestParam("homeTeam") String homeTeam,
+            @RequestParam("awayTeam") String awayTeam,
+            @RequestParam("season") String season) {
+
+            return matchService.findMatchesByTeamsAndSeason(homeTeam, awayTeam, season);
     }
 
     @GetMapping(params = "id")
     public Mono<Matches> getMatchById(@RequestParam String id) {
-            return matchService.findMatchById(id);
+        return matchService.findMatchById(id);
     }
 
     @GetMapping("/next5")

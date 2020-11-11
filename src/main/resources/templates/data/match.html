@@ -56,106 +56,92 @@
         </ul>
     </div>
 </nav>
-
 <br>
-<div class="container-fluid">
+<div class="container-fluid mb-5" th:object="${match}">
     <div class="row">
         <div class="col-lg-2 text-center">
             <div class="pr-5">
-                <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+                <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
                     <i class="fas fa-chevron-left pr-2"></i> Back
                 </a>
             </div>
 
             <div class="belt mr-5 border border-secondary">
                 <b class="border-bottom mb-1">Date</b><br>
-                2014-12-29<br>
-                20:00<br><br><br>
+                <p th:text="*{getDateEvent()}" class="mb-0 mt-2"></p>
+                <p th:text="${#strings.substring(match.getStrTime(),0,5)}"></p>
+                <br><br>
                 <b class="border-bottom">League</b><br>
-                FA Cup<br><br><br>
+                <p th:text="*{getStrLeague()}" class="mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Season</b><br>
-                2016-2017<br><br><br>
+                <p th:text="*{getStrSeason()}" class="mt-2"></p>
+                <br><br>
                 <b class="border-bottom">Round</b><br>
-                200
+                <p th:text="*{getIntRound()}" class="mt-2" id="round"></p>
             </div>
         </div>
 
         <div class="col-lg-10 pl-0">
-            <br><br>
-            <div class="row">
-                <div class="col text-center ml-5 pr-0">
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/a1af2i1557005128.png"
-                         class="img-sm img-fluid mr-0" alt="Home team badge" onerror=this.src="../../static/img/notFound.jpg">
-                    <br><br>
-                    <h3 id="homeTeamGoals">
-                        <p>40' : Mesut Oezil</p>
-                        <p> 14' : Theo Walcott</p>
-                        <p>11' : Alexis Sanchez </p>
-                    </h3>
-
-                    <div class="text-center">
-                        <br><br><br>
-                        <h2>Lineup</h2>
-                        <p> Mamadou Sakho; Emre Can; Martin Skrtel, Javier Manquillo; Jordan Henderson; Lucas Leiva;
-                            Alberto Moreno,
-                            Philippe Coutinho; Raheem Sterling; Adam Lallana</p>
-                        <h2>Substitutes</h2>
-                        <p>Kolo Toure; Lazar Markovic; Steven Gerrard; Rickie Lambert; Fabio Borini; Daniel Ward; Mario
-                            Balotelli</p>
-
-                    </div>
-
-                </div>
-                <div class="col text-center px-0">
-                    <br><br>
-                    <h1 class="display-4 font-weight-bold"><span style="color: chartreuse">Arsenal </span>vs<span
-                            style="color: chartreuse"> Chelsea</span></h1>
-                    <h1 class="display-4 font-weight-bold">3 : 0</h1>
-                </div>
-
-                <div class="col text-center pl-0">
-                    <img src="https://www.thesportsdb.com/images/media/team/badge/yvwvtu1448813215.png"
-                         class="img-sm img-fluid" alt="Away team badge" onerror=this.src="../../static/img/notFound.jpg">
+            <div class="col text-center"><br><br>
+                <h1 class="display-4 font-weight-bold pb-5">
+                    <span style="color: chartreuse" th:text="*{getStrHomeTeam()}"></span>
+                    <span class="px-4"> vs </span>
+                    <span style="color: chartreuse" th:text="*{getStrAwayTeam()}"></span>
+                </h1>
+            </div>
+            <div class="row mx-5">
+                <div class="col text-center" th:object="${homeTeam}">
+                    <a th:href="@{/team/{id}(id=${homeTeam.getIdTeam()})}" class="text-white">
+                        <img th:src="*{getStrTeamBadge()}" class="img-sm" alt="Home team badge"
+                             th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+                    </a>
                     <br><br><br>
-                    <h3 id="awayTeamGoals">
-                    </h3>
-
-                    <div class="text-center mr-5 pr-5">
-                        <br><br>
-                        <h2>Lineup</h2>
-                        <p>Mamadou Sakho; Emre Can; Martin Skrtel, Javier Manquillo; Jordan Henderson; Lucas Leiva;
-                            Alberto Moreno,
-                            Philippe Coutinho; Raheem Sterling; Adam Lallana</p>
-                        <h2>Substitutes</h2>
-                        <p>Kolo Toure; Lazar Markovic; Steven Gerrard; Rickie Lambert; Fabio Borini; Daniel Ward; Mario
-                            Balotelli</p>
-
-                    </div>
+                    <th:block th:each="homeGoal : ${homeGoalList}">
+                        <h4 th:if="${homeGoal != ''}" th:text="${homeGoal}"></h4>
+                    </th:block>
+                </div>
+                <div class="col text-center mx-0" id="score"><br>
+                    <h1 class="display-2 font-weight-bold" th:text="|*{getIntHomeScore()} : *{getIntAwayScore()}|"></h1>
                 </div>
 
+                <div class="col text-center" th:object="${awayTeam}">
+                    <a th:href="@{/team/{id}(id=${awayTeam.getIdTeam()})}" class="text-white">
+                        <img th:src="*{getStrTeamBadge()}" class="img-sm" alt="Away team badge"
+                             th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
+                    </a>
+                    <br><br><br>
+                    <th:block th:each="awayGoal : ${awayGoalList}">
+                        <h4 th:if="${awayGoal != ''}" th:text="${awayGoal}"></h4>
+                    </th:block>
+                </div>
+            </div>
+            <div class="row mx-5">
+                <div class="col text-center">
+                    <br><br>
+                    <h2>Lineup</h2>
+                    <p th:text="|*{getStrHomeLineupGoalkeeper()}; *{getStrHomeLineupDefense()}
+                        *{getStrHomeLineupMidfield()} *{getStrHomeLineupForward()}|" id="homeLineup"></p>
+                    <h2>Substitutes</h2>
+                    <p th:text="*{getStrHomeLineupSubstitutes()}" id="homeSubstitutes"></p>
+                </div>
+
+                <div class="col"></div>
+
+                <div class="col text-center">
+                    <br><br>
+                    <h2>Lineup</h2>
+                    <p th:text="|*{getStrAwayLineupGoalkeeper()}; *{getStrAwayLineupDefense()}
+                        *{getStrAwayLineupMidfield()} *{getStrAwayLineupForward()}|" id="awayLineup"></p>
+                    <h2>Substitutes</h2>
+                    <p th:text="*{getStrAwayLineupSubstitutes()}" id="awaySubstitutes"></p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    let homeTeamHead = document.getElementById("homeTeamGoals");
-    let awayTeamHead = document.getElementById("awayTeamGoals");
-
-    let homeTeamGoals = homeTeamHead.getElementsByTagName('p').length;
-    if (homeTeamGoals !== 0) {
-        for (let i = 0; i <= homeTeamGoals; i++) {
-            awayTeamHead.innerHTML += "<br>";
-        }
-    }
-
-    let awayTeamGoals = awayTeamHead.getElementsByTagName('p').length;
-    if (awayTeamGoals !== 0) {
-        for (let i = 0; i <= awayTeamGoals; i++) {
-            homeTeamHead.innerHTML += "<br>";
-        }
-    }
-</script>
+<script type="text/javascript" src="../../static/js/matchScript.js" th:src="@{/js/matchScript.js}"></script>
 
 </body>
 </html>

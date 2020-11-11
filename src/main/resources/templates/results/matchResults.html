@@ -46,7 +46,7 @@
                 <a class="nav-link" href="#">Matches <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Tables  </a>
+                <a class="nav-link" href="#">Tables </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -58,23 +58,26 @@
 </nav>
 
 <div class="container-fluid">
-    <a th:href="@{#}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
+    <a th:href="@{/match/search}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
         <i class="fas fa-chevron-left pr-2"></i> Back
     </a>
-    <h1 class="display-4 text-center font-weight-bold mr-5"><span style="color: chartreuse">Match results</span></h1>
-    <br><br><br>
-    <a href="#" class="text-white text-center">
-        <div class="d-flex justify-content-center align-items-center">
-            <h1 class="mr-5"><span style="color: lightgreen"> Arsenal vs Chelsea</span><br> FA Cup <br>2017-05-27</h1>
-        </div>
-    </a>
+    <h1 class="display-4 text-center font-weight-bold"><span style="color: chartreuse">Match results</span></h1>
     <br><br>
 
-    <a href="#" class="text-white text-center">
-        <div class="d-flex justify-content-center align-items-center">
-            <h1 class="mr-5"><span style="color: lightgreen">Man United vs Chelsea</span> <br>English Premier League <br>2017-04-15</h1>
-        </div>
-    </a>
+    <h1 th:if="${matches == null}" class="text-danger text-center">Not found</h1>
+
+    <div th:each="match:${matches}">
+        <a th:href="@{/match/{id}(id=${match.getIdEvent()})}" class="text-white text-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1>
+                    <span style="color: lightgreen" th:text="${match.getStrEvent()}"></span><br>
+                    <span th:text="${match.getStrLeague()}"></span><br>
+                    <span th:text="${match.getDateEvent()}"></span><br>
+                </h1>
+            </div>
+        </a>
+        <br><br>
+    </div>
 
 </div>
 

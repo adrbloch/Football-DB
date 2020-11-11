@@ -110,7 +110,7 @@
                 <br>
                 <img th:src="*{getStrStadiumThumb()}" class="img-fluid" alt="Stadium photo"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
-                <br><br>
+                <br><br><br>
                 <p class="text-justify first-line-ind" th:text="*{getStrStadiumDescription()}"
                    style="white-space: pre-wrap"></p>
                 <br>
@@ -183,7 +183,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../../static/js/script.js" th:src="@{/js/script.js}"></script>
+<script type="text/javascript" src="../../static/js/teamAndLeagueScript.js" th:src="@{/js/teamAndLeagueScript.js}"></script>
 
 </body>
 </html>

@@ -5,9 +5,9 @@ import reactor.core.publisher.Mono;
 
 public interface MatchService {
 
-    Mono<Matches> findMatchesByName(String eventName);
+    Mono<Matches> findMatchesByTeams(String homeTeam, String awayTeam);
 
-    Mono<Matches> findMatchByNameAndSeason(String eventName, String season);
+    Mono<Matches> findMatchesByTeamsAndSeason(String homeTeam, String awayTeam, String season);
 
     Mono<Matches> findMatchById(String id);
 

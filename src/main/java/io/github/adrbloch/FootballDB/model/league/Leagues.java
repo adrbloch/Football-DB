@@ -12,11 +12,11 @@ import java.util.List;
 @Setter
 public class Leagues {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(value = "leagues")
     private List<League> leagues = new ArrayList<>();
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty(value = "countrys")
     private List<League> leaguesByCountry = new ArrayList<>();
 

@@ -22,21 +22,21 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Mono<Matches> findMatchesByName(String eventName) {
-        logger.info("Getting matches by name: [" + eventName + "]");
+    public Mono<Matches> findMatchesByTeams(String homeTeam, String awayTeam) {
+        logger.info("Getting matches by teams - home: [{}] and away: [{}]", homeTeam, awayTeam);
 
         return webClient.get()
-                .uri("/searchevents.php?t=" + eventName)
+                .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam)
                 .retrieve()
                 .bodyToMono(Matches.class);
     }
 
     @Override
-    public Mono<Matches> findMatchByNameAndSeason(String eventName, String season) {
-        logger.info("Getting matches by name: [{}] and season: [{}]", eventName, season);
+    public Mono<Matches> findMatchesByTeamsAndSeason(String homeTeam, String awayTeam, String season) {
+        logger.info("Getting matches by teams - home: [{}], away: [{}] and season: [{}]", homeTeam, awayTeam, season);
 
         return webClient.get()
-                .uri("/searchevents.php?e=" + eventName + "&s=" + season)
+                .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam + "&s=" + season)
                 .retrieve()
                 .bodyToMono(Matches.class);
     }

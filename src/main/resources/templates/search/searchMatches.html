@@ -66,20 +66,22 @@
     <table class="table table-borderless text-center text-white">
         <tbody>
         <tr>
-            <td>
-                <div class="d-inline-block mr-5">
-                    <form name="f" method="POST" class="form-horizontal"
-                          enctype="multipart/form-data">
+            <td class="align-top">
+                <div class="d-inline-block">
+                    <form action="#" th:action="@{/match/results/byTeams}" th:object="${match}" method="POST"
+                          class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Teams</h2>
                         </div>
                         <div class="form-group row">
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter home team">
+                                <input type="text" th:field="*{strHomeTeam}" class="form-control form-control-lg"
+                                       placeholder="Enter home team">
                             </div>
                             <h6 class="mt-3">vs</h6>
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter away team">
+                                <input type="text" th:field="*{strAwayTeam}" class="form-control form-control-lg"
+                                       placeholder="Enter away team">
                             </div>
                         </div>
                         <div class="form-group">
@@ -92,29 +94,33 @@
                     </form>
                 </div>
             </td>
-            <td>
-                <br><br>OR
+            <td class="py-5">
+                <span class="mx-5">OR</span>
             </td>
             <td>
-                <div class="d-inline-block ml-5">
-                    <form name="f" method="POST" class="form-horizontal"
-                          enctype="multipart/form-data">
+                <div class="d-inline-block">
+                    <form action="#" th:action="@{/match/results/byTeamsAndSeason}" th:object="${match}" method="POST"
+                          class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Teams and Season</h2>
                         </div>
                         <div class="form-group row">
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter home team">
+                                <input type="text" th:field="*{strHomeTeam}" class="form-control form-control-lg"
+                                       placeholder="Enter home team">
                             </div>
                             <h6 class="mt-3">vs</h6>
                             <div class="col">
-                                <input type="text" class="form-control form-control-lg" placeholder="Enter away team">
+                                <input type="text" th:field="*{strAwayTeam}" class="form-control form-control-lg"
+                                       placeholder="Enter away team">
                             </div>
                         </div>
                         <div class="form-group">
-                            <select class="form-control form-control-lg mx-auto w-50" id="inputSeason"
-                                    onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-                                <option selected disabled>Choose season...</option>
+                            <select class="form-control form-control-lg mx-auto w-50" onfocus='this.size=5;'
+                                    onblur='this.size=1;' onchange='this.size=1; this.blur();' th:field="*{strSeason}"/>
+                            <option value="" th:selected="selected" th:disabled="disabled">Choose season...</option>
+                            <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
+                                    th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -131,13 +137,5 @@
         </tbody>
     </table>
 </div>
-
-<script>
-    for (let i = 0; i <= 20; i++) {
-        let option = new Option(2000+i+"-"+parseInt(2001+i), 2001+i+"-"+parseInt(2001+i));
-        document.getElementById("inputSeason").options.add(option);
-    }
-</script>
-
 </body>
 </html>

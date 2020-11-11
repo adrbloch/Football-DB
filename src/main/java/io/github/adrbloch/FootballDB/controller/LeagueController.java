@@ -71,16 +71,19 @@ public class LeagueController {
 
         model.addAttribute("league", league);
 
-        model.addAttribute("teamsByLeague", teamService.findTeamsByLeague(league
-                .getStrLeague())
-                .block()
-                .getTeams());
+        model.addAttribute("teamsByLeague",
+                teamService
+                        .findTeamsByLeague(league.getStrLeague())
+                        .block()
+                        .getTeams());
 
 
         List<TableTeam> tableByLeagueIdAndSeason;
         try {
-            tableByLeagueIdAndSeason = tableService.findTableByLeagueIdAndSeason(league.getIdLeague(),
-                    league.getStrCurrentSeason()).block().getTable();
+            tableByLeagueIdAndSeason = tableService
+                    .findTableByLeagueIdAndSeason(league.getIdLeague(), league.getStrCurrentSeason())
+                    .block()
+                    .getTable();
         } catch (UnsupportedMediaTypeException e) {
             tableByLeagueIdAndSeason = null;
         }

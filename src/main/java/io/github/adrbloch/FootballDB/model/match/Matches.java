@@ -12,15 +12,15 @@ import java.util.List;
 @Setter
 public class Matches {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("event")
-    private List<Match> match = new ArrayList<>();
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @JsonProperty("events")
     private List<Match> matches = new ArrayList<>();
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    @JsonProperty("events")
+    private List<Match> matchById = new ArrayList<>();
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("results")
     private List<Match> lastMatches = new ArrayList<>();
 

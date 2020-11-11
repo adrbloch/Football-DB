@@ -116,6 +116,6 @@ th {
 }
 
 .table td, .table th{
-    vertical-align: middle !important;
+    vertical-align: middle;
 }
 
