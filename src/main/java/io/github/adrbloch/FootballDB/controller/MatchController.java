@@ -26,8 +26,10 @@ public class MatchController {
 
     @GetMapping("/search")
     public String searchMatches(Model model) {
+
         model.addAttribute("match", new Match());
         model.addAttribute("currentYear", Year.now().getValue());
+
         return "search/searchMatches";
     }
 

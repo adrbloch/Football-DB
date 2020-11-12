@@ -1,23 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--    External css-->
-    <link href="../../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
-
-    <!--    Icons-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-    <!--    Bootrstrap-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    <th:block th:insert="head :: headCode"></th:block>
     <title>Search table</title>
 </head>
 
@@ -63,20 +47,23 @@
 </div>
 
 <div class="d-inline-block">
-    <form name="f" method="POST" class="form-horizontal"
-          enctype="multipart/form-data">
+    <form action="#" th:action="@{/table/results/byLeagueAndSeason}" th:object="${league}" method="POST"
+          class="form-horizontal" enctype="multipart/form-data">
         <div class="form-group">
             <h2>League and Season</h2>
         </div>
         <div class="form-group row">
             <div class="col">
-                <input type="text" class="form-control form-control-lg" placeholder="Enter league name">
+                <input type="text" th:field="*{strLeague}" class="form-control form-control-lg"
+                       placeholder="Enter league name">
             </div>
         </div>
         <div class="form-group">
-            <select class="form-control form-control-lg mx-auto w-100" id="inputSeason"
-                    onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
-                <option selected disabled>Choose season...</option>
+            <select class="form-control form-control-lg mx-auto w-100" onfocus='this.size=5;'
+                    onblur='this.size=1;' onchange='this.size=1; this.blur();' name="season"/>
+            <option value="" th:selected="selected" th:disabled="disabled">Choose season...</option>
+            <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
+                    th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
             </select>
         </div>
         <div class="form-group">
