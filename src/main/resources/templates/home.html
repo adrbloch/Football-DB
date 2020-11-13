@@ -1,44 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:insert="head :: headCode"></th:block>
+    <th:block th:insert="modelTemplates/head :: headCode"></th:block>
     <title>Home</title>
 </head>
 
 <body class="text-center text-white bg">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-    <a class="nav-link mr-5" href="#"> <img src="../static/img/logo.jpg" alt="logo" class="img-sm"> </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse bg-success" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Leagues </a>
-            </li>
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Teams </a>
-            </li>
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Players </a>
-            </li>
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Matches </a>
-            </li>
-            <li class="nav-item nav-item-mr-p">
-                <a class="nav-link" href="#">Tables </a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item border-left px-3">
-                <a class="nav-link" href="#">Log out</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br><br><br><br><br><br><br><br>
+
     <h1 class="display-4 font-weight-bold">Welcome in <span style="color: chartreuse"> Football Database</span>!</h1>
     <h5>Click on navbar option to start searching information.</h5>
 
