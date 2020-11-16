@@ -15,20 +15,20 @@
 </div>
 
 <div class="d-inline-block">
-    <form action="#" th:action="@{/table/results/byLeagueAndSeason}" th:object="${league}" method="POST"
+    <form action="#" th:action="@{/table/results(league=${league}, season=${season})}" method="GET"
           class="form-horizontal" enctype="multipart/form-data">
         <div class="form-group">
             <h2>League and Season</h2>
         </div>
         <div class="form-group row">
             <div class="col">
-                <input type="text" th:field="*{strLeague}" class="form-control form-control-lg"
+                <input type="text" th:name="league" th:value="${league}" class="form-control form-control-lg"
                        placeholder="Enter league name">
             </div>
         </div>
         <div class="form-group">
             <select class="form-control form-control-lg mx-auto w-100" onfocus='this.size=5;'
-                    onblur='this.size=1;' onchange='this.size=1; this.blur();' name="season"/>
+                    onblur='this.size=1;' onchange='this.size=1; this.blur();' th:name="season"/>
             <option value="" th:selected="selected" th:disabled="disabled">Choose season...</option>
             <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
                     th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
@@ -43,17 +43,5 @@
         </div>
     </form>
 </div>
-
-<script>
-    $(function () {
-        $('ul.navbar-nav > li > a').each(function () {
-            if (window.location.pathname.indexOf($(this).attr('href')) > -1) {
-                $(this).closest('li').addClass('active');
-                return false;
-            }
-        });
-    });
-</script>
-
 </body>
 </html>

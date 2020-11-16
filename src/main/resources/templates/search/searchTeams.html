@@ -20,14 +20,14 @@
         <tr>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/team/results/byCountry}" th:object="${team}" method="POST"
+                    <form action="#" th:action="@{/team/results(country=${country})}" method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Country</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strCountry}" class="form-control form-control-lg"
-                                   placeholder="Enter country">
+                            <input type="text" th:name="country" th:value="${country}"
+                                   class="form-control form-control-lg" placeholder="Enter country">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">
@@ -44,14 +44,14 @@
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/team/results/byLeague}" th:object="${team}" method="POST"
+                    <form action="#" th:action="@{/team/results(league=${league})}" method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>League</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strLeague}" class="form-control form-control-lg"
-                                   placeholder="Enter league name">
+                            <input type="text" th:name="league" th:value="${league}"
+                                   class="form-control form-control-lg" placeholder="Enter league name">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">
@@ -69,14 +69,14 @@
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/team/results/byName}" th:object="${team}" method="POST"
+                    <form action="#" th:action="@{/team/results(name=${name})}" method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Name</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strTeam}" class="form-control form-control-lg"
-                                   placeholder="Enter team name">
+                            <input type="text" th:name="name" th:value="${name}"
+                                   class="form-control form-control-lg" placeholder="Enter team name">
                         </div>
                         <div class="form-group">
                             <div class="col-auto pb-3">

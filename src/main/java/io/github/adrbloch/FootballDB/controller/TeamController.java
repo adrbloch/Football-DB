@@ -31,48 +31,42 @@ public class TeamController {
         return "search/searchTeams";
     }
 
-    @PostMapping("/results/byCountry")
-    public String viewTeamsByCountry(@ModelAttribute("team") Team team, Model model) {
+    @GetMapping(value = "/results", params = "country")
+    public String viewTeamsByCountry(@RequestParam("country") String country, Model model) {
 
-        String teamCountry = team.getStrCountry();
-
-        if (teamCountry.isEmpty()) {
+        if (country.isEmpty()) {
             model.addAttribute("teams", null);
         } else {
             model.addAttribute("teams", teamService
-                    .findTeamsByCountry(teamCountry)
+                    .findTeamsByCountry(country)
                     .block()
                     .getTeams());
         }
         return "results/teamResults";
     }
 
-    @PostMapping("/results/byLeague")
-    public String viewTeamsByLeague(@ModelAttribute("team") Team team, Model model) {
+    @GetMapping(value = "/results", params = "league")
+    public String viewTeamsByLeague(@RequestParam("league") String league, Model model) {
 
-        String teamLeague = team.getStrLeague();
-
-        if (teamLeague.isEmpty()) {
+        if (league.isEmpty()) {
             model.addAttribute("teams", null);
         } else {
             model.addAttribute("teams", teamService
-                    .findTeamsByLeague(teamLeague)
+                    .findTeamsByLeague(league)
                     .block()
                     .getTeams());
         }
         return "results/teamResults";
     }
 
-    @PostMapping("/results/byName")
-    public String viewTeamByName(@ModelAttribute("league") Team team, Model model) {
+    @GetMapping(value = "/results", params = "name")
+    public String viewTeamByName(@RequestParam("name") String name, Model model) {
 
-        String teamName = team.getStrTeam();
-
-        if (teamName.isEmpty()) {
+        if (name.isEmpty()) {
             model.addAttribute("teams", null);
         } else {
             model.addAttribute("teams", teamService
-                    .findTeamsByName(teamName)
+                    .findTeamsByName(name)
                     .block()
                     .getTeams());
         }

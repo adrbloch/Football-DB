@@ -27,22 +27,21 @@ public class TableController {
     public String searchTables(Model model) {
 
         model.addAttribute("currentYear", Year.now().getValue());
-        model.addAttribute("league", new League());
 
         return "search/searchTables";
     }
 
-    @PostMapping("/results/byLeagueAndSeason")
+    @GetMapping(value = "/results", params = {"league", "season"})
     public String viewTablesByLeagueAndSeason(
-            @ModelAttribute("league") League league,
-            @ModelAttribute("season") String season,
+            @RequestParam("league") String league,
+            @RequestParam("season") String season,
             Model model) {
 
-        if (league.getStrLeague().isEmpty() || season.isEmpty()) {
+        if (league.isEmpty() || season.isEmpty()) {
             model.addAttribute("leagues", null);
         } else {
             model.addAttribute("leagues", leagueService
-                    .findLeagueByName(league.getStrLeague())
+                    .findLeagueByName(league)
                     .block()[0][0]);
             model.addAttribute("season", season);
         }

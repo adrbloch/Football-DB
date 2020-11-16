@@ -25,7 +25,7 @@ public class RestMatchController {
             @RequestParam("homeTeam") String homeTeam,
             @RequestParam("awayTeam") String awayTeam) {
 
-            return matchService.findMatchesByTeams(homeTeam, awayTeam);
+        return matchService.findMatchesByTeams(homeTeam, awayTeam);
     }
 
     @GetMapping(params = {"homeTeam", "awayTeam", "season"})
@@ -34,7 +34,7 @@ public class RestMatchController {
             @RequestParam("awayTeam") String awayTeam,
             @RequestParam("season") String season) {
 
-            return matchService.findMatchesByTeamsAndSeason(homeTeam, awayTeam, season);
+        return matchService.findMatchesByTeamsAndSeason(homeTeam, awayTeam, season);
     }
 
     @GetMapping(params = "id")
@@ -63,7 +63,9 @@ public class RestMatchController {
     }
 
     @GetMapping(params = {"leagueId", "round", "season"})
-    public Mono<Matches> getMatchesOfRoundByLeagueIdAndRoundAndSeason(@RequestParam String leagueId, @RequestParam String round, @RequestParam String season) {
+    public Mono<Matches> getMatchesOfRoundByLeagueIdAndRoundAndSeason(@RequestParam String leagueId,
+                                                                      @RequestParam String round,
+                                                                      @RequestParam String season) {
         return matchService.findMatchesOfRoundByLeagueIdAndRoundAndSeason(leagueId, round, season);
     }
 

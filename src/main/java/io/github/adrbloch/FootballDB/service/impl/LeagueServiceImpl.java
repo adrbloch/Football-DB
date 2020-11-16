@@ -24,7 +24,7 @@ public class LeagueServiceImpl implements LeagueService {
 
     @Override
     public Mono<Leagues> findLeaguesByCountry(String country) {
-        logger.info("Getting leagues by name: [" + country + "]");
+        logger.info("Getting leagues by country: [" + country + "]");
 
         return webClient.get()
                 .uri("/search_all_leagues.php?c=" + country + "&s=Soccer")

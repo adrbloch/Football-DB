@@ -30,35 +30,35 @@ public class LeagueController {
     }
 
 
-    @PostMapping("/results/byCountry")
-    public String viewLeaguesByCountry(@ModelAttribute("league") League league, Model model) {
+    @GetMapping("/search")
+    public String searchLeagues() {
+
+        return "search/searchLeagues";
+    }
+
+    @GetMapping(value = "/results", params = "country")
+    public String viewLeaguesByCountry(@RequestParam("country") String country, Model model) {
 
         model.addAttribute("leagues", leagueService
-                .findLeaguesByCountry(league.getStrCountry())
+                .findLeaguesByCountry(country)
                 .block()
                 .getLeaguesByCountry());
 
         return "results/leagueResults";
     }
 
-    @PostMapping("/results/byName")
-    public String viewLeaguesByName(@ModelAttribute("league") League league, Model model) {
+    @GetMapping(value = "/results", params = "name")
+    public String viewLeaguesByName(@RequestParam("name") String name, Model model) {
 
         try {
             model.addAttribute("leagues",
                     leagueService
-                            .findLeagueByName(league.getStrLeague())
+                            .findLeagueByName(name)
                             .block()[0][0]);
         } catch (NullPointerException e) {
             model.addAttribute("leagues", null);
         }
         return "results/leagueResults";
-    }
-
-    @GetMapping("/search")
-    public String searchLeagues(Model model) {
-        model.addAttribute("league", new League());
-        return "search/searchLeagues";
     }
 
     @GetMapping("/{id}")

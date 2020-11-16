@@ -20,13 +20,13 @@
         <tr>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/player/results/byName}" th:object="${player}" method="POST"
+                    <form action="#" th:action="@{/player/results(name=${name})}" method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Name</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strPlayer}" class="form-control form-control-lg"
+                            <input type="text" th:name="name" th:value="${name}" class="form-control form-control-lg"
                                    placeholder="Enter player name">
                         </div>
                         <div class="form-group">
@@ -44,15 +44,15 @@
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/player/results/byTeamAndName}" th:object="${player}" method="POST"
+                    <form action="#" th:action="@{/player/results(team=${team}, name=${name})}" method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Team and Name</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strTeam}" class="form-control form-control-lg"
+                            <input type="text" th:name="team" th:value="${team}" class="form-control form-control-lg"
                                    placeholder="Enter team"> <br>
-                            <input type="text" th:field="*{strPlayer}" class="form-control form-control-lg"
+                            <input type="text" th:name="name" th:value="${name}" class="form-control form-control-lg"
                                    placeholder="Enter player name">
                         </div>
                         <div class="form-group">

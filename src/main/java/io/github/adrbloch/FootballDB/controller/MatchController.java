@@ -27,22 +27,22 @@ public class MatchController {
     @GetMapping("/search")
     public String searchMatches(Model model) {
 
-        model.addAttribute("match", new Match());
         model.addAttribute("currentYear", Year.now().getValue());
 
         return "search/searchMatches";
     }
 
-    @PostMapping("/results/byTeams")
-    public String viewMatchesByTeams(@ModelAttribute("match") Match match, Model model) {
+    @GetMapping(value = "/results", params = {"homeTeam", "awayTeam"})
+    public String viewMatchesByTeams(
+            @RequestParam("homeTeam") String homeTeam,
+            @RequestParam("awayTeam") String awayTeam,
+            Model model) {
 
-        if (match.getStrHomeTeam().isEmpty() || match.getStrAwayTeam().isEmpty()) {
+        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
             model.addAttribute("matches", null);
         } else {
             model.addAttribute("matches", matchService
-                    .findMatchesByTeams(
-                            match.getStrHomeTeam(),
-                            match.getStrAwayTeam())
+                    .findMatchesByTeams(homeTeam, awayTeam)
                     .block()
                     .getMatches()
                     .stream()
@@ -56,17 +56,18 @@ public class MatchController {
         return "results/matchResults";
     }
 
-    @PostMapping("/results/byTeamsAndSeason")
-    public String viewMatchesByTeamsAndSeason(@ModelAttribute("match") Match match, Model model) {
+    @GetMapping(value = "/results", params = {"homeTeam", "awayTeam", "season"})
+    public String viewMatchesByTeamsAndSeason(
+            @RequestParam("homeTeam") String homeTeam,
+            @RequestParam("awayTeam") String awayTeam,
+            @RequestParam("season") String season,
+            Model model) {
 
-        if (match.getStrHomeTeam().isEmpty() || match.getStrAwayTeam().isEmpty()) {
+        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
             model.addAttribute("matches", null);
         } else {
             model.addAttribute("matches", matchService
-                    .findMatchesByTeamsAndSeason(
-                            match.getStrHomeTeam(),
-                            match.getStrAwayTeam(),
-                            match.getStrSeason())
+                    .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
                     .block()
                     .getMatches()
                     .stream()

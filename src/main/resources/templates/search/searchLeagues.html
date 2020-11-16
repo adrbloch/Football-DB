@@ -20,13 +20,13 @@
         <tr>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/league/results/byCountry}" th:object="${league}" method="POST"
+                    <form action="#" th:action="@{/league/results(country=${country})}"  method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Country</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strCountry}" class="form-control form-control-lg"
+                            <input type="text" th:name="country" th:value="${country}" class="form-control form-control-lg"
                                    placeholder="Enter country">
                         </div>
                         <div class="form-group">
@@ -44,13 +44,13 @@
             </td>
             <td>
                 <div class="d-inline-block">
-                    <form action="#" th:action="@{/league/results/byName}" th:object="${league}" method="POST"
+                    <form action="#" th:action="@{/league/results(name=${name})}"  method="GET"
                           class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <h2>Name</h2>
                         </div>
                         <div class="form-group">
-                            <input type="text" th:field="*{strLeague}" class="form-control form-control-lg"
+                            <input type="text" th:name="name" th:value="${name}" class="form-control form-control-lg"
                                    placeholder="Enter league name">
                         </div>
                         <div class="form-group">
