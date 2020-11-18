@@ -10,26 +10,27 @@
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br>
 
-<div class="container-fluid pb-3">
-    <div class="row" th:object="${league}">
-        <div class="col pt-4 pl-5">
-            <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
-                <i class="fas fa-chevron-left pr-2"></i> Back
-            </a>
-        </div>
-        <div class="col text-center">
-            <br><br><br>
+<div class="container-fluid pb-3" th:object="${league}">
+    <div class="col pt-4 pl-5">
+        <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
+            <i class="fas fa-chevron-left pr-2"></i> Back
+        </a>
+    </div>
+    <div class="col text-center d-flex align-items-center justify-content-center">
+        <div class="d-inline-block px-5">
             <a th:href="@{/league/{id}(id=*{getIdLeague()})}" class="text-white">
                 <h1 class="d-inline"><span style="color: chartreuse" th:text="*{getStrLeague()}"></span></h1>
             </a>
             <h1 th:text="${season}"></h1>
         </div>
-        <div class="col text-left">
+
+        <div class="d-inline-block">
             <a th:href="@{/league/{id}(id=*{getIdLeague()})}" class="text-white">
-                <img th:src="*{getStrBadge()}" class="img-sm rounded-circle img-fluid" alt="League badge"
+                <img th:src="*{getStrBadge()}" class="img-sm img-fluid" alt="League badge"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </a>
         </div>
+
     </div>
     <br><br>
 

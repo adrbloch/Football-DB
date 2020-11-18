@@ -49,11 +49,7 @@ public class PlayerController {
     @GetMapping(value = "/results", params = "name")
     public String viewPlayersByName(@RequestParam("name") String name, Model model) {
 
-
-        if (name.isEmpty()) {
-            model.addAttribute("players", null);
-
-        } else {
+        try {
             model.addAttribute("players",
                     playerService
                             .findPlayersByName(name)
@@ -62,6 +58,9 @@ public class PlayerController {
                             .stream()
                             .filter(p -> p.getStrSport().equals("Soccer"))
                             .collect(Collectors.toList()));
+
+        } catch (NullPointerException e) {
+            model.addAttribute("players", null);
         }
 
         return "results/playerResults";
@@ -73,10 +72,7 @@ public class PlayerController {
             @RequestParam("name") String name,
             Model model) {
 
-        if (team.isEmpty() && name.isEmpty()) {
-            model.addAttribute("players", null);
-
-        } else {
+        try {
             model.addAttribute("players",
                     playerService
                             .findPlayersByTeamAndName(team, name)
@@ -85,6 +81,8 @@ public class PlayerController {
                             .stream()
                             .filter(p -> p.getStrSport().equals("Soccer"))
                             .collect(Collectors.toList()));
+        } catch (NullPointerException e) {
+            model.addAttribute("players", null);
         }
 
         return "results/playerResults";
@@ -100,51 +98,63 @@ public class PlayerController {
                         .getPlayersById()
                         .get(0));
 
-        model.addAttribute("contract",
-                contractService
-                        .findContractsByPlayerId(id)
-                        .block()
-                        .getContracts()
-                        .get(0));
+        try {
+            model.addAttribute("contract",
+                    contractService
+                            .findContractsByPlayerId(id)
+                            .block()
+                            .getContracts()
+                            .get(0));
+        } catch (NullPointerException e) {
+            model.addAttribute("contract", null);
+        }
 
-        model.addAttribute("formerTeams",
-                formerTeamService
-                        .findFormerTeamsByPlayerId(id)
-                        .block().getFormerTeams()
-                        .stream()
-                        .sorted(Comparator
-                                .comparing(FormerTeam::getStrJoined))
-                        .collect(Collectors.toList()));
+
+        try {
+            model.addAttribute("formerTeams",
+                    formerTeamService
+                            .findFormerTeamsByPlayerId(id)
+                            .block().getFormerTeams()
+                            .stream()
+                            .sorted(Comparator
+                                    .comparing(FormerTeam::getStrJoined))
+                            .collect(Collectors.toList()));
+        } catch (NullPointerException e) {
+            model.addAttribute("formerTeams", null);
+        }
 
 
         List<Honor> honorList = honorService
                 .findHonorsByPlayerId(id)
                 .block()
-                .getHonors()
-                .stream()
-                .sorted(Comparator
-                        .comparing(Honor::getStrSeason))
-                .collect(Collectors.toList());
+                .getHonors();
 
-        List<Honor> distinctHonorList = new ArrayList<>();
-
-        for (Honor honor : honorList) {
-
-            Honor elementByHonorName = distinctHonorList
+        if (honorList != null) {
+            honorList
                     .stream()
-                    .filter(h -> h.getStrHonor()
-                            .equals(honor.getStrHonor()))
-                    .findFirst()
-                    .orElse(null);
+                    .sorted(Comparator
+                            .comparing(Honor::getStrSeason))
+                    .collect(Collectors.toList());
 
-            if (elementByHonorName == null)
-                distinctHonorList.add(honor);
-            else
-                elementByHonorName.setStrSeason(elementByHonorName.getStrSeason() + ", " + honor.getStrSeason());
+            List<Honor> distinctHonorList = new ArrayList<>();
 
+            for (Honor honor : honorList) {
+                Honor elementByHonorName = distinctHonorList
+                        .stream()
+                        .filter(h -> h.getStrHonor()
+                                .equals(honor.getStrHonor()))
+                        .findFirst()
+                        .orElse(null);
 
-            model.addAttribute("honors", distinctHonorList);
-        }
+                if (elementByHonorName == null)
+                    distinctHonorList.add(honor);
+                else
+                    elementByHonorName.setStrSeason(elementByHonorName.getStrSeason() + ", " + honor.getStrSeason());
+
+                model.addAttribute("honors", distinctHonorList);
+            }
+        } else
+            model.addAttribute("honors", null);
 
         return "data/player";
     }

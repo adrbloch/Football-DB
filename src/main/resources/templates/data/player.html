@@ -19,7 +19,7 @@
                 </a>
             </div>
 
-            <div class="belt border border-secondary">
+            <div class="belt border border-secondary" id="belt">
                 <b class="border-bottom mb-1">Born</b><br>
                 <p th:text="*{getDateBorn()}" class="mb-0 mt-2"></p>
                 <p th:text="*{getStrBirthLocation()}"></p>
@@ -27,8 +27,10 @@
                 <b class="border-bottom">Position</b><br>
                 <p th:text="*{getStrPosition()}" class="mt-2"></p>
                 <br><br>
-                <th:block th:object="${contract}">
-                    <b class="border-bottom">Current Contract</b><br>
+
+                <b class="border-bottom">Current Contract</b><br>
+                <p th:if="${contract == null}">-</p>
+                <th:block th:object="${contract}" th:if="${contract != null}">
                     <p th:text="*{getStrTeam()}" class="mb-0 mt-2"></p>
                     <img th:src="*{getStrTeamBadge()}" class="img-sm img-fluid mt-4" alt="Team badge"
                          th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'"> <br><br>
@@ -62,16 +64,23 @@
 
             <div class="tight-margin">
                 <h1>Player Description</h1><br>
-                <p class="text-justify first-line-ind" th:text="*{getStrDescriptionEN()}"
-                   style="white-space: pre-wrap"></p>
+                <h3 th:if="*{getStrDescriptionEN() == null}" class="text-danger text-center">Not found</h3>
+                <p class="text-justify first-line-ind" th:if="*{getStrDescriptionEN() != null}"
+                    th:text="*{getStrDescriptionEN()}" style="white-space: pre-wrap"></p>
             </div>
             <br><br>
 
             <div class="tight-margin" th:object="${formerTeams}">
                 <h1>Former teams</h1>
+
+                <th:block th:if="${formerTeams == null}">
+                    <br>
+                    <h3 class="text-danger text-center">Not found</h3>
+                </th:block>
+
                 <table class="table table-borderless text-white table-r-separate">
                     <tbody class="filterBody">
-                    <th:block th:with="colCount=${3}">
+                    <th:block th:with="colCount=${3}" th:if="${formerTeams != null}">
                         <tr th:each="r : ${#numbers.sequence(0, formerTeams.size(), colCount)}">
                             <td th:each="c : ${#numbers.sequence(0, colCount - 1)}"
                                 th:if="${r + c &lt; formerTeams.size()}" th:object="${formerTeams.get(r + c)}"
@@ -98,9 +107,9 @@
             <div class="tight-margin">
                 <h1>Trophies and Honours</h1>
                 <br>
-
                 <div class="table table-responsive">
-                    <table class="table-bordered styled-table w-75">
+                    <h3 th:if="${honors == null}" class="text-danger text-center">Not found</h3>
+                    <table th:if="${honors != null}" class="table-bordered styled-table w-75">
                         <thead>
                         <tr>
                             <th scope="col" style="width: 50%">Individual / Team Honour</th>
@@ -146,5 +155,8 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+
 </body>
 </html>

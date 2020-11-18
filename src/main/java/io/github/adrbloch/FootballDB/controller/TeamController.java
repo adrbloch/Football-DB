@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/team")
@@ -34,14 +35,22 @@ public class TeamController {
     @GetMapping(value = "/results", params = "country")
     public String viewTeamsByCountry(@RequestParam("country") String country, Model model) {
 
-        if (country.isEmpty()) {
+
+        try {
+            model.addAttribute("teams",
+                    teamService
+                            .findTeamsByCountry(country)
+                            .block()
+                            .getTeams()
+                            .stream()
+                            .filter(t -> t.getStrSport().equals("Soccer"))
+                            .collect(Collectors.toList()));
+
+        } catch (NullPointerException e) {
             model.addAttribute("teams", null);
-        } else {
-            model.addAttribute("teams", teamService
-                    .findTeamsByCountry(country)
-                    .block()
-                    .getTeams());
         }
+
+
         return "results/teamResults";
     }
 
@@ -51,11 +60,21 @@ public class TeamController {
         if (league.isEmpty()) {
             model.addAttribute("teams", null);
         } else {
-            model.addAttribute("teams", teamService
-                    .findTeamsByLeague(league)
-                    .block()
-                    .getTeams());
+            try {
+                model.addAttribute("teams",
+                        teamService
+                                .findTeamsByLeague(league)
+                                .block()
+                                .getTeams()
+                                .stream()
+                                .filter(t -> t.getStrSport().equals("Soccer"))
+                                .collect(Collectors.toList()));
+
+            } catch (NullPointerException e) {
+                model.addAttribute("teams", null);
+            }
         }
+
         return "results/teamResults";
     }
 
@@ -65,16 +84,26 @@ public class TeamController {
         if (name.isEmpty()) {
             model.addAttribute("teams", null);
         } else {
-            model.addAttribute("teams", teamService
-                    .findTeamsByName(name)
-                    .block()
-                    .getTeams());
+            try {
+                model.addAttribute("teams",
+                        teamService
+                                .findTeamsByName(name)
+                                .block()
+                                .getTeams()
+                                .stream()
+                                .filter(t -> t.getStrSport().equals("Soccer"))
+                                .collect(Collectors.toList()));
+
+            } catch (NullPointerException e) {
+                model.addAttribute("teams", null);
+            }
         }
+
         return "results/teamResults";
     }
 
     @GetMapping("/{id}")
-    public String viewTeamDetails(@PathVariable("id") String id, Model model){
+    public String viewTeamDetails(@PathVariable("id") String id, Model model) {
 
         Team team = teamService
                 .findTeamById(id)
@@ -101,7 +130,7 @@ public class TeamController {
 
 
     private void addNotNullLeagueToList(String idLeague, List<League> leagueList) {
-        if (idLeague != null){
+        if (idLeague != null) {
             League leagueById = leagueService
                     .findLeagueById(idLeague)
                     .block()

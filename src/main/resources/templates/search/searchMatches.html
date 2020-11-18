@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <select class="form-control form-control-lg mx-auto w-50" onfocus='this.size=5;'
                                     onblur='this.size=1;' onchange='this.size=1; this.blur();' th:name="season"/>
-                            <option value="" th:selected="selected" th:disabled="disabled">Choose season...</option>
+                            <option value="" th:selected="selected" th:readonly="readonly">Choose season...</option>
                             <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
                                     th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
                             </select>

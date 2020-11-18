@@ -38,20 +38,21 @@ public class MatchController {
             @RequestParam("awayTeam") String awayTeam,
             Model model) {
 
-        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
-            model.addAttribute("matches", null);
-        } else {
+        try {
             model.addAttribute("matches", matchService
                     .findMatchesByTeams(homeTeam, awayTeam)
                     .block()
                     .getMatches()
                     .stream()
+                    .filter(m -> m.getStrSport().equals("Soccer"))
                     .sorted(Comparator
                             .comparing(Match::getDateEvent)
                             .reversed())
                     .collect(Collectors.toList()));
-        }
 
+        } catch (NullPointerException e) {
+            model.addAttribute("matches", null);
+        }
 
         return "results/matchResults";
     }
@@ -63,18 +64,20 @@ public class MatchController {
             @RequestParam("season") String season,
             Model model) {
 
-        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
-            model.addAttribute("matches", null);
-        } else {
+        try {
             model.addAttribute("matches", matchService
                     .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
                     .block()
                     .getMatches()
                     .stream()
+                    .filter(m -> m.getStrSport().equals("Soccer"))
                     .sorted(Comparator
                             .comparing(Match::getDateEvent)
                             .reversed())
                     .collect(Collectors.toList()));
+
+        } catch (NullPointerException e) {
+            model.addAttribute("matches", null);
         }
 
         return "results/matchResults";
@@ -125,19 +128,27 @@ public class MatchController {
         model.addAttribute("awayGoalList", awayGoalList);
 
 
-        model.addAttribute("homeTeam",
-                teamService
-                        .findTeamById(match.getIdHomeTeam())
-                        .block()
-                        .getTeams()
-                        .get(0));
+        try {
+            model.addAttribute("homeTeam",
+                    teamService
+                            .findTeamById(match.getIdHomeTeam())
+                            .block()
+                            .getTeams()
+                            .get(0));
+        } catch (NullPointerException e) {
+            model.addAttribute("homeTeam", null);
+        }
 
-        model.addAttribute("awayTeam",
-                teamService
-                        .findTeamById(match.getIdAwayTeam())
-                        .block()
-                        .getTeams()
-                        .get(0));
+        try {
+            model.addAttribute("awayTeam",
+                    teamService
+                            .findTeamById(match.getIdAwayTeam())
+                            .block()
+                            .getTeams()
+                            .get(0));
+        } catch (NullPointerException e) {
+            model.addAttribute("awayTeam", null);
+        }
 
 
         return "data/match";

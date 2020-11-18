@@ -6,7 +6,10 @@ import io.github.adrbloch.FootballDB.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.reactive.function.UnsupportedMediaTypeException;
 
 import java.time.Year;
 
@@ -40,9 +43,24 @@ public class TableController {
         if (league.isEmpty() || season.isEmpty()) {
             model.addAttribute("leagues", null);
         } else {
-            model.addAttribute("leagues", leagueService
-                    .findLeagueByName(league)
-                    .block()[0][0]);
+
+            try {
+                League leagueByName = leagueService
+                        .findLeagueByName(league)
+                        .block()[0][0];
+
+                if (leagueByName.getStrSport().equals("Soccer"))
+                    model.addAttribute("leagues", leagueByName);
+
+                tableService
+                        .findTableByLeagueIdAndSeason(leagueByName.getIdLeague(), season)
+                        .block()
+                        .getTable();
+
+            } catch (NullPointerException | UnsupportedMediaTypeException e) {
+                model.addAttribute("leagues", null);
+            }
+
             model.addAttribute("season", season);
         }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.UnsupportedMediaTypeException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/league")
@@ -39,10 +40,19 @@ public class LeagueController {
     @GetMapping(value = "/results", params = "country")
     public String viewLeaguesByCountry(@RequestParam("country") String country, Model model) {
 
-        model.addAttribute("leagues", leagueService
-                .findLeaguesByCountry(country)
-                .block()
-                .getLeaguesByCountry());
+        try {
+            model.addAttribute("leagues",
+                    leagueService
+                            .findLeaguesByCountry(country)
+                            .block()
+                            .getLeaguesByCountry()
+                            .stream()
+                            .filter(l -> l.getStrSport().equals("Soccer"))
+                            .collect(Collectors.toList()));
+
+        } catch (NullPointerException e) {
+            model.addAttribute("leagues", null);
+        }
 
         return "results/leagueResults";
     }
@@ -51,13 +61,17 @@ public class LeagueController {
     public String viewLeaguesByName(@RequestParam("name") String name, Model model) {
 
         try {
-            model.addAttribute("leagues",
-                    leagueService
-                            .findLeagueByName(name)
-                            .block()[0][0]);
+            League leagueByName = leagueService
+                    .findLeagueByName(name)
+                    .block()[0][0];
+
+            if (leagueByName.getStrSport().equals("Soccer"))
+                model.addAttribute("leagues", leagueByName);
+
         } catch (NullPointerException e) {
             model.addAttribute("leagues", null);
         }
+
         return "results/leagueResults";
     }
 
@@ -71,11 +85,16 @@ public class LeagueController {
 
         model.addAttribute("league", league);
 
-        model.addAttribute("teamsByLeague",
-                teamService
-                        .findTeamsByLeague(league.getStrLeague())
-                        .block()
-                        .getTeams());
+        try {
+            model.addAttribute("teamsByLeague",
+                    teamService
+                            .findTeamsByLeague(league.getStrLeague())
+                            .block()
+                            .getTeams());
+
+        } catch (NullPointerException e) {
+            model.addAttribute("teamsByLeague", null);
+        }
 
 
         List<TableTeam> tableByLeagueIdAndSeason;

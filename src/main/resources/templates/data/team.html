@@ -18,20 +18,29 @@
                     <i class="fas fa-chevron-left pr-2"></i> Back
                 </a>
             </div>
-            <div class="belt border border-secondary">
+            <div class="belt border border-secondary" id="belt">
                 <b class="border-bottom">Alternative names</b><br>
-                <p th:text="*{getStrAlternate()}" id="altNames" class="mt-2"></p>
+                <p th:text="*{getStrAlternate()}" class="mt-2"></p>
                 <br><br>
                 <b class="border-bottom">Established</b><br>
-                <p id="formedYear" th:text="*{getIntFormedYear()}" class="mt-2"></p>
+                <p class="mt-2">
+                    <span th:if="*{getIntFormedYear() == '0'}">-</span>
+                    <span id="formedYear" th:if="*{getIntFormedYear() != '0'}" th:text="*{getIntFormedYear()}"
+                          class="mt-2">
+                    </span>
+                </p>
                 <br><br>
                 <b class="border-bottom">Stadium</b><br>
                 <p th:text="*{getStrStadium()}" class="mb-0 mt-2"></p>
-                <p th:text="|(Capacity: *{#numbers.formatDecimal(getIntStadiumCapacity(), 0, 'WHITESPACE', 0, 'POINT')})|"></p>
+                <p th:if="*{getIntStadiumCapacity() != '0'}"
+                   th:text="|(Capacity: *{#numbers.formatDecimal(getIntStadiumCapacity(), 0, 'WHITESPACE', 0, 'POINT')})|"></p>
                 <br><br>
                 <b class="border-bottom">Location</b><br>
-                <p th:text="|*{getStrStadiumLocation()},|" class="mb-0 mt-2"></p>
-                <p th:text="*{getStrCountry()}"></p>
+                <p class="mt-2">
+                    <span th:if="*{getStrStadiumLocation() != ''}" th:text="|*{getStrStadiumLocation()},|"
+                          class="mb-0"></span>
+                    <span th:text="*{getStrCountry()}"></span>
+                </p>
                 <br><br>
                 <b class="border-bottom">Team jersey</b><br>
                 <img th:src="*{getStrTeamJersey()}" class="img-sm img-fluid mt-4" alt="Team jersey image"
@@ -52,8 +61,9 @@
             <div class="tight-margin">
                 <h1> Description</h1>
                 <br>
-                <p class="text-justify first-line-ind" th:text="*{getStrDescriptionEN()}"
-                   style="white-space: pre-wrap"></p>
+                <h3 th:if="*{getStrDescriptionEN() == null}" class="text-danger text-center">Not found</h3>
+                <p class="text-justify first-line-ind" th:if="*{getStrDescriptionEN() != null}"
+                   th:text="*{getStrDescriptionEN()}" style="white-space: pre-wrap"></p>
             </div>
             <br>
 
@@ -134,8 +144,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="../../static/js/teamAndLeagueScript.js"
-        th:src="@{/js/teamAndLeagueScript.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 
 </body>
 </html>

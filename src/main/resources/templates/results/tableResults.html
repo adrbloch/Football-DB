@@ -24,7 +24,7 @@
                     <h1 class="mr-5" th:text="${league.getStrLeague()}"></h1>
                     <h1 class="mr-5" th:text="${season}"></h1>
                 </div>
-                <img th:src="${league.getStrBadge()}" class="img-extra-sm rounded-circle" alt="League badge"
+                <img th:src="${league.getStrBadge()}" class="img-extra-sm" alt="League badge"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
         </a>
