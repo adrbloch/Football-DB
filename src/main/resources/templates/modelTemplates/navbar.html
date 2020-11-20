@@ -2,8 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="navbarCode">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success lg-txt">
-        <a class="nav-link mr-5" href="#">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-success lg-txt">
+        <a class="nav-link mr-5" th:href="@{/home}">
             <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -33,6 +33,13 @@
                     <a class="nav-link" th:href="@{/table/search}">Tables </a>
                 </li>
             </ul>
+            <div class="d-flex justify-content-end ml-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item mr-5">
+                        <a class="nav-link" th:href="@{/logout}">Log out</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </th:block>

@@ -1,57 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:insert="head :: headCode"></th:block>
+    <th:block th:insert="modelTemplates/head :: headCode"></th:block>
     <title>Login</title>
 </head>
 
 <body class="bg">
 <div class="jumbotron text-center bg-success border border-secondary p-3">
-    <img src="../../static/img/logo.jpg" alt="logo" class="h-25 w-25 img-fluid">
+    <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="h-25 w-25 img-fluid">
 </div>
 
-<div class="div-form border border-white w-25">
-    <form name="f"  method="POST" class="form-horizontal"
-          enctype="multipart/form-data">
+<div class="container-fluid">
+    <div class="div-form border border-white low-width">
+        <form name="f" th:action="@{/login}" method="POST" class="form-horizontal"
+              enctype="multipart/form-data">
 
-        <div class="mb-4">
-            <h2 class="bg-success text-white text-center font-weight-bold py-1"> LOGIN </h2>
-        </div>
+            <div class="mb-4">
+                <h2 class="bg-success text-white text-center font-weight-bold py-1"> LOGIN </h2>
+            </div>
 
-        <div class="form-group m-5 ">
-            <div class="input-group offset-1">
-                <div class="input-group-prepend">
+            <div th:if="${param.error}" class="alert alert-danger text-center mt-4">
+                Invalid username or password.
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success text-center mt-4">
+                You have been logged out.
+            </div>
+
+            <div class="form-group m-5">
+                <div class="input-group offset-1">
+                    <div class="input-group-prepend">
                     <span class="input-group-text">
                          <span class="fa fa-user"></span>
                      </span>
-                    <input type="text" class="form-control form-control-lg" id="inputUsername"
-                           name="username" placeholder="Username">
+                        <input type="text" class="form-control form-control-lg" id="inputUsername"
+                               name="username" placeholder="Username">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group m-5 pb-2">
-            <div class="input-group offset-1">
-                <div class="input-group-prepend">
+            <div class="form-group m-5 pb-2">
+                <div class="input-group offset-1">
+                    <div class="input-group-prepend">
                    <span class="input-group-text">
                          <span class="fa fa-lock"></span>
                      </span>
-                    <input type="password" class="form-control form-control-lg" id="inputPassword"
-                           name="password" placeholder="Password">
+                        <input type="password" class="form-control form-control-lg" id="inputPassword"
+                               name="password" placeholder="Password">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-auto text-center pb-3">
-                <button type="submit" class="btn btn-success btn-lg mb-2 px-5 font-weight-bold">Login</button>
-                <br>
-                <span class="d-inline">Need an account?</span>
-                <a class="nav-link d-inline mb-4 pl-0 link-color"> Register now</a>
+            <div class="form-group">
+                <div class="col-auto text-center pb-3">
+                    <button type="submit" class="btn btn-success btn-lg mb-2 px-5 font-weight-bold">Login</button>
+                    <br>
+                    <span class="d-inline">Need an account?</span>
+                    <a class="nav-link d-inline mb-4 pl-0 link-color" th:href="@{/registration}"> Register now</a>
+                </div>
             </div>
-        </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 
 </body>
