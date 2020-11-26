@@ -2,6 +2,7 @@ package io.github.adrbloch.FootballDB.controller;
 
 import io.github.adrbloch.FootballDB.model.formerTeam.FormerTeam;
 import io.github.adrbloch.FootballDB.model.honor.Honor;
+import io.github.adrbloch.FootballDB.model.player.Player;
 import io.github.adrbloch.FootballDB.service.ContractService;
 import io.github.adrbloch.FootballDB.service.FormerTeamService;
 import io.github.adrbloch.FootballDB.service.HonorService;
@@ -49,18 +50,23 @@ public class PlayerController {
     @GetMapping(value = "/results", params = "name")
     public String viewPlayersByName(@RequestParam("name") String name, Model model) {
 
-        try {
-            model.addAttribute("players",
-                    playerService
-                            .findPlayersByName(name)
-                            .block()
-                            .getPlayers()
-                            .stream()
-                            .filter(p -> p.getStrSport().equals("Soccer"))
-                            .collect(Collectors.toList()));
-
-        } catch (NullPointerException e) {
+        if (name.isEmpty()) {
             model.addAttribute("players", null);
+        } else {
+
+            try {
+                model.addAttribute("players",
+                        playerService
+                                .findPlayersByName(name)
+                                .block()
+                                .getPlayers()
+                                .stream()
+                                .filter(p -> p.getStrSport().equals("Soccer"))
+                                .collect(Collectors.toList()));
+
+            } catch (NullPointerException e) {
+                model.addAttribute("players", null);
+            }
         }
 
         return "results/playerResults";
@@ -72,17 +78,27 @@ public class PlayerController {
             @RequestParam("name") String name,
             Model model) {
 
-        try {
-            model.addAttribute("players",
-                    playerService
-                            .findPlayersByTeamAndName(team, name)
-                            .block()
-                            .getPlayers()
-                            .stream()
-                            .filter(p -> p.getStrSport().equals("Soccer"))
-                            .collect(Collectors.toList()));
-        } catch (NullPointerException e) {
+        if (team.isEmpty() && name.isEmpty()) {
             model.addAttribute("players", null);
+        } else {
+
+            try {
+                List<Player> playerList = playerService
+                        .findPlayersByTeamAndName(team, name)
+                        .block()
+                        .getPlayers()
+                        .stream()
+                        .filter(p -> p.getStrSport().equals("Soccer"))
+                        .collect(Collectors.toList());
+
+                if (playerList.size() == 0)
+                    model.addAttribute("players", null);
+                else
+                    model.addAttribute("players", playerList);
+
+            } catch (NullPointerException e) {
+                model.addAttribute("players", null);
+            }
         }
 
         return "results/playerResults";
