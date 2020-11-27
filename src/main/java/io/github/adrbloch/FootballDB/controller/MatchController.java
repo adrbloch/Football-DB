@@ -38,20 +38,25 @@ public class MatchController {
             @RequestParam("awayTeam") String awayTeam,
             Model model) {
 
-        try {
-            model.addAttribute("matches", matchService
-                    .findMatchesByTeams(homeTeam, awayTeam)
-                    .block()
-                    .getMatches()
-                    .stream()
-                    .filter(m -> m.getStrSport().equals("Soccer"))
-                    .sorted(Comparator
-                            .comparing(Match::getDateEvent)
-                            .reversed())
-                    .collect(Collectors.toList()));
-
-        } catch (NullPointerException e) {
+        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
             model.addAttribute("matches", null);
+        } else {
+
+            try {
+                model.addAttribute("matches", matchService
+                        .findMatchesByTeams(homeTeam, awayTeam)
+                        .block()
+                        .getMatches()
+                        .stream()
+                        .filter(m -> m.getStrSport().equals("Soccer"))
+                        .sorted(Comparator
+                                .comparing(Match::getDateEvent)
+                                .reversed())
+                        .collect(Collectors.toList()));
+
+            } catch (NullPointerException e) {
+                model.addAttribute("matches", null);
+            }
         }
 
         return "results/matchResults";
@@ -64,20 +69,25 @@ public class MatchController {
             @RequestParam("season") String season,
             Model model) {
 
-        try {
-            model.addAttribute("matches", matchService
-                    .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
-                    .block()
-                    .getMatches()
-                    .stream()
-                    .filter(m -> m.getStrSport().equals("Soccer"))
-                    .sorted(Comparator
-                            .comparing(Match::getDateEvent)
-                            .reversed())
-                    .collect(Collectors.toList()));
-
-        } catch (NullPointerException e) {
+        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
             model.addAttribute("matches", null);
+        } else {
+
+            try {
+                model.addAttribute("matches", matchService
+                        .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
+                        .block()
+                        .getMatches()
+                        .stream()
+                        .filter(m -> m.getStrSport().equals("Soccer"))
+                        .sorted(Comparator
+                                .comparing(Match::getDateEvent)
+                                .reversed())
+                        .collect(Collectors.toList()));
+
+            } catch (NullPointerException e) {
+                model.addAttribute("matches", null);
+            }
         }
 
         return "results/matchResults";

@@ -72,7 +72,7 @@ class TableControllerTest {
     }
 
     @Test
-    void viewTableDetailsByLeagueIdAndSeasonAddObjectToModelAndReturnView() throws Exception {
+    void viewTableByLeagueIdAndSeasonAddObjectToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/table")
                 .param("leagueId", "4328")

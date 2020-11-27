@@ -137,7 +137,7 @@ class TeamControllerTest {
     }
 
     @Test
-    void viewTeamDetailsByTeamIdAddTeamObjectToModelAndReturnView() throws Exception {
+    void viewTeamByIdAddTeamObjectToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/{id}","133602"))
                 .andExpect(status().isOk())
@@ -146,7 +146,7 @@ class TeamControllerTest {
     }
 
     @Test
-    void viewTeamDetailsByTeamIdAddNotNullLeagueListToModelAndReturnView() throws Exception {
+    void viewTeamByIdAddNotNullLeagueListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/{id}","133602"))
                 .andExpect(status().isOk())

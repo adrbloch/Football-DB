@@ -135,7 +135,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddPlayerObjectToModelAndReturnView() throws Exception {
+    void viewPlayerByIdAddPlayerObjectToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34146304"))
                 .andExpect(status().isOk())
@@ -144,7 +144,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddContractObjectToModelAndReturnView() throws Exception {
+    void viewPlayerByIdAddContractObjectToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34146304"))
                 .andExpect(status().isOk())
@@ -153,7 +153,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewRetiredPlayerDetailsByPlayerIdAddNullToModelAndReturnView() throws Exception {
+    void viewRetiredPlayerByIdAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34161040"))
                 .andExpect(status().isOk())
@@ -162,7 +162,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddFormerTeamsListToModelAndReturnView() throws Exception {
+    void viewPlayerByIdAddFormerTeamsListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34146304"))
                 .andExpect(status().isOk())
@@ -172,7 +172,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddNullTFormerTeamModelWhenUnknownAndReturnView() throws Exception {
+    void viewPlayerByIdAddNullTFormerTeamModelWhenUnknownAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34157398"))
                 .andExpect(status().isOk())
@@ -181,7 +181,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddHonorListToModelAndReturnView() throws Exception {
+    void viewPlayerByIdAddHonorListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34146304"))
                 .andExpect(status().isOk())
@@ -191,7 +191,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void viewPlayerDetailsByPlayerIdAddNullToModelWhenUnknownAndReturnView() throws Exception {
+    void viewPlayerByIdAddNullToModelWhenUnknownAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/{id}","34157398"))
                 .andExpect(status().isOk())
