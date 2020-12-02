@@ -7,11 +7,13 @@ import io.github.adrbloch.FootballDB.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/team")
@@ -35,21 +37,10 @@ public class TeamController {
     @GetMapping(value = "/results", params = "country")
     public String viewTeamsByCountry(@RequestParam("country") String country, Model model) {
 
-
-        try {
-            model.addAttribute("teams",
-                    teamService
-                            .findTeamsByCountry(country)
-                            .block()
-                            .getTeams()
-                            .stream()
-                            .filter(t -> t.getStrSport().equals("Soccer"))
-                            .collect(Collectors.toList()));
-
-        } catch (NullPointerException e) {
-            model.addAttribute("teams", null);
-        }
-
+        teamService
+                .findTeamsByCountry(country)
+                .ifPresentOrElse(t -> model.addAttribute("teams", t),
+                        () -> model.addAttribute("teams", null));
 
         return "results/teamResults";
     }
@@ -57,23 +48,10 @@ public class TeamController {
     @GetMapping(value = "/results", params = "league")
     public String viewTeamsByLeague(@RequestParam("league") String league, Model model) {
 
-        if (league.isEmpty()) {
-            model.addAttribute("teams", null);
-        } else {
-            try {
-                model.addAttribute("teams",
-                        teamService
-                                .findTeamsByLeague(league)
-                                .block()
-                                .getTeams()
-                                .stream()
-                                .filter(t -> t.getStrSport().equals("Soccer"))
-                                .collect(Collectors.toList()));
-
-            } catch (NullPointerException e) {
-                model.addAttribute("teams", null);
-            }
-        }
+        teamService
+                .findTeamsByLeague(league)
+                .ifPresentOrElse(t -> model.addAttribute("teams", t),
+                        () -> model.addAttribute("teams", null));
 
         return "results/teamResults";
     }
@@ -81,23 +59,10 @@ public class TeamController {
     @GetMapping(value = "/results", params = "name")
     public String viewTeamByName(@RequestParam("name") String name, Model model) {
 
-        if (name.isEmpty()) {
-            model.addAttribute("teams", null);
-        } else {
-            try {
-                model.addAttribute("teams",
-                        teamService
-                                .findTeamsByName(name)
-                                .block()
-                                .getTeams()
-                                .stream()
-                                .filter(t -> t.getStrSport().equals("Soccer"))
-                                .collect(Collectors.toList()));
-
-            } catch (NullPointerException e) {
-                model.addAttribute("teams", null);
-            }
-        }
+        teamService
+                .findTeamsByName(name)
+                .ifPresentOrElse(t -> model.addAttribute("teams", t),
+                        () -> model.addAttribute("teams", null));
 
         return "results/teamResults";
     }
@@ -105,11 +70,7 @@ public class TeamController {
     @GetMapping("/{id}")
     public String viewTeamDetails(@PathVariable("id") String id, Model model) {
 
-        Team team = teamService
-                .findTeamById(id)
-                .block()
-                .getTeams()
-                .get(0);
+        Team team = teamService.findTeamById(id).get();
 
         model.addAttribute("team", team);
 
@@ -130,15 +91,10 @@ public class TeamController {
 
 
     private void addNotNullLeagueToList(String idLeague, List<League> leagueList) {
-        if (idLeague != null) {
-            League leagueById = leagueService
-                    .findLeagueById(idLeague)
-                    .block()
-                    .getLeagues()
-                    .get(0);
 
-            leagueList.add(leagueById);
-        }
+        if (idLeague != null)
+            leagueList.add(leagueService
+                    .findLeagueById(idLeague));
     }
 
 }

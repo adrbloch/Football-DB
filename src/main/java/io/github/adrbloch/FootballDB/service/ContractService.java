@@ -1,10 +1,11 @@
 package io.github.adrbloch.FootballDB.service;
 
-import io.github.adrbloch.FootballDB.model.contract.Contracts;
-import reactor.core.publisher.Mono;
+import io.github.adrbloch.FootballDB.model.contract.Contract;
+
+import java.util.Optional;
 
 public interface ContractService {
 
-    Mono<Contracts> findContractsByPlayerId(String playerId);
+    Optional<Contract> findContractsByPlayerId(String playerId);
 
 }

@@ -1,5 +1,6 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
+import io.github.adrbloch.FootballDB.model.match.Match;
 import io.github.adrbloch.FootballDB.model.match.Matches;
 import io.github.adrbloch.FootballDB.service.MatchService;
 import org.slf4j.Logger;
@@ -7,13 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MatchServiceImpl implements MatchService {
 
     private static final Logger logger = LoggerFactory.getLogger(MatchServiceImpl.class);
-
     private final WebClient webClient;
 
     @Autowired
@@ -22,82 +24,73 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Mono<Matches> findMatchesByTeams(String homeTeam, String awayTeam) {
+    public Optional<List<Match>> findMatchesByTeams(String homeTeam, String awayTeam) {
+
         logger.info("Getting matches by teams - home: [{}] and away: [{}]", homeTeam, awayTeam);
 
-        return webClient.get()
-                .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam)
-                .retrieve()
-                .bodyToMono(Matches.class);
+        Optional<List<Match>> matchesByTeams = Optional.empty();
+
+        if (!homeTeam.isEmpty() || !awayTeam.isEmpty()) {
+
+            matchesByTeams = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam)
+                            .retrieve()
+                            .bodyToMono(Matches.class)
+                            .block()
+                            .getMatches())
+                    .map(list -> list
+                            .stream()
+                            .filter(m -> m.getStrSport().equals(("Soccer")))
+                            .sorted(Comparator
+                                    .comparing(Match::getDateEvent)
+                                    .reversed())
+                            .collect(Collectors.toList()));
+        }
+
+        return matchesByTeams;
     }
 
     @Override
-    public Mono<Matches> findMatchesByTeamsAndSeason(String homeTeam, String awayTeam, String season) {
+    public Optional<List<Match>> findMatchesByTeamsAndSeason(String homeTeam, String awayTeam, String season) {
+
         logger.info("Getting matches by teams - home: [{}], away: [{}] and season: [{}]", homeTeam, awayTeam, season);
 
-        return webClient.get()
-                .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam + "&s=" + season)
-                .retrieve()
-                .bodyToMono(Matches.class);
+        Optional<List<Match>> matchesByTeamsAndSeason = Optional.empty();
+
+        if (!homeTeam.isEmpty() || !awayTeam.isEmpty()) {
+
+            matchesByTeamsAndSeason = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/searchevents.php?e=" + homeTeam + " vs " + awayTeam + "&s=" + season)
+                            .retrieve()
+                            .bodyToMono(Matches.class)
+                            .block()
+                            .getMatches())
+                    .map(list -> list
+                            .stream()
+                            .filter(m -> m.getStrSport().equals(("Soccer")))
+                            .sorted(Comparator
+                                    .comparing(Match::getDateEvent)
+                                    .reversed())
+                            .collect(Collectors.toList()));
+        }
+
+        return matchesByTeamsAndSeason;
     }
 
     @Override
-    public Mono<Matches> findMatchById(String id) {
+    public Match findMatchById(String id) {
+
         logger.info("Getting match by id: [{}]", id);
 
         return webClient.get()
                 .uri("/lookupevent.php?id=" + id)
                 .retrieve()
-                .bodyToMono(Matches.class);
+                .bodyToMono(Matches.class)
+                .block()
+                .getMatchById()
+                .get(0);
     }
 
-    @Override
-    public Mono<Matches> findNext5MatchesByTeamId(String teamId) {
-        logger.info("Getting next 5 matches by team id: [{}]", teamId);
-
-        return webClient.get()
-                .uri("/eventsnext.php?id=" + teamId)
-                .retrieve()
-                .bodyToMono(Matches.class);
-    }
-
-    @Override
-    public Mono<Matches> findNext15MatchesByLeagueId(String leagueId) {
-        logger.info("Getting next 15 matches by league id: [{}]", leagueId);
-
-        return webClient.get()
-                .uri("/eventsnextleague.php?id=" + leagueId)
-                .retrieve()
-                .bodyToMono(Matches.class);
-    }
-
-    @Override
-    public Mono<Matches> findLast5MatchesByTeamId(String teamId) {
-        logger.info("Getting last 5 matches by team id: [{}]", teamId);
-
-        return webClient.get()
-                .uri("/eventslast.php?id=" + teamId)
-                .retrieve()
-                .bodyToMono(Matches.class);
-    }
-
-    @Override
-    public Mono<Matches> findLast15MatchesByLeagueId(String leagueId) {
-        logger.info("Getting last 15 matches by league id: [{}]", leagueId);
-
-        return webClient.get()
-                .uri("/eventspastleague.php?id=" + leagueId)
-                .retrieve()
-                .bodyToMono(Matches.class);
-    }
-
-    @Override
-    public Mono<Matches> findMatchesOfRoundByLeagueIdAndRoundAndSeason(String leagueId, String round, String season) {
-        logger.info("Getting matches of a round by league id: [{}], round: [{}], season: [{}]", leagueId, round, season);
-
-        return webClient.get()
-                .uri("/eventsround.php?id=" + leagueId + "&r=" + round + "&s=" + season)
-                .retrieve()
-                .bodyToMono(Matches.class);
-    }
 }

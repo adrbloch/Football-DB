@@ -1,9 +1,10 @@
 package io.github.adrbloch.FootballDB.service;
 
-import io.github.adrbloch.FootballDB.model.honor.Honors;
-import reactor.core.publisher.Mono;
+import io.github.adrbloch.FootballDB.model.honor.Honor;
+
+import java.util.List;
 
 public interface HonorService {
 
-    Mono<Honors> findHonorsByPlayerId(String playerId);
+    List<Honor> findHonorsByPlayerId(String playerId);
 }

@@ -1,13 +1,15 @@
 package io.github.adrbloch.FootballDB.controller.rest;
 
-import io.github.adrbloch.FootballDB.model.player.Players;
+import io.github.adrbloch.FootballDB.model.player.Player;
 import io.github.adrbloch.FootballDB.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/players")
@@ -21,7 +23,7 @@ public class RestPlayerController {
     }
 
     @GetMapping
-    public Mono<Players> getPlayersByTeamAndName(
+    public Optional<List<Player>> getPlayersByTeamAndName(
             @RequestParam(required = false, name = "team") String teamName,
             @RequestParam("name") String playerName) {
 
@@ -33,7 +35,7 @@ public class RestPlayerController {
     }
 
     @GetMapping(params = "id")
-    public Mono<Players> getPlayerById(@RequestParam String id) {
+    public Player getPlayerById(@RequestParam String id) {
 
         return playerService.findPlayerById(id);
     }

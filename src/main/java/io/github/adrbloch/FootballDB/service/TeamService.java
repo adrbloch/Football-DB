@@ -1,15 +1,17 @@
 package io.github.adrbloch.FootballDB.service;
 
-import io.github.adrbloch.FootballDB.model.team.Teams;
-import reactor.core.publisher.Mono;
+import io.github.adrbloch.FootballDB.model.team.Team;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface TeamService {
 
-    Mono<Teams> findTeamsByName(String teamName);
+    Optional<List<Team>> findTeamsByName(String teamName);
 
-    Mono<Teams> findTeamsByLeague(String league);
+    Optional<List<Team>> findTeamsByLeague(String league);
 
-    Mono<Teams> findTeamsByCountry(String country);
+    Optional<List<Team>> findTeamsByCountry(String country);
 
-    Mono<Teams> findTeamById(String id);
+    Optional<Team> findTeamById(String id);
 }

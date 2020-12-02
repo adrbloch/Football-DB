@@ -1,5 +1,6 @@
 package io.github.adrbloch.FootballDB.service.impl;
 
+import io.github.adrbloch.FootballDB.model.team.Team;
 import io.github.adrbloch.FootballDB.model.team.Teams;
 import io.github.adrbloch.FootballDB.service.TeamService;
 import org.slf4j.Logger;
@@ -7,13 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamServiceImpl implements TeamService {
 
     private static final Logger logger = LoggerFactory.getLogger(TeamServiceImpl.class);
-
     private final WebClient webClient;
 
     @Autowired
@@ -21,44 +24,87 @@ public class TeamServiceImpl implements TeamService {
         this.webClient = webClient;
     }
 
-
     @Override
-    public Mono<Teams> findTeamsByName(String teamName) {
+    public Optional<List<Team>> findTeamsByName(String teamName) {
+
         logger.info("Getting teams by name: [" + teamName + "]");
 
-        return webClient.get()
-                .uri("/searchteams.php?t=" + teamName)
-                .retrieve()
-                .bodyToMono(Teams.class);
+        Optional<List<Team>> teamsByName = Optional.empty();
+
+        if (!teamName.isEmpty()) {
+
+            teamsByName = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/searchteams.php?t=" + teamName)
+                            .retrieve()
+                            .bodyToMono(Teams.class)
+                            .block()
+                            .getTeams())
+                    .map(list -> list
+                            .stream()
+                            .filter(t -> t.getStrSport().equals(("Soccer")))
+                            .collect(Collectors.toList()));
+        }
+
+        return teamsByName;
     }
 
     @Override
-    public Mono<Teams> findTeamsByLeague(String league) {
+    public Optional<List<Team>> findTeamsByLeague(String league) {
+
         logger.info("Getting teams by league: [" + league + "]");
 
-        return webClient.get()
-                .uri("/search_all_teams.php?l=" + league)
-                .retrieve()
-                .bodyToMono(Teams.class);
+        Optional<List<Team>> teamsByLeague = Optional.empty();
+
+        if (!league.isEmpty()) {
+
+            teamsByLeague = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/search_all_teams.php?l=" + league)
+                            .retrieve()
+                            .bodyToMono(Teams.class)
+                            .block()
+                            .getTeams())
+                    .map(list -> list
+                            .stream()
+                            .filter(t -> t.getStrSport().equals(("Soccer")))
+                            .collect(Collectors.toList()));
+        }
+
+        return teamsByLeague;
     }
 
     @Override
-    public Mono<Teams> findTeamsByCountry(String country) {
+    public Optional<List<Team>> findTeamsByCountry(String country) {
+
         logger.info("Getting teams by country: [" + country + "]");
 
-        return webClient.get()
-                .uri("/search_all_teams.php?s=Soccer&c=" + country)
-                .retrieve()
-                .bodyToMono(Teams.class);
+        return Optional.ofNullable(
+                webClient
+                        .get()
+                        .uri("/search_all_teams.php?s=Soccer&c=" + country)
+                        .retrieve()
+                        .bodyToMono(Teams.class)
+                        .block()
+                        .getTeams())
+                .map(list -> list
+                        .stream()
+                        .filter(t -> t.getStrSport().equals(("Soccer")))
+                        .collect(Collectors.toList()));
     }
 
     @Override
-    public Mono<Teams> findTeamById(String id) {
+    public Optional<Team> findTeamById(String id) {
+
         logger.info("Getting team by id: [" + id + "]");
 
-        return webClient.get()
-                .uri("/lookupteam.php?id=" + id)
-                .retrieve()
-                .bodyToMono(Teams.class);
+        return Optional.ofNullable(
+                webClient.get()
+                        .uri("/lookupteam.php?id=" + id)
+                        .retrieve()
+                        .bodyToMono(Teams.class)
+                        .block()
+                        .getTeams()
+                        .get(0));
     }
 }

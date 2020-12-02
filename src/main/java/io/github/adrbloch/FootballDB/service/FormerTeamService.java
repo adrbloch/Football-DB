@@ -1,9 +1,11 @@
 package io.github.adrbloch.FootballDB.service;
 
-import io.github.adrbloch.FootballDB.model.formerTeam.FormerTeams;
-import reactor.core.publisher.Mono;
+import io.github.adrbloch.FootballDB.model.formerTeam.FormerTeam;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface FormerTeamService {
 
-    Mono<FormerTeams> findFormerTeamsByPlayerId(String playerId);
+    Optional<List<FormerTeam>> findFormerTeamsByPlayerId(String playerId);
 }

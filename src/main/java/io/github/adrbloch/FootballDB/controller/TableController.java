@@ -1,6 +1,7 @@
 package io.github.adrbloch.FootballDB.controller;
 
 import io.github.adrbloch.FootballDB.model.league.League;
+import io.github.adrbloch.FootballDB.model.table.TableTeam;
 import io.github.adrbloch.FootballDB.service.LeagueService;
 import io.github.adrbloch.FootballDB.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.UnsupportedMediaTypeException;
 
 import java.time.Year;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/table")
@@ -40,29 +43,27 @@ public class TableController {
             @RequestParam("season") String season,
             Model model) {
 
-        if (league.isEmpty() || season.isEmpty()) {
-            model.addAttribute("leagues", null);
-        } else {
+        Optional<League> leagueByName = leagueService
+                .findLeagueByName(league);
 
-            try {
-                League leagueByName = leagueService
-                        .findLeagueByName(league)
-                        .block()[0][0];
+        leagueByName
+                .ifPresentOrElse(lg -> model.addAttribute("leagues", lg),
+                        () -> model.addAttribute("leagues", null));
+        try {
+            if (leagueByName.isPresent()) {
 
-                if (leagueByName.getStrSport().equals("Soccer"))
-                    model.addAttribute("leagues", leagueByName);
+                Optional<List<TableTeam>> tableByLeagueIdAndSeason = tableService
+                        .findTableByLeagueIdAndSeason(leagueByName.get().getIdLeague(), season);
 
-                tableService
-                        .findTableByLeagueIdAndSeason(leagueByName.getIdLeague(), season)
-                        .block()
-                        .getTable();
-
-            } catch (NullPointerException | UnsupportedMediaTypeException e) {
-                model.addAttribute("leagues", null);
+                if (tableByLeagueIdAndSeason.isEmpty())
+                    model.addAttribute("leagues", null);
             }
 
-            model.addAttribute("season", season);
+        } catch (UnsupportedMediaTypeException e) {
+            model.addAttribute("leagues", null);
         }
+
+        model.addAttribute("season", season);
 
         return "results/tableResults";
     }
@@ -73,17 +74,12 @@ public class TableController {
             @RequestParam("season") String season,
             Model model) {
 
-        model.addAttribute("table", tableService
+        tableService
                 .findTableByLeagueIdAndSeason(leagueId, season)
-                .block()
-                .getTable());
+                .ifPresentOrElse(t -> model.addAttribute("table", t),
+                        () -> model.addAttribute("table", null));
 
-        model.addAttribute("league", leagueService
-                .findLeagueById(leagueId)
-                .block()
-                .getLeagues()
-                .get(0));
-
+        model.addAttribute("league", leagueService.findLeagueById(leagueId));
         model.addAttribute("season", season);
 
         return "data/table";

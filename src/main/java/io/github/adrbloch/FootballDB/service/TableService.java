@@ -1,9 +1,11 @@
 package io.github.adrbloch.FootballDB.service;
 
-import io.github.adrbloch.FootballDB.model.table.Table;
-import reactor.core.publisher.Mono;
+import io.github.adrbloch.FootballDB.model.table.TableTeam;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface TableService {
 
-    Mono<Table> findTableByLeagueIdAndSeason(String leagueId, String season);
+    Optional<List<TableTeam>> findTableByLeagueIdAndSeason(String leagueId, String season);
 }
