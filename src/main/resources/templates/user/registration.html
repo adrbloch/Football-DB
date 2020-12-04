@@ -47,7 +47,7 @@
                          <span class="fa fa-lock"></span>
                      </span>
                         <input type="password" th:field="*{password}" class="form-control form-control-lg"
-                               th:classappend="${occurredPasswordException} ? 'error-red-bd' "
+                               th:classappend="${occurredUserException} ? 'error-red-bd' "
                                id="inputPassword" placeholder="Enter password" name="password"
                                th:errorclass="error-red-bd">
                     </div>
@@ -62,7 +62,7 @@
                          <span class="fa fa-lock"></span>
                      </span>
                         <input type="password" th:field="*{matchingPassword}" class="form-control form-control-lg"
-                               th:classappend="${occurredPasswordException} ? 'error-red-bd' "
+                               th:classappend="${occurredUserException} ? 'error-red-bd' "
                                id="inputConfirmPassword" placeholder="Enter password again" name="matchingPassword"
                                th:errorclass="error-red-bd">
                     </div>

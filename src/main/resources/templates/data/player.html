@@ -35,7 +35,6 @@
                     <img th:src="*{getStrTeamBadge()}" class="img-sm img-fluid mt-4" alt="Team badge"
                          th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'"> <br><br>
                     <p th:text="|*{getStrYearStart()}-*{getStrYearEnd()}|" class="mb-0 mt-2"></p>
-                    <p th:text="*{getStrWage()}"></p>
                 </th:block>
                 <br><br>
                 <b class="border-bottom">Team number</b><br>
@@ -102,7 +101,7 @@
                     </tbody>
                 </table>
             </div>
-            <br><br>
+            <br>
 
             <div class="tight-margin">
                 <h1>Trophies and Honours</h1>

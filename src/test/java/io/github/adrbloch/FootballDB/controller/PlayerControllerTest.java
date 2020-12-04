@@ -63,7 +63,7 @@ class PlayerControllerTest {
         mockMvc.perform(get("/player/results")
                 .param("name", "LeBron James"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("players", IsEmptyCollection.empty()))
+                .andExpect(model().attribute("players", nullValue()))
                 .andExpect(view().name("results/playerResults"));
     }
 

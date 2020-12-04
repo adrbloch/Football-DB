@@ -1,6 +1,7 @@
 package io.github.adrbloch.FootballDB.controller;
 
 import io.github.adrbloch.FootballDB.model.honor.Honor;
+import io.github.adrbloch.FootballDB.model.player.Player;
 import io.github.adrbloch.FootballDB.service.ContractService;
 import io.github.adrbloch.FootballDB.service.FormerTeamService;
 import io.github.adrbloch.FootballDB.service.HonorService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -48,8 +50,14 @@ public class PlayerController {
     @GetMapping(value = "/results", params = "name")
     public String viewPlayersByName(@RequestParam("name") String name, Model model) {
 
-            playerService
-                    .findPlayersByName(name)
+        Optional<List<Player>> playersByName = playerService.findPlayersByName(name);
+
+//        if (playersByName.isPresent() && !playersByName.isEmpty())
+//            model.addAttribute("players", playersByName);
+//        else
+//            model.addAttribute("players", null);
+
+            playersByName
                     .ifPresentOrElse(p -> model.addAttribute("players", p),
                             () -> model.addAttribute("players", null));
 

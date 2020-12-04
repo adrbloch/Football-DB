@@ -81,7 +81,7 @@ class PlayerServiceImplTest {
     }
 
     @Test
-    void findPlayersByNotSoccerPlayerNameReturnsEmptyResponse() {
+    void findPlayersByNotSoccerPlayerNameReturnsNull() {
 
         webTestClient.get()
                 .uri(uriBuilder ->
@@ -92,7 +92,7 @@ class PlayerServiceImplTest {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$").isEmpty();
+                .jsonPath("$").doesNotExist();
     }
 
     @Test

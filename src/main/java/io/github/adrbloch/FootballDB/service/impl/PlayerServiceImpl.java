@@ -46,6 +46,10 @@ public class PlayerServiceImpl implements PlayerService {
                             .collect(Collectors.toList()));
         }
 
+        if (players.isPresent() && players.get().size() == 0){
+            players = Optional.empty();
+        }
+
         return players;
     }
 
