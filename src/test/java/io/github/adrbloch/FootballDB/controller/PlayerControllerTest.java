@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -19,13 +20,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
+@ActiveProfiles("test")
 class PlayerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void searchPlayersByValidNameAddNotEmptyListToModelAndReturnView() throws Exception {
+    void searchPlayersByNameAddNotEmptyListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/results")
                 .param("name", "ronaldo"))
@@ -39,7 +41,7 @@ class PlayerControllerTest {
     void searchPlayersByInvalidNameAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/results")
-                .param("name", "xxxxxx"))
+                .param("name", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("players", nullValue()))
                 .andExpect(view().name("results/playerResults"));
@@ -66,7 +68,7 @@ class PlayerControllerTest {
     }
 
     @Test
-    void searchPlayersByValidTeamAndNameAddNotEmptyListToModelAndReturnView() throws Exception {
+    void searchPlayersByTeamAndNameAddNotEmptyListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/results")
                 .param("team", "juventus")
@@ -81,8 +83,8 @@ class PlayerControllerTest {
     void searchPlayersByInvalidTeamAndNameAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/player/results")
-                .param("team", "xxxxxx")
-                .param("name", "xxxxxx"))
+                .param("team", "xxx")
+                .param("name", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("players", nullValue()))
                 .andExpect(view().name("results/playerResults"));

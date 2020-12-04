@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
+@ActiveProfiles("test")
 class MatchControllerTest {
 
     @Autowired
@@ -40,7 +42,7 @@ class MatchControllerTest {
     void searchMatchesByInvalidHomeTeamAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/results")
-                .param("homeTeam", "xxxxxxxx")
+                .param("homeTeam", "xxx")
                 .param("awayTeam", "chelsea"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("matches", nullValue()))
@@ -52,7 +54,7 @@ class MatchControllerTest {
 
         mockMvc.perform(get("/match/results")
                 .param("homeTeam", "arsenal")
-                .param("awayTeam", "xxxxxxxx"))
+                .param("awayTeam", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("matches", nullValue()))
                 .andExpect(view().name("results/matchResults"));
@@ -62,8 +64,8 @@ class MatchControllerTest {
     void searchMatchesByInvalidTeamsAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/results")
-                .param("homeTeam", "xxxxxxxx")
-                .param("awayTeam", "xxxxxxxx"))
+                .param("homeTeam", "xxx")
+                .param("awayTeam", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("matches", nullValue()))
                 .andExpect(view().name("results/matchResults"));
@@ -127,10 +129,10 @@ class MatchControllerTest {
     }
 
     @Test
-    void searchMatchesByInvalidHomeTeamAndValidAwayTeamAndSeasonAddNullToModelAndReturnView() throws Exception {
+    void searchMatchesByAwayTeamAndSeasonAndInvalidHomeTeamAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/results")
-                .param("homeTeam", "xxxxxxxx")
+                .param("homeTeam", "xxx")
                 .param("awayTeam", "chelsea")
                 .param("season", "2016-2017"))
                 .andExpect(status().isOk())
@@ -139,11 +141,11 @@ class MatchControllerTest {
     }
 
     @Test
-    void searchMatchesByInvalidAwayTeamAndValidHomeTeamAndSeasonAddNullToModelAndReturnView() throws Exception {
+    void searchMatchesByHomeTeamAndSeasonAndInvalidAwayTeamAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/results")
                 .param("homeTeam", "arsenal")
-                .param("awayTeam", "xxxxxxxx")
+                .param("awayTeam", "xxx")
                 .param("season", "2016-2017"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("matches", nullValue()))
@@ -154,8 +156,8 @@ class MatchControllerTest {
     void searchMatchesBySeasonAndInvalidTeamsAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/results")
-                .param("homeTeam", "xxxxxxxx")
-                .param("awayTeam", "xxxxxxxx")
+                .param("homeTeam", "xxx")
+                .param("awayTeam", "xxx")
                 .param("season", "2016-2017"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("matches", nullValue()))
@@ -230,7 +232,7 @@ class MatchControllerTest {
     }
 
     @Test
-    void viewMatchByIdAddEmptyListModelWhenHomeGoalsAreNotInsertedInyAPIAndReturnView() throws Exception {
+    void viewMatchByIdAddEmptyListToModelWhenHomeGoalsNotFoundAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/{id}","1032832"))
                 .andExpect(status().isOk())
@@ -239,7 +241,7 @@ class MatchControllerTest {
     }
 
     @Test
-    void viewMatchByIdAddAwatGoalListToModelAndReturnView() throws Exception {
+    void viewMatchByIdAddAwayGoalListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/{id}","1009638"))
                 .andExpect(status().isOk())
@@ -249,7 +251,7 @@ class MatchControllerTest {
     }
 
     @Test
-    void viewMatchByIdAddEmptyListModelWhenAwayGoalsAreNotInsertedInAPIAndReturnView() throws Exception {
+    void viewMatchByIdAddEmptyListModelWhenAwayGoalsNotFoundAndReturnView() throws Exception {
 
         mockMvc.perform(get("/match/{id}","1032832"))
                 .andExpect(status().isOk())

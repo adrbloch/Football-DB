@@ -30,7 +30,7 @@ public class MatchServiceImpl implements MatchService {
 
         Optional<List<Match>> matchesByTeams = Optional.empty();
 
-        if (!homeTeam.isEmpty() || !awayTeam.isEmpty()) {
+        if (!homeTeam.isEmpty() && !awayTeam.isEmpty()) {
 
             matchesByTeams = Optional.ofNullable(
                     webClient.get()
@@ -58,7 +58,7 @@ public class MatchServiceImpl implements MatchService {
 
         Optional<List<Match>> matchesByTeamsAndSeason = Optional.empty();
 
-        if (!homeTeam.isEmpty() || !awayTeam.isEmpty()) {
+        if (!homeTeam.isEmpty() && !awayTeam.isEmpty()) {
 
             matchesByTeamsAndSeason = Optional.ofNullable(
                     webClient.get()

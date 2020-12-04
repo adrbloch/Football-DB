@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
+@ActiveProfiles("test")
 class LeagueControllerTest {
 
     @Autowired
@@ -37,7 +39,7 @@ class LeagueControllerTest {
     void searchLeaguesByInvalidCountryAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/league/results")
-                .param("country", "xxxxxx"))
+                .param("country", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("leagues", nullValue()))
                 .andExpect(view().name("results/leagueResults"));
@@ -67,7 +69,7 @@ class LeagueControllerTest {
     void searchLeagueByInvalidNameAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/league/results")
-                .param("name", "xxxxxx"))
+                .param("name", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("leagues", nullValue()))
                 .andExpect(view().name("results/leagueResults"));
@@ -114,7 +116,7 @@ class LeagueControllerTest {
     }
 
     @Test
-    void viewLeagueByIdAddNullToModelWhenTeamsNotInsertedInAPIAndReturnView() throws Exception {
+    void viewLeagueByIdAddNullToModelWhenTeamsNotExistForIdAndReturnView() throws Exception {
 
         mockMvc.perform(get("/league/{id}","4500"))
                 .andExpect(status().isOk())
@@ -134,16 +136,12 @@ class LeagueControllerTest {
     }
 
     @Test
-    void viewLeagueByIdAddNullToModelWhenTableNotInsertedInAPIAndReturnView() throws Exception {
+    void viewLeagueByIdAddNullToModelWhenTableNotNotExistForLeagueIdAndReturnView() throws Exception {
 
         mockMvc.perform(get("/league/{id}","4500"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("tableByLeague", nullValue()))
                 .andExpect(view().name("data/league"));
     }
-
-
-
-
 
 }

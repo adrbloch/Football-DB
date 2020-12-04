@@ -31,7 +31,7 @@ class UserServiceImplTest {
 
     @BeforeEach
     void initializeUser() {
-        user = new User(1L,"user", "password", "password");
+        user = new User(1L, "user", "password", "password");
     }
 
     @Test

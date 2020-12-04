@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -17,13 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
+@ActiveProfiles("test")
 class TableControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void searchTablesByValidLeagueAndSeasonAddObjectToModelAndReturnView() throws Exception {
+    void searchTablesByLeagueAndSeasonAddObjectToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/table/results")
                 .param("league", "english premier league")
@@ -42,7 +44,7 @@ class TableControllerTest {
                 .param("season", "2016-2017"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("leagues", equalTo(null)))
-                .andExpect(model().attribute("season", equalTo(null)))
+                .andExpect(model().attribute("season", equalTo("2016-2017")))
                 .andExpect(view().name("results/tableResults"));
     }
 
@@ -51,7 +53,7 @@ class TableControllerTest {
     void searchTablesByInvalidLeagueAddNullToLeaguesModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/table/results")
-                .param("league", "xxxxxxxxx")
+                .param("league", "xxx")
                 .param("season", "2016-2017"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("leagues", equalTo(null)))

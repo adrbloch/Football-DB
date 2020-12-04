@@ -94,17 +94,16 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
-    public Optional<Team> findTeamById(String id) {
+    public Team findTeamById(String id) {
 
         logger.info("Getting team by id: [" + id + "]");
 
-        return Optional.ofNullable(
-                webClient.get()
+        return webClient.get()
                         .uri("/lookupteam.php?id=" + id)
                         .retrieve()
                         .bodyToMono(Teams.class)
                         .block()
                         .getTeams()
-                        .get(0));
+                        .get(0);
     }
 }

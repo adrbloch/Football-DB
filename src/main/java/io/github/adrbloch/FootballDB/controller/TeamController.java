@@ -30,7 +30,9 @@ public class TeamController {
 
     @GetMapping("/search")
     public String searchTeams(Model model) {
+
         model.addAttribute("team", new Team());
+
         return "search/searchTeams";
     }
 
@@ -70,7 +72,7 @@ public class TeamController {
     @GetMapping("/{id}")
     public String viewTeamDetails(@PathVariable("id") String id, Model model) {
 
-        Team team = teamService.findTeamById(id).get();
+        Team team = teamService.findTeamById(id);
 
         model.addAttribute("team", team);
 

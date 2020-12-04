@@ -29,17 +29,24 @@ public class PlayerServiceImpl implements PlayerService {
 
         logger.info("Getting players by name: [" + playerName + "]");
 
-        return Optional.ofNullable(
-                webClient.get()
-                        .uri("/searchplayers.php?p=" + playerName)
-                        .retrieve()
-                        .bodyToMono(Players.class)
-                        .block()
-                        .getPlayers())
-                        .map(list -> list
-                                .stream()
-                                .filter(p -> p.getStrSport().equals(("Soccer")))
-                                .collect(Collectors.toList()));
+        Optional<List<Player>> players = Optional.empty();
+
+        if (!playerName.isEmpty()) {
+
+            players = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/searchplayers.php?p=" + playerName)
+                            .retrieve()
+                            .bodyToMono(Players.class)
+                            .block()
+                            .getPlayers())
+                    .map(list -> list
+                            .stream()
+                            .filter(p -> p.getStrSport().equals(("Soccer")))
+                            .collect(Collectors.toList()));
+        }
+
+        return players;
     }
 
     @Override
@@ -47,17 +54,22 @@ public class PlayerServiceImpl implements PlayerService {
 
         logger.info("Getting players by team: [{}] and name: [{}]", teamName, playerName);
 
-        Optional<List<Player>> players = Optional.ofNullable(
-                webClient.get()
-                        .uri("/searchplayers.php?t=" + teamName + "&p=" + playerName)
-                        .retrieve()
-                        .bodyToMono(Players.class)
-                        .block()
-                        .getPlayers())
-                .map(list -> list
-                        .stream()
-                        .filter(p -> p.getStrSport().equals(("Soccer")))
-                        .collect(Collectors.toList()));
+        Optional<List<Player>> players = Optional.empty();
+
+        if (!teamName.isEmpty() || !playerName.isEmpty()) {
+
+            players = Optional.ofNullable(
+                    webClient.get()
+                            .uri("/searchplayers.php?t=" + teamName + "&p=" + playerName)
+                            .retrieve()
+                            .bodyToMono(Players.class)
+                            .block()
+                            .getPlayers())
+                    .map(list -> list
+                            .stream()
+                            .filter(p -> p.getStrSport().equals(("Soccer")))
+                            .collect(Collectors.toList()));
+        }
 
         if (players.isPresent() && players.get().size() == 0){
             players = Optional.empty();

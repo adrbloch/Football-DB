@@ -35,7 +35,7 @@ public class RestTeamController {
     }
 
     @GetMapping(params = "id")
-    public Optional<Team> getTeamById(@RequestParam String id) {
+    public Team getTeamById(@RequestParam String id) {
         return teamService.findTeamById(id);
     }
 }

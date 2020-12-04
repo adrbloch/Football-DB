@@ -38,15 +38,10 @@ public class MatchController {
             @RequestParam("awayTeam") String awayTeam,
             Model model) {
 
-        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
-            model.addAttribute("matches", null);
-
-        } else {
-            matchService
-                    .findMatchesByTeams(homeTeam, awayTeam)
-                    .ifPresentOrElse(m -> model.addAttribute("matches", m),
-                            () -> model.addAttribute("matches", null));
-        }
+        matchService
+                .findMatchesByTeams(homeTeam, awayTeam)
+                .ifPresentOrElse(m -> model.addAttribute("matches", m),
+                        () -> model.addAttribute("matches", null));
 
         return "results/matchResults";
     }
@@ -58,15 +53,11 @@ public class MatchController {
             @RequestParam("season") String season,
             Model model) {
 
-        if (homeTeam.isEmpty() || awayTeam.isEmpty()) {
-            model.addAttribute("matches", null);
+        matchService
+                .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
+                .ifPresentOrElse(m -> model.addAttribute("matches", m),
+                        () -> model.addAttribute("matches", null));
 
-        } else {
-            matchService
-                    .findMatchesByTeamsAndSeason(homeTeam, awayTeam, season)
-                    .ifPresentOrElse(m -> model.addAttribute("matches", m),
-                            () -> model.addAttribute("matches", null));
-        }
         return "results/matchResults";
     }
 
@@ -79,27 +70,26 @@ public class MatchController {
         model.addAttribute("match", match);
 
         String homeGoalDetails = match.getStrHomeGoalDetails();
-        List<String> homeGoalList = convertGoalDetailsToListReadyToView(homeGoalDetails);
+        List<String> homeGoalList = prepareGoalDetailsListToView(homeGoalDetails);
         model.addAttribute("homeGoalList", homeGoalList);
 
         String awayGoalDetails = match.getStrAwayGoalDetails();
-        List<String> awayGoalList = convertGoalDetailsToListReadyToView(awayGoalDetails);
+        List<String> awayGoalList = prepareGoalDetailsListToView(awayGoalDetails);
         model.addAttribute("awayGoalList", awayGoalList);
 
-        teamService
-                .findTeamById(match.getIdHomeTeam())
-                .ifPresentOrElse(t -> model.addAttribute("homeTeam", t),
-                        () -> model.addAttribute("homeTeam", null));
 
-        teamService
-                .findTeamById(match.getIdAwayTeam())
-                .ifPresentOrElse(t -> model.addAttribute("awayTeam", t),
-                        () -> model.addAttribute("awayTeam", null));
+        model.addAttribute("homeTeam",
+                teamService
+                        .findTeamById(match.getIdHomeTeam()));
+
+        model.addAttribute("awayTeam",
+                teamService
+                        .findTeamById(match.getIdAwayTeam()));
 
         return "data/match";
     }
 
-    private List<String> convertGoalDetailsToListReadyToView(String goalDetails) {
+    private List<String> prepareGoalDetailsListToView(String goalDetails) {
         List<String> goalList = new ArrayList<>();
 
         if (goalDetails != null) {

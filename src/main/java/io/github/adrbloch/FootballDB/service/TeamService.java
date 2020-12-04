@@ -13,5 +13,5 @@ public interface TeamService {
 
     Optional<List<Team>> findTeamsByCountry(String country);
 
-    Optional<Team> findTeamById(String id);
+    Team findTeamById(String id);
 }

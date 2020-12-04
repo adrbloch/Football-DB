@@ -48,15 +48,10 @@ public class PlayerController {
     @GetMapping(value = "/results", params = "name")
     public String viewPlayersByName(@RequestParam("name") String name, Model model) {
 
-        if (name.isEmpty()) {
-            model.addAttribute("players", null);
-
-        } else {
             playerService
                     .findPlayersByName(name)
                     .ifPresentOrElse(p -> model.addAttribute("players", p),
                             () -> model.addAttribute("players", null));
-        }
 
         return "results/playerResults";
     }
@@ -67,15 +62,10 @@ public class PlayerController {
             @RequestParam("name") String name,
             Model model) {
 
-        if (team.isEmpty() && name.isEmpty()) {
-            model.addAttribute("players", null);
-
-        } else {
             playerService
                     .findPlayersByTeamAndName(team, name)
                     .ifPresentOrElse(p -> model.addAttribute("players", p),
                             () -> model.addAttribute("players", null));
-        }
 
         return "results/playerResults";
     }

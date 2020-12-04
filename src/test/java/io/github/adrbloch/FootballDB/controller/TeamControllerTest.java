@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
@@ -18,13 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser(authorities = "ADMIN")
+@ActiveProfiles("test")
 class TeamControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    void searchTeamsByValidCountryAddNotEmptyListToModelAndReturnView() throws Exception {
+    void searchTeamsByCountryAddNotEmptyListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
                 .param("country", "england"))
@@ -38,7 +40,7 @@ class TeamControllerTest {
     void searchTeamsByInvalidCountryAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
-                .param("country", "xxxxxx"))
+                .param("country", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("teams", nullValue()))
                 .andExpect(view().name("results/teamResults"));
@@ -55,7 +57,7 @@ class TeamControllerTest {
     }
 
     @Test
-    void searchTeamsByValidLeagueAddNotEmptyListToModelAndReturnView() throws Exception {
+    void searchTeamsByLeagueAddNotEmptyListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
                 .param("league", "english premier league"))
@@ -69,7 +71,7 @@ class TeamControllerTest {
     void searchTeamsByInvalidLeagueAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
-                .param("league", "xxxxxx"))
+                .param("league", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("teams", nullValue()))
                 .andExpect(view().name("results/teamResults"));
@@ -96,7 +98,7 @@ class TeamControllerTest {
     }
 
     @Test
-    void searchTeamsByValidNameAddNotEmptyListToModelAndReturnView() throws Exception {
+    void searchTeamsByNameAddNotEmptyListToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
                 .param("name", "liverpool"))
@@ -110,7 +112,7 @@ class TeamControllerTest {
     void searchTeamsByInvalidNameAddNullToModelAndReturnView() throws Exception {
 
         mockMvc.perform(get("/team/results")
-                .param("name", "xxxxxx"))
+                .param("name", "xxx"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("teams", nullValue()))
                 .andExpect(view().name("results/teamResults"));
