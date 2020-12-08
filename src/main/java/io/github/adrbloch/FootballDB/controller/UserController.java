@@ -55,20 +55,17 @@ public class UserController {
             userService.createUser(userToSave);
 
         } catch (ResourceAlreadyExistsException e) {
-            return addInfoToModelAfterExceptionAndReturnRegistrationView(model, e);
+            model.addAttribute("occurredUserException", true);
+            model.addAttribute("exceptionUserMessage", e.getMessage());
+            return "user/registration";
 
-        } catch (FieldsNotMatchException e){
-            return addInfoToModelAfterExceptionAndReturnRegistrationView(model, e);
+        } catch (FieldsNotMatchException e) {
+            model.addAttribute("occurredPasswordException", true);
+            model.addAttribute("exceptionPasswordMessage", e.getMessage());
+            return "user/registration";
         }
 
         return "user/login";
     }
-
-    private String addInfoToModelAfterExceptionAndReturnRegistrationView(Model model, Exception e) {
-        model.addAttribute("occurredUserException", true);
-        model.addAttribute("exceptionUserMessage", e.getMessage());
-        return "user/registration";
-    }
-
 
 }

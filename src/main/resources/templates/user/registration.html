@@ -18,23 +18,22 @@
                 <h2 class="bg-success text-white text-center font-weight-bold py-1"> REGISTRATION </h2>
             </div>
 
-            <div class="alert alert-danger error mt-3" th:if="${occurredUserException}">
-                <h4 th:text="${exceptionUserMessage}" class="error"></h4>
+            <div class="alert alert-danger mt-4" th:if="${occurredUserException}">
+                <p th:text="${exceptionUserMessage}" class="m-1"></p>
             </div>
 
-            <div class="alert alert-danger error mt-3" th:if="${occurredPasswordException}">
-                <h4 th:text="${exceptionPasswordMessage}" class="error"></h4>
+            <div class="alert alert-danger mt-4" th:if="${occurredPasswordException}">
+                <p th:text="${exceptionPasswordMessage}" class="m-1"></p>
             </div>
 
-            <div class=" form-group row my-5 pt-4">
+            <div class=" form-group row my-5">
                 <div class="input-group offset-3">
                     <div class="input-group-prepend col-8">
                     <span class="input-group-text">
                          <span class="fa fa-user"></span>
                      </span>
                         <input type="text" th:field="*{username}" class="form-control form-control-lg"
-                               id="inputUsername"
-                               name="username" placeholder="Username" th:errorclass="error-red-bd">
+                               id="inputUsername" name="username" placeholder="Username" th:errorclass="error-red-bd">
                     </div>
                 </div>
                 <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></p>
@@ -47,9 +46,8 @@
                          <span class="fa fa-lock"></span>
                      </span>
                         <input type="password" th:field="*{password}" class="form-control form-control-lg"
-                               th:classappend="${occurredUserException} ? 'error-red-bd' "
-                               id="inputPassword" placeholder="Enter password" name="password"
-                               th:errorclass="error-red-bd">
+                               th:classappend="${occurredPasswordException} ? 'error-red-bd'" id="inputPassword"
+                               placeholder="Enter password" name="password" th:errorclass="error-red-bd">
                     </div>
                 </div>
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
@@ -62,13 +60,11 @@
                          <span class="fa fa-lock"></span>
                      </span>
                         <input type="password" th:field="*{matchingPassword}" class="form-control form-control-lg"
-                               th:classappend="${occurredUserException} ? 'error-red-bd' "
-                               id="inputConfirmPassword" placeholder="Enter password again" name="matchingPassword"
-                               th:errorclass="error-red-bd">
+                               th:classappend="${occurredPasswordException} ? 'error-red-bd'" id="inputConfirmPassword"
+                               placeholder="Enter password again" name="matchingPassword" th:errorclass="error-red-bd">
                     </div>
                 </div>
-                <p th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}"
-                   class="error"></p>
+                <p th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="error"></p>
             </div>
 
             <div class="form-group row mt-5 justify-content-center">

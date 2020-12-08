@@ -1,6 +1,8 @@
 # Football-DB
 Web application for searching all information about football based on external API - [TheSportsDB](https://www.thesportsdb.com/api.php).
 
+Application presentation:<br/> https://youtu.be/-e7ZXKXJq5E
+
 ## Table of contents
 * [Features](#features)
 * [Screenshots](#screenshots)
@@ -35,11 +37,13 @@ Web application for searching all information about football based on external A
 
 ## Screenshots
 
+###### HOME
+![screenshot](readme-img/home/home.png) <br/><br/>
 ###### SEARCH
 ![screenshot](readme-img/search/searchLeagues.png) <br/><br/>
 ![screenshot](readme-img/search/searchMatches.png) <br/><br/>
-###### HOME
-![screenshot](readme-img/home/home.png) <br/><br/>
+###### RESULTS
+![screenshot](readme-img/results/results.png) <br/><br/>
 ###### LEAGUE
 ![screenshot](readme-img/league/league1.png) <br/><br/>
 ![screenshot](readme-img/league/league2.png) <br/><br/>
@@ -60,7 +64,7 @@ Web application for searching all information about football based on external A
 ![screenshot](readme-img/table/table.png) <br/><br/>
 ###### USER LOGIN AND REGISTRATION
 ![screenshot](readme-img/user/login-logout.png) <br/><br/>
-![screenshot](readme-img/user/registration-error.png) 
+![screenshot](readme-img/user/registration.png) 
 
 ## Technologies
 * Java - v11
@@ -80,9 +84,9 @@ Web application for searching all information about football based on external A
 ## Todos
 * upgrade API key to a paid version
 * add: 
-    - statistics to matches
-    - previous and upcoming matches for teams
     - live scores
+    - match statistics
+    - previous and upcoming matches for teams
     
 ## Author
 Adrian Bloch
