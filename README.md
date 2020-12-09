@@ -1,7 +1,8 @@
 # Football-DB
 Web application for searching all information about football based on external API - [TheSportsDB](https://www.thesportsdb.com/api.php).
 
-Application presentation:<br/> https://youtu.be/-e7ZXKXJq5E
+Application presentation: https://youtu.be/-e7ZXKXJq5E 
+
 
 ## Table of contents
 * [Features](#features)
@@ -82,6 +83,7 @@ Application presentation:<br/> https://youtu.be/-e7ZXKXJq5E
 * Bootstrap - v4.5.2
 
 ## Todos
+* refactor Front-end code
 * upgrade API key to a paid version
 * add: 
     - live scores
