@@ -2,50 +2,50 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/data.css" th:href="@{/css/data.css}" rel="stylesheet"/>
     <title>Match</title>
 </head>
 
-<body class="text-white bg">
-
+<body>
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br>
 
-<div class="container-fluid mb-5" th:object="${match}">
+<div class="container-fluid pb-5" th:object="${match}">
     <div class="row">
-        <div class="col-lg-2 text-center">
+        <div class="col-lg-2">
             <div class="pr-5">
-                <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
-                    <i class="fas fa-chevron-left pr-2"></i> Back
+                <a onclick="history.back()" class="btn btn-secondary btn-lg back-btn">
+                    <i class="fas fa-chevron-left"></i> Back
                 </a>
             </div>
 
             <div class="belt mr-5 border border-secondary">
                 <b class="border-bottom mb-1">Date</b><br>
-                <p th:text="*{getDateEvent()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getDateEvent()}" class="mb-0"></p>
                 <p th:text="${#strings.substring(match.getStrTime(),0,5)}"></p>
                 <br><br>
                 <b class="border-bottom">League</b><br>
-                <p th:text="*{getStrLeague()}" class="mt-2"></p>
+                <p th:text="*{getStrLeague()}"></p>
                 <br><br>
                 <b class="border-bottom">Season</b><br>
-                <p th:text="*{getStrSeason()}" class="mt-2"></p>
+                <p th:text="*{getStrSeason()}"></p>
                 <br><br>
                 <b class="border-bottom">Round</b><br>
-                <p th:text="*{getIntRound()}" class="mt-2" id="round"></p>
+                <p th:text="*{getIntRound()}" id="round"></p>
             </div>
         </div>
 
-        <div class="col-lg-10 pl-0">
-            <div class="col text-center"><br><br>
-                <h1 class="display-4 font-weight-bold pb-5">
-                    <span style="color: chartreuse" th:text="*{getStrHomeTeam()}"></span>
+        <div class="col-lg-10 match-content">
+            <div class="col match-head-div"><br><br>
+                <h1>
+                    <span class="color-chart" th:text="*{getStrHomeTeam()}"></span>
                     <span class="px-4"> vs </span>
-                    <span style="color: chartreuse" th:text="*{getStrAwayTeam()}"></span>
+                    <span class="color-chart" th:text="*{getStrAwayTeam()}"></span>
                 </h1>
             </div>
-            <div class="row mx-5">
-                <div class="col text-center" th:object="${homeTeam}">
-                    <a th:href="@{/team/{id}(id=${homeTeam.getIdTeam()})}" class="text-white">
+            <div class="row">
+                <div class="col" th:object="${homeTeam}">
+                    <a th:href="@{/team/{id}(id=${homeTeam.getIdTeam()})}">
                         <img th:src="*{getStrTeamBadge()}" class="img-sm" alt="Home team badge"
                              th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
                     </a>
@@ -54,12 +54,12 @@
                         <h4 th:if="${homeGoal != ''}" th:text="${homeGoal}"></h4>
                     </th:block>
                 </div>
-                <div class="col text-center mx-0" id="score"><br>
-                    <h1 class="display-2 font-weight-bold" th:text="|*{getIntHomeScore()} : *{getIntAwayScore()}|"></h1>
+                <div class="col" id="score"><br>
+                    <h1 th:text="|*{getIntHomeScore()} : *{getIntAwayScore()}|"></h1>
                 </div>
 
-                <div class="col text-center" th:object="${awayTeam}">
-                    <a th:href="@{/team/{id}(id=${awayTeam.getIdTeam()})}" class="text-white">
+                <div class="col" th:object="${awayTeam}">
+                    <a th:href="@{/team/{id}(id=${awayTeam.getIdTeam()})}">
                         <img th:src="*{getStrTeamBadge()}" class="img-sm" alt="Away team badge"
                              th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
                     </a>
@@ -69,8 +69,8 @@
                     </th:block>
                 </div>
             </div>
-            <div class="row mx-5">
-                <div class="col text-center">
+            <div class="row">
+                <div class="col">
                     <br><br>
                     <h2>Lineup</h2>
                     <p th:text="|*{getStrHomeLineupGoalkeeper()}; *{getStrHomeLineupDefense()}
@@ -81,7 +81,7 @@
 
                 <div class="col"></div>
 
-                <div class="col text-center">
+                <div class="col">
                     <br><br>
                     <h2>Lineup</h2>
                     <p th:text="|*{getStrAwayLineupGoalkeeper()}; *{getStrAwayLineupDefense()}

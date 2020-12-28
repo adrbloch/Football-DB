@@ -3,7 +3,7 @@
 
 <th:block th:fragment="navbarCode">
     <nav class="navbar navbar-expand-xl navbar-dark bg-success lg-txt">
-        <a class="nav-link mr-5" th:href="@{/home}">
+        <a class="nav-link" th:href="@{/home}">
             <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-sm">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -12,30 +12,30 @@
         </button>
         <div class="collapse navbar-collapse bg-success" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item nav-item-mr-p"
+                <li class="nav-item"
                     th:classappend="${#httpServletRequest.getRequestURI().startsWith('/league') ? 'active':''}">
                     <a class="nav-link" th:href="@{/league/search}">Leagues </a>
                 </li>
-                <li class="nav-item nav-item-mr-p"
+                <li class="nav-item"
                     th:classappend="${#httpServletRequest.getRequestURI().startsWith('/team') ? 'active':''}">
                     <a class="nav-link" th:href="@{/team/search}">Teams </a>
                 </li>
-                <li class="nav-item nav-item-mr-p"
+                <li class="nav-item"
                     th:classappend="${#httpServletRequest.getRequestURI().startsWith('/player') ? 'active':''}">
                     <a class="nav-link" th:href="@{/player/search}">Players </a>
                 </li>
-                <li class="nav-item nav-item-mr-p"
+                <li class="nav-item"
                     th:classappend="${#httpServletRequest.getRequestURI().startsWith('/match') ? 'active':''}">
                     <a class="nav-link" th:href="@{/match/search}">Matches </a>
                 </li>
-                <li class="nav-item nav-item-mr-p"
+                <li class="nav-item"
                     th:classappend="${#httpServletRequest.getRequestURI().startsWith('/table') ? 'active':''}">
                     <a class="nav-link" th:href="@{/table/search}">Tables </a>
                 </li>
             </ul>
-            <div class="d-flex justify-content-end ml-auto">
+            <div id="logout-div">
                 <ul class="navbar-nav">
-                    <li class="nav-item mr-5">
+                    <li class="nav-item">
                         <a class="nav-link" th:href="@{/logout}">Log out</a>
                     </li>
                 </ul>

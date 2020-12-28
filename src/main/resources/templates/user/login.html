@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/user.css" th:href="@{/css/user.css}" rel="stylesheet"/>
     <title>Login</title>
 </head>
 
-<body class="bg">
-<div class="jumbotron text-center bg-success border border-secondary p-3">
-    <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="h-25 w-25 img-fluid">
+<body>
+<div class="jumbotron">
+    <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-fluid">
 </div>
 
 <div class="container-fluid">
@@ -15,20 +16,20 @@
         <form name="f" th:action="@{/login}" method="POST" class="form-horizontal"
               enctype="multipart/form-data">
 
-            <div class="mb-4">
-                <h2 class="bg-success text-white text-center font-weight-bold py-1"> LOGIN </h2>
+            <div class="user-head">
+                <h2 class="bg-success"> LOGIN </h2>
             </div>
 
-            <div th:if="${param.error}" class="alert alert-danger text-center mt-4">
+            <div th:if="${param.error}" class="alert alert-danger">
                 Invalid username or password.
             </div>
 
-            <div th:if="${param.logout}" class="alert alert-success text-center mt-4">
+            <div th:if="${param.logout}" class="alert alert-success">
                 You have been logged out.
             </div>
 
-            <div class="form-group m-5">
-                <div class="input-group offset-1">
+            <div class="form-group log-input-div">
+                <div class="input-group">
                     <div class="input-group-prepend">
                     <span class="input-group-text">
                          <span class="fa fa-user"></span>
@@ -39,8 +40,8 @@
                 </div>
             </div>
 
-            <div class="form-group m-5 pb-2">
-                <div class="input-group offset-1">
+            <div class="form-group log-input-div pb-2">
+                <div class="input-group">
                     <div class="input-group-prepend">
                    <span class="input-group-text">
                          <span class="fa fa-lock"></span>
@@ -51,12 +52,12 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-auto text-center pb-3">
-                    <button type="submit" class="btn btn-success btn-lg mb-2 px-5 font-weight-bold">Login</button>
+            <div class="form-group login-nav">
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-success btn-lg">Login</button>
                     <br>
-                    <span class="d-inline">Need an account?</span>
-                    <a class="nav-link d-inline mb-4 pl-0 link-color" th:href="@{/registration}"> Register now</a>
+                    <span class="d-inline text-dark">Need an account?</span>
+                    <a class="d-inline link-color" th:href="@{/registration}"> Register now</a>
                 </div>
             </div>
 

@@ -2,59 +2,59 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/data.css" th:href="@{/css/data.css}" rel="stylesheet"/>
     <title>Player</title>
 </head>
 
-<body class="text-white bg">
-
+<body>
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br>
 
 <div class="container-fluid" th:object="${player}">
     <div class="row">
-        <div class="col-md-2 text-center">
-            <div class="pr-2">
-                <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
-                    <i class="fas fa-chevron-left pr-2"></i> Back
+        <div class="col-md-2">
+            <div>
+                <a onclick="history.back()" class="btn btn-secondary btn-lg back-btn">
+                    <i class="fas fa-chevron-left"></i> Back
                 </a>
             </div>
 
             <div class="belt border border-secondary" id="belt">
                 <b class="border-bottom mb-1">Born</b><br>
-                <p th:text="*{getDateBorn()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getDateBorn()}" class="mb-0"></p>
                 <p th:text="*{getStrBirthLocation()}"></p>
                 <br><br>
                 <b class="border-bottom">Position</b><br>
-                <p th:text="*{getStrPosition()}" class="mt-2"></p>
+                <p th:text="*{getStrPosition()}"></p>
                 <br><br>
 
                 <b class="border-bottom">Current Contract</b><br>
                 <p th:if="${contract == null}">-</p>
                 <th:block th:object="${contract}" th:if="${contract != null}">
-                    <p th:text="*{getStrTeam()}" class="mb-0 mt-2"></p>
-                    <img th:src="*{getStrTeamBadge()}" class="img-sm img-fluid mt-4" alt="Team badge"
+                    <p th:text="*{getStrTeam()}" class="mb-0"></p>
+                    <img th:src="*{getStrTeamBadge()}" class="img-sm img-fluid" alt="Team badge"
                          th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'"> <br><br>
-                    <p th:text="|*{getStrYearStart()}-*{getStrYearEnd()}|" class="mb-0 mt-2"></p>
+                    <p th:text="|*{getStrYearStart()}-*{getStrYearEnd()}|" class="mb-0"></p>
                 </th:block>
                 <br><br>
                 <b class="border-bottom">Team number</b><br>
-                <p th:text="*{getStrNumber()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getStrNumber()}" class="mb-0"></p>
                 <br><br>
                 <b class="border-bottom">Height</b><br>
-                <p th:text="*{getStrHeight()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getStrHeight()}" class="mb-0"></p>
                 <br><br>
                 <b class="border-bottom">Weight</b><br>
-                <p th:text="*{getStrWeight()}" class="mb-0 mt-2"></p>
+                <p th:text="*{getStrWeight()}" class="mb-0"></p>
                 <br><br>
                 <b class="border-bottom">Player profile</b><br>
-                <img th:src="*{getStrRender()}" class="img-sm img-fluid mt-4" alt="Player profile image"
+                <img th:src="*{getStrRender()}" class="img-sm img-fluid" alt="Player profile image"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>
         </div>
 
-        <div class="col-md-10 text-center pt-5">
-            <h1 class="display-3 font-weight-bold">
-                <span style="color: chartreuse" th:text="*{getStrPlayer()}"></span>
+        <div class="col-md-10 content">
+            <h1 class="content-head">
+                <span class="color-chart" th:text="*{getStrPlayer()}"></span>
             </h1>
             <br>
             <img th:src="*{getStrThumb()}" class="img-md rounded-circle" alt="Player photo"
@@ -63,9 +63,9 @@
 
             <div class="tight-margin">
                 <h1>Player Description</h1><br>
-                <h3 th:if="*{getStrDescriptionEN() == null}" class="text-danger text-center">Not found</h3>
-                <p class="text-justify first-line-ind" th:if="*{getStrDescriptionEN() != null}"
-                    th:text="*{getStrDescriptionEN()}" style="white-space: pre-wrap"></p>
+                <h3 th:if="*{getStrDescriptionEN() == null}" class="text-danger">Not found</h3>
+                <p class="text-justify first-line-ind pre-wrap" th:if="*{getStrDescriptionEN() != null}"
+                    th:text="*{getStrDescriptionEN()}"></p>
             </div>
             <br><br>
 
@@ -74,7 +74,7 @@
 
                 <th:block th:if="${formerTeams == null}">
                     <br>
-                    <h3 class="text-danger text-center">Not found</h3>
+                    <h3 class="text-danger">Not found</h3>
                 </th:block>
 
                 <table class="table table-borderless text-white table-r-separate">
@@ -91,7 +91,7 @@
                                     <br><br>
                                     <h4 th:text="*{getStrFormerTeam()}"></h4>
                                     <h4 th:if="*{getStrMoveType() == 'Youth'}">
-                                        <span style="color: chartreuse">(youth team)</span>
+                                        <span class="color-chart">(youth team)</span>
                                     </h4>
                                     <h4 th:text="|*{getStrJoined()} - *{getStrDeparted()}|"></h4>
                                 </a>
@@ -107,7 +107,7 @@
                 <h1>Trophies and Honours</h1>
                 <br>
                 <div class="table table-responsive">
-                    <h3 th:if="${honors == null}" class="text-danger text-center">Not found</h3>
+                    <h3 th:if="${honors == null}" class="text-danger">Not found</h3>
                     <table th:if="${honors != null}" class="table-bordered styled-table w-75">
                         <thead>
                         <tr>
@@ -129,20 +129,20 @@
             <div class="tight-margin">
                 <h1>Social media</h1>
                 <br>
-                <div class="d-flex justify-content-center">
-                    <div class="mx-5">
+                <div class="social-media-div">
+                    <div>
                         <a th:href="|https://${player.getStrFacebook()}|">
                             <img src="../../static/img/socialMedia/facebook.png"
                                  th:src="@{/img/socialMedia/facebook.png}" alt="Facebook icon" class="img-fluid">
                         </a>
                     </div>
-                    <div class="mx-5">
+                    <div>
                         <a th:href="|https://${player.getStrTwitter()}|">
                             <img src="../../static/img/socialMedia/facebook.png"
                                  th:src="@{/img/socialMedia/twitter.png}" alt="Twitter icon" class="img-fluid ">
                         </a>
                     </div>
-                    <div class="mx-5">
+                    <div>
                         <a th:href="|https://${player.getStrInstagram()}|">
                             <img src="../../static/img/socialMedia/facebook.png"
                                  th:src="@{/img/socialMedia/instagram.png}" alt="Instagram icon" class="img-fluid">
@@ -155,7 +155,7 @@
     </div>
 </div>
 
-<script type="text/javascript" th:src="@{/js/script.js}"></script>
+<script type="text/javascript" th:src="@{/js/mainScript.js}"></script>
 
 </body>
 </html>

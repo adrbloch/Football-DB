@@ -1,0 +1,109 @@
+.back-btn {
+    font-weight: bold;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.back-btn > i {
+    padding-right: .5rem;
+}
+
+.belt {
+    background-color: #366334;
+    padding: 2rem 2rem 2rem 2rem;
+    font-size: calc(9px + .7vw);
+    text-align: center;
+}
+
+.belt > b {
+    color: chartreuse;
+}
+
+.belt > p {
+    margin-top: .5rem;
+}
+
+.belt > img {
+    margin-top: 1.5rem;
+}
+
+.styled-table {
+    background-color: whitesmoke;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pre-wrap {
+    white-space: pre-wrap;
+}
+
+.first-line-ind {
+    text-indent: 2em;
+}
+
+.content {
+    text-align: center;
+    padding-top: 3rem;
+}
+
+.content-head {
+    font-weight: bold;
+    font-size: 4.5rem;
+}
+
+.social-media-div {
+    display: flex;
+    justify-content: center;
+}
+
+.social-media-div > div {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.match-head-div {
+    text-align: center;
+}
+
+.match-head-div > h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    padding-bottom: 3rem;
+}
+
+#score {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#score > h1 {
+    font-size: 5.5rem;
+    font-weight: bold;
+}
+
+.match-content {
+    padding-left: 0;
+}
+
+.match-content > .row {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.back-div {
+    padding-top: 1.5rem;
+    padding-left: 3rem;
+    text-align: left;
+}
+
+.table-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-head > div > a {
+    color: #fff;
+}

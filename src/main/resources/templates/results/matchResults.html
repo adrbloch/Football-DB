@@ -2,27 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/results.css" th:href="@{/css/results.css}" rel="stylesheet"/>
     <title>Match results</title>
 </head>
 
-<body class="text-white bg">
+<body>
 
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 
 <div class="container-fluid">
-    <a th:href="@{/match/search}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
-        <i class="fas fa-chevron-left pr-2"></i> Back
+    <a th:href="@{/match/search}" class="btn btn-secondary btn-lg back-btn">
+        <i class="fas fa-chevron-left"></i> Back
     </a>
-    <h1 class="display-4 text-center font-weight-bold"><span style="color: chartreuse">Match results</span></h1>
+    <h1 class="result-head"><span class="color-chart">Match results</span></h1>
     <br><br>
 
-    <h1 th:if="${matches == null}" class="text-danger text-center">Not found</h1>
+    <h1 th:if="${matches == null}" class="text-danger">Not found</h1>
 
     <div th:each="match:${matches}">
-        <a th:href="@{/match/{id}(id=${match.getIdEvent()})}" class="text-white text-center">
-            <div class="d-flex justify-content-center align-items-center">
-                <h1>
-                    <span style="color: lightgreen" th:text="${match.getStrEvent()}"></span><br>
+        <a th:href="@{/match/{id}(id=${match.getIdEvent()})}" class="result-list">
+            <div>
+                <h1 class="mr-0">
+                    <span class="color-lightgreen" th:text="${match.getStrEvent()}"></span><br>
                     <span th:text="${match.getStrLeague()}"></span><br>
                     <span th:text="${match.getDateEvent()}"></span><br>
                 </h1>

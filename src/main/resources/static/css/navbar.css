@@ -1,0 +1,18 @@
+nav > a {
+    margin-right: 3rem;
+}
+
+#navbarSupportedContent > ul > li {
+    margin-right: 2.6vw;
+    padding-right: 2.6vw;
+}
+
+#logout-div {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+#logout-div > ul > li {
+    margin-right: 0.5rem;
+}

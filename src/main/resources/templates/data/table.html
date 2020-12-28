@@ -2,30 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/data.css" th:href="@{/css/data.css}" rel="stylesheet"/>
     <title>Table</title>
 </head>
 
-<body class="text-white bg">
-
+<body>
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br>
 
 <div class="container-fluid pb-3" th:object="${league}">
-    <div class="col pt-4 pl-5">
-        <a onclick="history.back()" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
-            <i class="fas fa-chevron-left pr-2"></i> Back
+    <div class="col back-div">
+        <a onclick="history.back()" class="btn btn-secondary btn-lg back-btn">
+            <i class="fas fa-chevron-left"></i> Back
         </a>
     </div>
-    <div class="col text-center d-flex align-items-center justify-content-center">
+    <div class="col table-head">
         <div class="d-inline-block px-5">
-            <a th:href="@{/league/{id}(id=*{getIdLeague()})}" class="text-white">
-                <h1 class="d-inline"><span style="color: chartreuse" th:text="*{getStrLeague()}"></span></h1>
+            <a th:href="@{/league/{id}(id=*{getIdLeague()})}">
+                <h1 class="d-inline"><span class="color-chart" th:text="*{getStrLeague()}"></span></h1>
             </a>
             <h1 th:text="${season}"></h1>
         </div>
 
         <div class="d-inline-block">
-            <a th:href="@{/league/{id}(id=*{getIdLeague()})}" class="text-white">
+            <a th:href="@{/league/{id}(id=*{getIdLeague()})}">
                 <img th:src="*{getStrBadge()}" class="img-sm img-fluid" alt="League badge"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </a>

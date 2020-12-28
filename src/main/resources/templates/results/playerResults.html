@@ -2,26 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/results.css" th:href="@{/css/results.css}" rel="stylesheet"/>
     <title>Player results</title>
 </head>
 
-<body class="text-white bg">
+<body>
 
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 
 <div class="container-fluid">
-    <a th:href="@{/player/search}" class="btn btn-secondary btn-lg font-weight-bold mt-5 ml-5 px-4 text-align-left">
-        <i class="fas fa-chevron-left pr-2"></i> Back
+    <a th:href="@{/player/search}" class="btn btn-secondary btn-lg back-btn">
+        <i class="fas fa-chevron-left"></i> Back
     </a>
-    <h1 class="display-4 text-center font-weight-bold mr-5"><span style="color: chartreuse">Player results</span></h1>
+    <h1 class="result-head"><span class="color-chart">Player results</span></h1>
     <br><br>
 
-    <h1 th:if="${players == null}" class="text-danger text-center">Not found</h1>
+    <h1 th:if="${players == null}" class="text-danger">Not found</h1>
 
     <div th:each="player:${players}">
-        <a th:href="@{/player/{id}(id=${player.getIdPlayer()})}" class="text-white">
-            <div class="d-flex justify-content-center align-items-center">
-                <h1 class="mr-5" th:text="${player.getStrPlayer()}"></h1>
+        <a th:href="@{/player/{id}(id=${player.getIdPlayer()})}" class="result-list">
+            <div>
+                <h1 th:text="${player.getStrPlayer()}"></h1>
                 <img th:src="${player.getStrThumb()}" class="img-extra-sm rounded-circle" alt="Player photo"
                      th:onerror="'this.src=\'' + @{/img/notFound.jpg} + '\';'">
             </div>

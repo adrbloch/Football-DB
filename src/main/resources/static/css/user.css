@@ -1,0 +1,109 @@
+.jumbotron {
+    text-align: center;
+    border-color: #6c757d;
+    padding: 1rem;
+    background-color: #28a745;
+}
+
+.jumbotron > img {
+    height: 25%;
+    width: 25%;
+}
+
+.div-form {
+    text-align: center;
+    background-color: whitesmoke;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.low-width {
+    max-width: 50vh;
+}
+
+.login-nav {
+    padding-bottom: 1rem;
+}
+
+.login-nav > div {
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+.login-nav > div > button {
+    font-weight: 700;
+    margin-bottom: .5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.login-nav > div > a {
+    padding-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.log-input-div {
+    margin: 3rem;
+}
+
+.log-input-div > div {
+    margin-left: 8.333333%;
+}
+
+.alert {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.alert > p {
+    margin: .25rem;
+}
+
+.user-head {
+    margin-bottom: 1.5rem;
+}
+
+.user-head > h2 {
+    text-align: center;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    font-weight: bold;
+    color: white;
+}
+
+.reg-nav {
+    margin-top: 3rem;
+    justify-content: center;
+}
+
+.reg-nav > div > button {
+    margin-bottom: .5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: bold;
+}
+
+.reg-nav > div > button > i {
+    margin-right: .5rem;
+}
+
+.reg-nav > div > a {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-weight: bold;
+}
+
+.reg-nav > div > a > i {
+    padding-right: .5rem;
+}
+
+.user-data {
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+}
+
+.user-data > div {
+    margin-left: 25%;
+}

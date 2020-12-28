@@ -1,12 +1,10 @@
 body {
     background-color: #033001 !important;
-}
-
-.div-form {
-    background-color: whitesmoke;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
+    color: #fff !important;
+    text-align: center !important;
+    background: url("../img/pitch.jpg") center fixed;
+    background-size: cover;
+    height: 100vh;
 }
 
 .link-color {
@@ -32,11 +30,6 @@ body {
     font-size: 1.3rem;
 }
 
-.nav-item-mr-p {
-    margin-right: 2.6vw;
-    padding-right: 2.6vw;
-}
-
 input {
     text-align: center;
     border: black;
@@ -49,37 +42,10 @@ select {
     width: 40% !important;
 }
 
-.bg {
-    background: url("../img/pitch.jpg") center fixed;
-    background-size: cover;
-    height: 100vh;
-}
-
-.styled-table {
-    background-color: whitesmoke;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 th {
     background-color: darkgray;
 }
 
-.belt {
-    background-color: #366334;
-    padding: 2rem 2rem 2rem 2rem;
-    font-size: calc(9px + .7vw);
-    text-align: center;
-}
-
-.belt > b {
-    color: chartreuse;
-}
-
-.first-line-ind {
-    text-indent: 2em;
-}
 
 .tight-margin {
     margin-left: 10rem;
@@ -130,10 +96,30 @@ th {
     border-color: red !important;
 }
 
-.low-width {
-    max-width: 50vh;
-}
-
 .md-width {
     max-width: 75vh;
+}
+
+#home > h1 {
+    font-size: calc(40px + .8vw);
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+#home > h1 {
+    font-size: calc(40px + .8vw);
+    line-height: 1.2;
+    font-weight: bold;
+}
+
+#home > h5 {
+    font-size: calc(16px + .2vw);
+}
+
+.color-chart {
+    color: chartreuse;
+}
+
+.text-danger {
+    text-align: center;
 }

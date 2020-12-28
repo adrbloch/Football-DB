@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/search.css" th:href="@{/css/search.css}" rel="stylesheet"/>
     <title>Search table</title>
 </head>
 
-<body class="text-center text-white bg">
+<body>
 
 <th:block th:insert="modelTemplates/navbar :: navbarCode"></th:block>
 <br>
 
-<div class="mt-5">
-    <h1>Search for <span style="color: chartreuse"> Table</span> by:</h1><br><br>
+<div class="search-head">
+    <h1>Search for <span class="color-chart"> Table</span> by:</h1><br><br>
 </div>
 
 <div class="d-inline-block">
@@ -29,28 +30,20 @@
         <div class="form-group">
             <select class="form-control form-control-lg mx-auto w-100" onfocus='this.size=5;'
                     onblur='this.size=1;' onchange='this.size=1; this.blur();' th:name="season"/>
-            <option value="" th:selected="selected" th:readonly="readonly">Choose season...</option>
-            <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
-                    th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
+                <option value="" th:selected="selected" th:readonly="readonly">Choose season...</option>
+                <option th:object="${currentYear}" th:each="y : ${#numbers.sequence(2000, currentYear)}"
+                        th:value="|${y}-${y+1}|" th:text="|${y}-${y+1}|"></option>
             </select>
         </div>
         <div class="form-group">
-            <div class="col-auto pb-3">
-                <button type="submit" class="btn btn-secondary btn-lg font-weight-bold"><i
-                        class="fas fa-search mr-2"></i>Search
+            <div class="col-auto search-btn-div">
+                <button type="submit" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-search"></i>Search
                 </button>
             </div>
         </div>
     </form>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#register').submit(function() {
-            $('select').removeAttr('disabled');
-        });
-    });
-</script>
 
 </body>
 </html>

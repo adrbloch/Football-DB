@@ -2,32 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="modelTemplates/head :: headCode"></th:block>
+    <link href="../../static/css/user.css" th:href="@{/css/user.css}" rel="stylesheet"/>
     <title>Registration</title>
 </head>
 
-<body class="bg">
-<div class="jumbotron text-center bg-success border border-secondary p-3">
-    <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="h-25 w-25 img-fluid">
+<body>
+<div class="jumbotron">
+    <img src="../../static/img/logo.jpg" th:src="@{/img/logo.jpg}" alt="logo" class="img-fluid">
 </div>
 
 <div class="container-fluid">
-    <div class="div-form border border-white md-width text-center">
+    <div class="div-form border border-white md-width">
         <form action="#" th:action="@{/registration}" th:object="${user}" method="POST" class="form-horizontal"
               enctype="multipart/form-data">
-            <div>
-                <h2 class="bg-success text-white text-center font-weight-bold py-1"> REGISTRATION </h2>
+            <div class="user-head">
+                <h2 class="bg-success"> REGISTRATION </h2>
             </div>
 
-            <div class="alert alert-danger mt-4" th:if="${occurredUserException}">
-                <p th:text="${exceptionUserMessage}" class="m-1"></p>
+            <div class="alert alert-danger" th:if="${occurredUserException}">
+                <p th:text="${exceptionUserMessage}"></p>
             </div>
 
-            <div class="alert alert-danger mt-4" th:if="${occurredPasswordException}">
-                <p th:text="${exceptionPasswordMessage}" class="m-1"></p>
+            <div class="alert alert-danger" th:if="${occurredPasswordException}">
+                <p th:text="${exceptionPasswordMessage}"></p>
             </div>
 
-            <div class=" form-group row my-5">
-                <div class="input-group offset-3">
+            <div class="form-group row user-data">
+                <div class="input-group">
                     <div class="input-group-prepend col-8">
                     <span class="input-group-text">
                          <span class="fa fa-user"></span>
@@ -39,8 +40,8 @@
                 <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></p>
             </div>
 
-            <div class="form-group row my-5">
-                <div class="input-group offset-3">
+            <div class="form-group row user-data">
+                <div class="input-group">
                     <div class="input-group-prepend col-8">
                    <span class="input-group-text">
                          <span class="fa fa-lock"></span>
@@ -53,8 +54,8 @@
                 <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
             </div>
 
-            <div class="form-group row my-5 pb-4">
-                <div class="input-group offset-3">
+            <div class="form-group row user-data pb-4">
+                <div class="input-group">
                     <div class="input-group-prepend col-8">
                    <span class="input-group-text">
                          <span class="fa fa-lock"></span>
@@ -67,15 +68,15 @@
                 <p th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="error"></p>
             </div>
 
-            <div class="form-group row mt-5 justify-content-center">
+            <div class="form-group row reg-nav">
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-success btn-lg mb-2 px-4 font-weight-bold">
-                        <i class="fas fa-user-plus mr-2"></i>Register
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-user-plus"></i>Register
                     </button>
                 </div>
                 <div class="col-auto">
-                    <a th:href="@{/login}" class="btn btn-secondary btn-lg font-weight-bold mb-3 px-4">
-                        <i class="fas fa-chevron-left pr-2"></i> Back
+                    <a th:href="@{/login}" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-chevron-left"></i> Back
                     </a>
                 </div>
             </div>

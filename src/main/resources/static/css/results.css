@@ -1,0 +1,45 @@
+.container-fluid {
+    text-align: left;
+}
+
+.back-btn {
+    font-weight: bold;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+}
+
+.back-btn > i {
+    padding-right: .5rem;
+}
+
+.result-head {
+    font-weight: bold;
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.result-list {
+    color: #fff !important;
+}
+
+.result-list > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.result-list > div > h1 {
+    margin-right: 3rem;
+}
+
+.result-list > div > div > h1{
+    margin-right: 3rem;
+    text-align: center;
+}
+
+.color-lightgreen {
+    color: lightgreen;
+}

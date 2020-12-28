@@ -1,0 +1,35 @@
+.search-head {
+    margin-top: 3rem;
+}
+
+.search-table {
+    color: white;
+    text-align: center;
+}
+
+.search-btn-div {
+    padding-bottom: 1rem;
+}
+
+.search-btn-div > button {
+    font-weight: bold;
+}
+
+.search-btn-div > button > i {
+    margin-right: .5rem;
+}
+
+.search-form > div > h6 {
+    margin-top: 1rem;
+}
+
+.or-padd {
+    padding-top: 4.5rem !important;
+}
+
+.or-padd > span {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+
