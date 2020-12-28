@@ -39,30 +39,30 @@ Application presentation: https://youtu.be/-e7ZXKXJq5E
 ## Screenshots
 
 ###### HOME
-![screenshot](readme-img/home/home.png) <br/><br/>
+![screenshot](readme-img/home/home.png) <br/><br/><br/>
 ###### SEARCH
 ![screenshot](readme-img/search/searchLeagues.png) <br/><br/>
-![screenshot](readme-img/search/searchMatches.png) <br/><br/>
+![screenshot](readme-img/search/searchMatches.png) <br/><br/><br/>
 ###### RESULTS
-![screenshot](readme-img/results/results.png) <br/><br/>
+![screenshot](readme-img/results/results.png) <br/><br/><br/>
 ###### LEAGUE
 ![screenshot](readme-img/league/league1.png) <br/><br/>
 ![screenshot](readme-img/league/league2.png) <br/><br/>
 ![screenshot](readme-img/league/league3.png) <br/><br/>
-![screenshot](readme-img/league/league4.png) <br/><br/>
+![screenshot](readme-img/league/league4.png) <br/><br/><br/>
 ###### TEAM
 ![screenshot](readme-img/team/team1.png) <br/><br/>
 ![screenshot](readme-img/team/team2.png) <br/><br/>
 ![screenshot](readme-img/team/team3.png) <br/><br/>
-![screenshot](readme-img/team/team4.png) <br/><br/>
+![screenshot](readme-img/team/team4.png) <br/><br/><br/>
 ###### PLAYER
 ![screenshot](readme-img/player/player1.png) <br/><br/>
 ![screenshot](readme-img/player/player2.png) <br/><br/>
-![screenshot](readme-img/player/player3.png) <br/><br/>
+![screenshot](readme-img/player/player3.png) <br/><br/><br/>
 ###### MATCH
-![screenshot](readme-img/match/match.png) <br/><br/>
+![screenshot](readme-img/match/match.png) <br/><br/><br/>
 ###### TABLE
-![screenshot](readme-img/table/table.png) <br/><br/>
+![screenshot](readme-img/table/table.png) <br/><br/><br/>
 ###### USER LOGIN AND REGISTRATION
 ![screenshot](readme-img/user/login-logout.png) <br/><br/>
 ![screenshot](readme-img/user/registration.png) 
@@ -83,7 +83,6 @@ Application presentation: https://youtu.be/-e7ZXKXJq5E
 * Bootstrap - v4.5.2
 
 ## Todos
-* refactor Front-end code
 * upgrade API key to a paid version
 * add: 
     - live scores
