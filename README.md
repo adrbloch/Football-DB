@@ -1,5 +1,5 @@
 # Football-DB
-Web application for searching all information about football based on external API - [TheSportsDB](https://www.thesportsdb.com/api.php).
+Web application for searching any information about football based on external API - [TheSportsDB](https://www.thesportsdb.com/api.php).
 
 Application presentation: https://youtu.be/-e7ZXKXJq5E 
 
@@ -76,7 +76,7 @@ Application presentation: https://youtu.be/-e7ZXKXJq5E
 * MySQL - v8.0.21
 * Thymeleaf
 * Maven - v3.6.3
-* Junit - v5.6.2
+* JUnit - v5.6.2
 * Mockito - v3.3.3
 * HTML
 * CSS
