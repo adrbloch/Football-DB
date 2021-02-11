@@ -12,17 +12,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("rest/api/honors")
-public class RestHonorController {
+class RestHonorController {
 
     private final HonorService honorService;
 
     @Autowired
-    public RestHonorController(HonorService honorService) {
+    RestHonorController(HonorService honorService) {
         this.honorService = honorService;
     }
 
     @GetMapping
-    public List<Honor> getLeaguesByCountry(@RequestParam String playerId) {
+    List<Honor> getLeaguesByCountry(@RequestParam String playerId) {
         return honorService.findHonorsByPlayerId(playerId);
     }
 }

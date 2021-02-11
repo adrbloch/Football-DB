@@ -18,12 +18,12 @@ public class RestMatchController {
     private final MatchService matchService;
 
     @Autowired
-    public RestMatchController(MatchService matchService) {
+    RestMatchController(MatchService matchService) {
         this.matchService = matchService;
     }
 
     @GetMapping(params = {"homeTeam", "awayTeam"})
-    public Optional<List<Match>> getMatchesByTeams(
+    Optional<List<Match>> getMatchesByTeams(
             @RequestParam("homeTeam") String homeTeam,
             @RequestParam("awayTeam") String awayTeam) {
 
@@ -31,7 +31,7 @@ public class RestMatchController {
     }
 
     @GetMapping(params = {"homeTeam", "awayTeam", "season"})
-    public Optional<List<Match>> getMatchesByTeamsAndSeason(
+    Optional<List<Match>> getMatchesByTeamsAndSeason(
             @RequestParam("homeTeam") String homeTeam,
             @RequestParam("awayTeam") String awayTeam,
             @RequestParam("season") String season) {
@@ -40,7 +40,7 @@ public class RestMatchController {
     }
 
     @GetMapping(params = "id")
-    public Match getMatchById(@RequestParam String id) {
+    Match getMatchById(@RequestParam String id) {
         return matchService.findMatchById(id);
     }
 

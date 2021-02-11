@@ -29,10 +29,10 @@ class TableControllerTest {
 
         mockMvc.perform(get("/table/results")
                 .param("league", "english premier league")
-                .param("season", "2016-2017"))
+                .param("season", "2020-2021"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("leagues", instanceOf(League.class)))
-                .andExpect(model().attribute("season", equalTo("2016-2017")))
+                .andExpect(model().attribute("season", equalTo("2020-2021")))
                 .andExpect(view().name("results/tableResults"));
     }
 
@@ -78,12 +78,12 @@ class TableControllerTest {
 
         mockMvc.perform(get("/table")
                 .param("leagueId", "4328")
-                .param("season", "2016-2017"))
+                .param("season", "2020-2021"))
                 .andExpect(status().isOk())
                 .andExpect(model().attribute("table", instanceOf(List.class)))
                 .andExpect(model().attribute("table", hasSize(20)))
                 .andExpect(model().attribute("league", instanceOf(League.class)))
-                .andExpect(model().attribute("season", equalTo("2016-2017")))
+                .andExpect(model().attribute("season", equalTo("2020-2021")))
                 .andExpect(view().name("data/table"));
     }
 

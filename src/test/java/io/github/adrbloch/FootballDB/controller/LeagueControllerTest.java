@@ -115,15 +115,6 @@ class LeagueControllerTest {
                 .andExpect(view().name("data/league"));
     }
 
-    @Test
-    void viewLeagueByIdAddNullToModelWhenTeamsNotExistForIdAndReturnView() throws Exception {
-
-        mockMvc.perform(get("/league/{id}","4500"))
-                .andExpect(status().isOk())
-                .andExpect(model().attribute("teamsByLeague", nullValue()))
-                .andExpect(view().name("data/league"));
-    }
-
 
     @Test
     void viewLeagueByIdAddTableObjectToModelAndReturnView() throws Exception {

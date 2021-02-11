@@ -105,12 +105,12 @@
                         <tbody>
                         <tr th:each="team, iterStat : ${tableByLeague}">
                             <th scope="row" th:text="${iterStat.count}"></th>
-                            <td th:text="${team.getName()}"></td>
-                            <td th:text="${team.getPlayed()}"></td>
-                            <td th:text="${team.getWin()}"></td>
-                            <td th:text="${team.getDraw()}"></td>
-                            <td th:text="${team.getLoss()}"></td>
-                            <td th:text="${team.getTotal()}"></td>
+                            <td th:text="${team.getStrTeam()}"></td>
+                            <td th:text="${team.getIntPlayed()}"></td>
+                            <td th:text="${team.getIntWin()}"></td>
+                            <td th:text="${team.getIntDraw()}"></td>
+                            <td th:text="${team.getIntLoss()}"></td>
+                            <td th:text="${team.getIntPoints()}"></td>
                         </tr>
                         </tbody>
                     </table>

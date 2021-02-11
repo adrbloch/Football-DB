@@ -13,17 +13,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/former-teams")
-public class RestFormerTeamController {
+class RestFormerTeamController {
 
     private final FormerTeamService formerTeamService;
 
     @Autowired
-    public RestFormerTeamController(FormerTeamService formerTeamService) {
+    RestFormerTeamController(FormerTeamService formerTeamService) {
         this.formerTeamService = formerTeamService;
     }
 
     @GetMapping
-    public Optional<List<FormerTeam>> getFormerTeamsByPlayerId(@RequestParam String playerId) {
+    Optional<List<FormerTeam>> getFormerTeamsByPlayerId(@RequestParam String playerId) {
         return formerTeamService.findFormerTeamsByPlayerId(playerId);
 
     }

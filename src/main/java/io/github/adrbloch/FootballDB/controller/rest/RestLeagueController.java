@@ -13,27 +13,27 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/leagues")
-public class RestLeagueController {
+class RestLeagueController {
 
     private final LeagueService leagueService;
 
     @Autowired
-    public RestLeagueController(LeagueService leagueService) {
+    RestLeagueController(LeagueService leagueService) {
         this.leagueService = leagueService;
     }
 
     @GetMapping(params = "country")
-    public Optional<List<League>> getLeaguesByCountry(@RequestParam String country) {
+    Optional<List<League>> getLeaguesByCountry(@RequestParam String country) {
         return leagueService.findLeaguesByCountry(country);
     }
 
     @GetMapping(params = "id")
-    public League getLeagueById(@RequestParam String id) {
+    League getLeagueById(@RequestParam String id) {
         return leagueService.findLeagueById(id);
     }
 
     @GetMapping(params = "name")
-    public Optional<League> getLeagueByName(String name) {
+    Optional<League> getLeagueByName(String name) {
         return leagueService.findLeagueByName(name);
     }
 }

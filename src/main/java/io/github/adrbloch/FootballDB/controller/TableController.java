@@ -18,19 +18,19 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/table")
-public class TableController {
+class TableController {
 
     private final TableService tableService;
     private final LeagueService leagueService;
 
     @Autowired
-    public TableController(TableService tableService, LeagueService leagueService) {
+    TableController(TableService tableService, LeagueService leagueService) {
         this.tableService = tableService;
         this.leagueService = leagueService;
     }
 
     @GetMapping("/search")
-    public String searchTables(Model model) {
+    String searchTables(Model model) {
 
         model.addAttribute("currentYear", Year.now().getValue());
 
@@ -38,7 +38,7 @@ public class TableController {
     }
 
     @GetMapping(value = "/results", params = {"league", "season"})
-    public String viewTablesByLeagueAndSeason(
+    String viewTablesByLeagueAndSeason(
             @RequestParam("league") String league,
             @RequestParam("season") String season,
             Model model) {
@@ -69,7 +69,7 @@ public class TableController {
     }
 
     @GetMapping
-    public String viewTableDetails(
+    String viewTableDetails(
             @RequestParam("leagueId") String leagueId,
             @RequestParam("season") String season,
             Model model) {

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/player")
-public class PlayerController {
+class PlayerController {
 
     private final PlayerService playerService;
     private final ContractService contractService;
@@ -30,10 +30,10 @@ public class PlayerController {
     private final HonorService honorService;
 
     @Autowired
-    public PlayerController(PlayerService playerService,
-                            ContractService contractService,
-                            FormerTeamService formerTeamService,
-                            HonorService honorService) {
+    PlayerController(PlayerService playerService,
+                     ContractService contractService,
+                     FormerTeamService formerTeamService,
+                     HonorService honorService) {
 
         this.playerService = playerService;
         this.contractService = contractService;
@@ -42,44 +42,39 @@ public class PlayerController {
     }
 
     @GetMapping("/search")
-    public String searchPlayers() {
+    String searchPlayers() {
 
         return "search/searchPlayers";
     }
 
     @GetMapping(value = "/results", params = "name")
-    public String viewPlayersByName(@RequestParam("name") String name, Model model) {
+    String viewPlayersByName(@RequestParam("name") String name, Model model) {
 
         Optional<List<Player>> playersByName = playerService.findPlayersByName(name);
 
-//        if (playersByName.isPresent() && !playersByName.isEmpty())
-//            model.addAttribute("players", playersByName);
-//        else
-//            model.addAttribute("players", null);
-
-            playersByName
-                    .ifPresentOrElse(p -> model.addAttribute("players", p),
-                            () -> model.addAttribute("players", null));
+        playersByName
+                .ifPresentOrElse(p -> model.addAttribute("players", p),
+                        () -> model.addAttribute("players", null));
 
         return "results/playerResults";
     }
 
     @GetMapping(value = "/results", params = {"team", "name"})
-    public String viewPlayersByTeamAndName(
+    String viewPlayersByTeamAndName(
             @RequestParam("team") String team,
             @RequestParam("name") String name,
             Model model) {
 
-            playerService
-                    .findPlayersByTeamAndName(team, name)
-                    .ifPresentOrElse(p -> model.addAttribute("players", p),
-                            () -> model.addAttribute("players", null));
+        playerService
+                .findPlayersByTeamAndName(team, name)
+                .ifPresentOrElse(p -> model.addAttribute("players", p),
+                        () -> model.addAttribute("players", null));
 
         return "results/playerResults";
     }
 
     @GetMapping("/{id}")
-    public String viewPlayerDetails(@PathVariable("id") String id, Model model) {
+    String viewPlayerDetails(@PathVariable("id") String id, Model model) {
 
         model.addAttribute("player", playerService.findPlayerById(id));
 
@@ -112,8 +107,7 @@ public class PlayerController {
         honorList
                 .stream()
                 .sorted(Comparator
-                        .comparing(Honor::getStrSeason))
-                .collect(Collectors.toList());
+                        .comparing(Honor::getStrSeason));
 
         List<Honor> distinctHonorList = new ArrayList<>();
 

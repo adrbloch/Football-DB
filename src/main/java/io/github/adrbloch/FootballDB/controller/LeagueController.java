@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/league")
-public class LeagueController {
+class LeagueController {
 
     private final LeagueService leagueService;
     private final TeamService teamService;
     private final TableService tableService;
 
     @Autowired
-    public LeagueController(LeagueService leagueService, TeamService teamService, TableService tableService) {
+    LeagueController(LeagueService leagueService, TeamService teamService, TableService tableService) {
         this.leagueService = leagueService;
         this.teamService = teamService;
         this.tableService = tableService;
@@ -29,13 +29,13 @@ public class LeagueController {
 
 
     @GetMapping("/search")
-    public String searchLeagues() {
+    String searchLeagues() {
 
         return "search/searchLeagues";
     }
 
     @GetMapping(value = "/results", params = "country")
-    public String viewLeaguesByCountry(@RequestParam("country") String country, Model model) {
+    String viewLeaguesByCountry(@RequestParam("country") String country, Model model) {
 
         leagueService
                 .findLeaguesByCountry(country)
@@ -46,7 +46,7 @@ public class LeagueController {
     }
 
     @GetMapping(value = "/results", params = "name")
-    public String viewLeaguesByName(@RequestParam("name") String name, Model model) {
+    String viewLeaguesByName(@RequestParam("name") String name, Model model) {
 
         leagueService
                 .findLeagueByName(name)
@@ -57,7 +57,7 @@ public class LeagueController {
     }
 
     @GetMapping("/{id}")
-    public String viewLeagueDetails(@PathVariable("id") String id, Model model) {
+    String viewLeagueDetails(@PathVariable("id") String id, Model model) {
 
         League league = leagueService.findLeagueById(id);
 

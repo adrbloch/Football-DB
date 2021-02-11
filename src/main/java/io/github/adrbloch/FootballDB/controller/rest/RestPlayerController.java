@@ -13,17 +13,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/players")
-public class RestPlayerController {
+class RestPlayerController {
 
     private final PlayerService playerService;
 
     @Autowired
-    public RestPlayerController(PlayerService playerService) {
+    RestPlayerController(PlayerService playerService) {
         this.playerService = playerService;
     }
 
     @GetMapping
-    public Optional<List<Player>> getPlayersByTeamAndName(
+    Optional<List<Player>> getPlayersByTeamAndName(
             @RequestParam(required = false, name = "team") String teamName,
             @RequestParam("name") String playerName) {
 
@@ -35,7 +35,7 @@ public class RestPlayerController {
     }
 
     @GetMapping(params = "id")
-    public Player getPlayerById(@RequestParam String id) {
+    Player getPlayerById(@RequestParam String id) {
 
         return playerService.findPlayerById(id);
     }

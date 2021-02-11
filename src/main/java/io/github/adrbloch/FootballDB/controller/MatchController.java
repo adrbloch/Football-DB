@@ -14,18 +14,18 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/match")
-public class MatchController {
+class MatchController {
     private final MatchService matchService;
     private final TeamService teamService;
 
     @Autowired
-    public MatchController(MatchService matchService, TeamService teamService) {
+    MatchController(MatchService matchService, TeamService teamService) {
         this.matchService = matchService;
         this.teamService = teamService;
     }
 
     @GetMapping("/search")
-    public String searchMatches(Model model) {
+    String searchMatches(Model model) {
 
         model.addAttribute("currentYear", Year.now().getValue());
 
@@ -33,7 +33,7 @@ public class MatchController {
     }
 
     @GetMapping(value = "/results", params = {"homeTeam", "awayTeam"})
-    public String viewMatchesByTeams(
+    String viewMatchesByTeams(
             @RequestParam("homeTeam") String homeTeam,
             @RequestParam("awayTeam") String awayTeam,
             Model model) {
@@ -47,7 +47,7 @@ public class MatchController {
     }
 
     @GetMapping(value = "/results", params = {"homeTeam", "awayTeam", "season"})
-    public String viewMatchesByTeamsAndSeason(
+    String viewMatchesByTeamsAndSeason(
             @RequestParam("homeTeam") String homeTeam,
             @RequestParam("awayTeam") String awayTeam,
             @RequestParam("season") String season,
@@ -63,7 +63,7 @@ public class MatchController {
 
 
     @GetMapping("/{id}")
-    public String viewMatchDetails(@PathVariable("id") String id, Model model) {
+    String viewMatchDetails(@PathVariable("id") String id, Model model) {
 
         Match match = matchService.findMatchById(id);
 

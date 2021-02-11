@@ -12,17 +12,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/contracts")
-public class RestContractController {
+class RestContractController {
 
     private final ContractService contractService;
 
     @Autowired
-    public RestContractController(ContractService contractService) {
+    RestContractController(ContractService contractService) {
         this.contractService = contractService;
     }
 
     @GetMapping
-    public Optional<Contract> getContractsByPlayerId(@RequestParam String playerId) {
+    Optional<Contract> getContractsByPlayerId(@RequestParam String playerId) {
         return contractService.findContractsByPlayerId(playerId);
 
     }

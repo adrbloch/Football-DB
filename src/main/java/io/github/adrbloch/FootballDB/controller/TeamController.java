@@ -17,19 +17,19 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/team")
-public class TeamController {
+class TeamController {
 
     private final TeamService teamService;
     private final LeagueService leagueService;
 
     @Autowired
-    public TeamController(TeamService teamService, LeagueService leagueService) {
+    TeamController(TeamService teamService, LeagueService leagueService) {
         this.teamService = teamService;
         this.leagueService = leagueService;
     }
 
     @GetMapping("/search")
-    public String searchTeams(Model model) {
+    String searchTeams(Model model) {
 
         model.addAttribute("team", new Team());
 
@@ -37,7 +37,7 @@ public class TeamController {
     }
 
     @GetMapping(value = "/results", params = "country")
-    public String viewTeamsByCountry(@RequestParam("country") String country, Model model) {
+    String viewTeamsByCountry(@RequestParam("country") String country, Model model) {
 
         teamService
                 .findTeamsByCountry(country)
@@ -48,7 +48,7 @@ public class TeamController {
     }
 
     @GetMapping(value = "/results", params = "league")
-    public String viewTeamsByLeague(@RequestParam("league") String league, Model model) {
+    String viewTeamsByLeague(@RequestParam("league") String league, Model model) {
 
         teamService
                 .findTeamsByLeague(league)
@@ -59,7 +59,7 @@ public class TeamController {
     }
 
     @GetMapping(value = "/results", params = "name")
-    public String viewTeamByName(@RequestParam("name") String name, Model model) {
+    String viewTeamByName(@RequestParam("name") String name, Model model) {
 
         teamService
                 .findTeamsByName(name)
@@ -70,12 +70,11 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public String viewTeamDetails(@PathVariable("id") String id, Model model) {
+    String viewTeamDetails(@PathVariable("id") String id, Model model) {
 
         Team team = teamService.findTeamById(id);
 
         model.addAttribute("team", team);
-
 
         List<League> leaguesByTeam = new ArrayList<>();
         addNotNullLeagueToList(team.getIdLeague(), leaguesByTeam);

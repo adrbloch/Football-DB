@@ -20,23 +20,23 @@ public class UserController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/home")
-    public String homePage() {
+    String homePage() {
         return "home";
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    String loginPage() {
         return "user/login";
     }
 
 
     @GetMapping("/registration")
-    public String addUserForm(Model model) {
+    String addUserForm(Model model) {
         User newUser = new User();
         model.addAttribute("user", newUser);
 
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String saveUser(@ModelAttribute("user") @Valid User userToSave,
+    String saveUser(@ModelAttribute("user") @Valid User userToSave,
                            BindingResult bindingResult,
                            Model model) {
 

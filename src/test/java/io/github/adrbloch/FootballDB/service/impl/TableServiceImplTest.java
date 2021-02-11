@@ -28,7 +28,7 @@ class TableServiceImplTest {
                         uriBuilder
                                 .path("/rest/api/table")
                                 .queryParam("leagueId", "4328")
-                                .queryParam("season", "2016-2017")
+                                .queryParam("season", "2020-2021")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
@@ -44,12 +44,12 @@ class TableServiceImplTest {
                         uriBuilder
                                 .path("/rest/api/table")
                                 .queryParam("leagueId", "4328")
-                                .queryParam("season", "2016-2017")
+                                .queryParam("season", "2020-2021")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody()
-                .jsonPath("$.[0].name").isEqualTo("Chelsea");
+                .jsonPath("$.[0].idLeague").isEqualTo("4328");
     }
 
     @Test

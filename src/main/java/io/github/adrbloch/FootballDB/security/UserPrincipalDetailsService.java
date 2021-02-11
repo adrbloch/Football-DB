@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserPrincipalDetailsService implements UserDetailsService {
 
     public static final Logger logger = LoggerFactory.getLogger(UserPrincipalDetailsService.class);
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserPrincipalDetailsService(UserRepository userRepository) {
@@ -28,8 +28,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
         logger.info("Signing in user: {}", username);
         User user = this.userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User does not exist"));
-        UserPrincipal userPrincipal = new UserPrincipal(user);
 
-        return userPrincipal;
+        return new UserPrincipal(user);
     }
 }

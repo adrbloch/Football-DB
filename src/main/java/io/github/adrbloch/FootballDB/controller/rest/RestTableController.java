@@ -13,17 +13,17 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/table")
-public class RestTableController {
+class RestTableController {
 
     private final TableService tableService;
 
     @Autowired
-    public RestTableController(TableService tableService) {
+    RestTableController(TableService tableService) {
         this.tableService = tableService;
     }
 
     @GetMapping
-    public Optional<List<TableTeam>> getTableByLeagueIdAndSeason(@RequestParam String leagueId, @RequestParam String season) {
+    Optional<List<TableTeam>> getTableByLeagueIdAndSeason(@RequestParam String leagueId, @RequestParam String season) {
         return tableService.findTableByLeagueIdAndSeason(leagueId, season);
     }
 }

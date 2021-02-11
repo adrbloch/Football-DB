@@ -10,32 +10,32 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("rest/api/teams")
-public class RestTeamController {
+class RestTeamController {
 
     private final TeamService teamService;
 
     @Autowired
-    public RestTeamController(TeamService teamService) {
+    RestTeamController(TeamService teamService) {
         this.teamService = teamService;
     }
 
     @GetMapping(params = "name")
-    public Optional<List<Team>> getTeamsByName(@RequestParam String name) {
+    Optional<List<Team>> getTeamsByName(@RequestParam String name) {
         return teamService.findTeamsByName(name);
     }
 
     @GetMapping(params = "league")
-    public Optional<List<Team>> getTeamsByLeague(@RequestParam String league) {
+    Optional<List<Team>> getTeamsByLeague(@RequestParam String league) {
         return teamService.findTeamsByLeague(league);
     }
 
     @GetMapping(params = "country")
-    public Optional<List<Team>> getTeamsByCountry(@RequestParam String country) {
+    Optional<List<Team>> getTeamsByCountry(@RequestParam String country) {
         return teamService.findTeamsByCountry(country);
     }
 
     @GetMapping(params = "id")
-    public Team getTeamById(@RequestParam String id) {
+    Team getTeamById(@RequestParam String id) {
         return teamService.findTeamById(id);
     }
 }
